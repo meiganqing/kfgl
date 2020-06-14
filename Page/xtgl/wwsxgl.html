@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/SXSY/widget/yanzheng/css/verify.css" media="all">
+    <link rel="stylesheet" href="../../lib/css/font-awesome/css/font-awesome.css" />
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="layui-fluid" id="qdfluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">文物属性列表</div>
+            <div class="layui-form layui-card-body layuiadmin-card-header-auto" style="height: 45px;">
+                <div class="layui-inline" id="category">
+                    <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+                    <div class="layui-input-block" style="margin-left:90px;">
+                        <select id="queryT" class="layui-input" lay-filter="queryT">
+                            <!-- <option value="文物登记表">文物登记表</option>
+                            <option value="拓片资料列表">拓片资料列表</option> -->
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="layui-inline" id="KeyWord">
+                    <label class="layui-form-label" for="queryK" style="width: 56px;padding-right:5px;">关键字:</label>
+                    <div class="layui-input-block" style="margin-left:76px;">
+                        <input type="text" placeholder="请输入" id="queryK" class="layui-input" style="width: 300px;">
+                    </div>
+                </div> 
+                <div class="layui-inline" id="serchdiv">
+                    <button class="layui-btn" type="button" name="searchData" id="searchData">查询</button>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" type="button" id="add_Teamwork">新增属性</button>
+                </div>
+                
+                
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table lay-filter="grid_table" id="grid_table"></table>
+            </div>
+        </div>
+    </div>
+
+    
+    <!--<div class="layui-fluid">
+        <div class="layui-card">
+
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">类别：</label>
+                        <div class="layui-inline">
+                            <select id="wwtype" lay-search lay-filter="wwtype">
+											
+										</select>
+                        </div>
+                    </div>
+                   
+                    <div class="layui-inline">
+                        <div class="layui-btn-group">
+                            <button class="layui-btn own-btn-blue" id="add">添加内容</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-card-body">
+
+                <table id="demo" lay-filter="demo">
+
+                </table>
+
+            </div>
+        </div>
+    </div> -->
+
+    <style>
+        #addLayerHtml .layui-form-label {
+            width: 120px;
+        }
+        
+        #addLayerHtml .layui-input-block {
+            margin-left: 150px;
+        }
+        .spark{
+            color: red;
+        }
+        .input_w{
+            width: 90%;
+        }
+    </style>
+    <!--添加弹框-->
+    <form class="layui-form  site-text" id="addLayerHtml" style="display: none;width: 100%;">
+        <div class="layui-card-body layui-row layui-form-item">
+            <div class="layui-col-md12 layui-inline" id="">
+                <label class="layui-form-label"><span class="spark">*</span>类别</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLM统计区分" readonly="" id="统计区分" placeholder="请输入统计区分" autocomplete="off" class="layui-input input_w">
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-inline" id="out_addkfmc">
+                <label class="layui-form-label"><span class="spark">*</span>文物属性选项名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLM统计项目" id="统计项目" placeholder="请输入文物属性选项名称" autocomplete="off" class="layui-input input_w input_empty">
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-inline " id="out_addgjh">
+                <label class="layui-form-label"><span class="spark">*</span>文物属性内容</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLM统计内容" id="统计内容" placeholder="请输入文物属性内容" autocomplete="off" class="layui-input input_w input_empty">
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-inline " id="out_addch">
+                <label class="layui-form-label"><span class="spark">*</span>文物属性内容简名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLM统计内容简名" id="统计内容简名" placeholder="请输入文物属性内容简名" autocomplete="off" class="layui-input input_w input_empty">
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-inline " id="out_addfqh">
+                <label class="layui-form-label"><span class="spark">*</span>位置序号</label>
+                <div class="layui-input-block">
+                    <input type="number" name="XDLM排序" id="排序" placeholder="请输入位置序号" autocomplete="off" class="layui-input input_w input_empty">
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item site-text" style="text-align: center;">
+            <div class="">
+                <!--<span class="layui-btn own-btn-green" id="addsubmit">确认</span>-->
+                <button type="button" class="layui-btn" id="saveHZ">添加</button>
+                <button type="button" class="layui-btn layui-btn-warm" id="qxHZ">取消</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>
+<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js" ></script>
+<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/SXSY/widget/yanzheng/js/verify.js"></script>
+<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+<!-- <script type="text/javascript" src="../../lib/js/store.min.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJs/tableSetting.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJS/xdDataMange.js"></script> -->
+<script type="text/javascript" src="./js/wwsxgl.js"></script>
+<!-- <script type="text/html" id="opeTpl">
+    <a class="layui-btn layui-btn-xs own-btn-blue" lay-event="edit">修改</a> 
+    <a class="layui-btn layui-btn-xs own-btn-red" lay-event="del">删除</a> 
+</script> -->

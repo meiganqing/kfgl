@@ -1,0 +1,870 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>新拓片入库</title>
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SXSY/layuiextend/jquery.jqprint-0.3.js"></script>
+    <script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+	<script type="text/javascript" src="../js/add_carrier.js"></script>
+</head>
+<style>
+	body .layui-form-label {
+		width: 120px;
+	}
+	
+	body .layui-input-block {
+		margin-left: 160px;
+	}
+	
+	.hide {
+		display: none;
+	}
+	
+	.left {
+		float: left;
+	}
+	
+	.spark {
+		color: red;
+	}
+	
+	#showfileXZ .edit-picture,
+	#showfileJJ .edit-picture,
+	#showfileSP .edit-picture {
+		display: none;
+	}
+	.imgDiv {
+		float: left;
+		padding: 7px;
+		box-sizing: border-box;
+		border: 1px solid #BFBFBF;
+		box-shadow: 2px 2px 3px #aaaaaa;
+	}
+</style>
+
+
+<body>
+	<div class="layui-fluid ">
+		<form class="layui-form" id="XMForm" action="">
+			<input type="hidden" name="XDLM库存状态" id="库存状态" value="在库" />
+			<input type="hidden" name="XDLM文物库内编号" id="文物库内编号" />
+			<input type="hidden" name="XDLM载体二类型" id="载体二类型" />
+			<input type="hidden" name="XDLM载体用途" id="载体用途" />
+			<input type="hidden" name="XDLM图片地址" id="图片地址" />
+			<input type="hidden" name="XDLM添加时间" id="添加时间" />
+			<input type="hidden" name="XDLM添加人" id="添加人" />
+
+			<div class="layui-row layui-col-space15" style="padding: 15px 100px;">
+				<div class="layui-col-md12">
+					<!-- 文物申请修改信息 -->
+					<div class="layui-card layui-hide" id="modifyData">
+						<div class="layui-card-header">
+							<i class="title-icon fa fa-tags"></i>文物申请修改信息
+						</div>
+						<div class="layui-card-body layuiadmin-card-list">
+							<div class="layui-row layui-col-space10">
+								<div class="layui-row layui-col-space10 layui-form-item">
+									<div class="layui-col-lg6">
+										<label class="layui-form-label"><span class="spark">*</span>申请人：</label>
+										<div class="layui-input-block">
+
+											<input type="text" class="layui-input" id="申请人用户名" />
+										</div>
+									</div>
+									<div class="layui-col-lg6">
+										<label class="layui-form-label"><span class="spark">*</span>申请时间：</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input" id="申请更改时间" />
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label ">申请修改描述：</label>
+									<div class="layui-input-block">
+										<textarea class="layui-textarea" id="错误描述" style="height: 100px;"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 位置信息 -->
+					<div class="layui-card">
+						<div class="layui-card-header">位置信息</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<label class="layui-form-label" for=""><span class="spark">*</span>库房名称：</label>
+								<div class="layui-input-block">
+									<input type="text" id="库房名" name="XDLM库房名" class="layui-input" readonly style="color: red;">
+								</div>
+							</div>
+							<div class="layui-form-item " id="">
+								<label class="layui-form-label" for="">存放位置信息：</label>
+								<div class="layui-input-block">
+									<div class="layui-input-inline ">
+										<select name="XDLM柜架号" id="柜架号" lay-search lay-filter="柜架号">
+											<option value=""></option>
+										</select>
+									</div>
+									<div class="layui-input-inline ">
+										<select name="XDLM层号" id="层号" lay-search lay-filter="层号">
+											<option value=""></option>
+										</select>
+									</div>
+									<div class="layui-input-inline ">
+										<select name="XDLM分区号" id="分区号" lay-search lay-filter="分区号">
+											<option value=""></option>
+										</select>
+									</div>
+									<div class="layui-input-inline distent">
+										<a class="layui-btn" id="checkPosition">查看位置</a>
+									</div>
+								</div>
+							</div>
+							<!--<div class="layui-form-item">
+								<label class="layui-form-label" for=""><span class="spark">*</span>图筒：</label>
+								<div class="layui-input-block">
+									<div class="layui-input-inline ">
+										<input type="text" id="图筒" name="XDLM图筒" class="layui-input"/>
+									</div>
+									<div class="layui-input-inline ">
+										<span class="layui-btn" id="addPreliminary">添加图筒</span>
+									</div>
+								</div>
+
+							</div>-->
+
+						</div>
+					</div>
+
+					<!-- 拓片入库监管信息 -->
+					<div class="layui-card" id="supervisePerson">  <!--旧版id：noModify-->
+						<div class="layui-card-header">拓片入库监管信息</div>
+						<div class="layui-card-body">
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label"><span class="spark">*</span>移交人：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="移交人" lay-verify="required" name="XDLM移交人" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label"><span class="spark">*</span>监督人：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="监督人" lay-verify="required" name="XDLM监督人" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label"><span class="spark">*</span>接收人：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="接收人" lay-verify="required" name="XDLM接收人" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label"><span class="spark">*</span>录入人：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="录入人" lay-verify="required" name="XDLM录入人" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 登记表 -->
+					<div class="layui-card">
+						<div class="layui-card-header">登记表</div>
+						<div class="layui-card-body">
+							<!-- <div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">发现类型：</label>
+
+									<div class="layui-input-block" id="fxlx">
+										<input id="" type="radio" lay-filter="" name="XDLM发现类型" checked="" value="复查" title="复查">
+										<input type="radio" lay-filter="" name="XDLM发现类型" value="新发现" title="新发现">
+									</div>
+								</div>
+
+							</div> -->
+
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for="XDLM编号"><span class="spark">*</span>编号：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" readonly="" id="新编号" name="XDLM新编号" value="" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for="XDLM编号"><span class="spark">*</span>原编号：</label>
+
+									<div class="layui-input-block">
+
+										<input type="text" class="layui-input" id="编号" lay-verify="required" name="XDLM编号" />
+									</div>
+								</div>
+								<!-- <div class="layui-col-lg6">
+									<label class="layui-form-label">整理编号：</label>
+									<div class="layui-input-block">
+
+										<input type="text" class="layui-input" id="整理编号" name="XDLM整理编号" />
+									</div>
+								</div> -->
+								<!-- <div class="layui-col-lg12">
+									<label class="layui-form-label"><span class="spark">*</span>名称：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="登记名称" lay-verify="required" name="XDLM登记名称" />
+									</div>
+								</div> -->
+								<div class="layui-form-item">
+									<label class="layui-form-label">省市区：</label>
+									<div class="layui-input-block">
+										<div class="layui-input-inline">
+											<select name="XDLM省" id="省" lay-filter="province"></select>
+										</div>
+										<div class="layui-input-inline">
+											<select name="XDLM市" id="市" lay-filter="city"></select>
+										</div>
+										<div class="layui-input-inline">
+											<select name="XDLM县" id="县" lay-filter="county"></select>
+										</div>
+										<div class="layui-input-inline">
+											<select name="XDLM乡" id="乡" lay-filter="village"></select>
+										</div>
+										<!--<div class="layui-input-inline">
+											<select name="XDLM村" id="村" lay-filter="village">
+
+											</select>
+										</div>-->
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for="XDLM编号">村：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="村" name="XDLM村" placeholder="请输入村" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for="XDLM编号">组：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="组" name="XDLM组" placeholder="请输入组" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for=""><span class="spark">*</span>名称：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="登记名称" lay-verify="required" name="XDLM登记名称" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label" for="">调查人：</label>
+									<div class="layui-input-block">
+										<input type="text" id="调查人" name="XDLM调查人" class="layui-input" >
+									</div>
+								</div>
+							</div>
+
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">纵(cm)：</label>
+									<div class="layui-input-block">
+										<input type="number" class="layui-input danwei" value="0" id="长" lay-verify="required" name="XDLM长" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">横(cm)：</label>
+									<div class="layui-input-block ">
+										<input type="number" class="layui-input danwei" value="0" id="宽" lay-verify="required" name="XDLM宽" />
+									</div>
+								</div>
+							</div>
+
+							
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">状态：</label>
+
+									<div class="layui-input-block" id="isYiTuo">
+										<input id="yituo" type="radio" lay-filter="isYiTuo" name="XDLM是否已拓" checked="" value="是" title="已拓">
+										<input type="radio" lay-filter="isYiTuo" name="XDLM是否已拓" value="否" title="未拓">
+									</div>
+								</div>
+								<div class="layui-form-item layui-hide" id="weituoyuanyin">
+									<label class="layui-form-label" for="">未拓原因：</label>
+									<div class="layui-input-block">
+										<textarea name="XDLM拓片原因" class="layui-textarea" rows="" checked cols="" id="拓片原因"></textarea>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">小地方名：</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input" id="小地方" name="XDLM小地方" placeholder="请输入小地名(如有)" />
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">具体位置：</label>
+								<div class="layui-input-block">
+									<input type="text" name="XDLM具体位置" id="具体位置"  placeholder="请输入具体位置" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">石刻保存环境：</label>
+
+								<div class="layui-input-block">
+									<input type="text" name="XDLM保存环境描述" id="保存环境描述" placeholder="请输入石刻保存环境" autocomplete="off" class="layui-input">
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- GPS坐标 -->
+					<div class="layui-card">
+						<div class="layui-card-header">GPS坐标</div>
+						<div class="layui-card-body">
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg4">
+									<label class="layui-form-label">东经</label>
+									<div class="layui-input-block">
+										<input type="number" value="0" type="number" autocomplete="off" class="layui-input" id="GPS经度" name="XDLMGPS经度" />
+										<span class="layui-btn" id="jwd1">度分秒</span>
+									</div>
+								</div>
+								<div class="layui-col-lg4">
+									<label class="layui-form-label">北纬</label>
+									<div class="layui-input-block">
+										<input type="number" value="0" type="number" autocomplete="off" class="layui-input" id="GPS纬度" name="XDLMGPS纬度" />
+										<span class="layui-btn" id="jwd2">度分秒</span>
+									</div>
+								</div>
+								<div class="layui-col-lg4">
+									<label class="layui-form-label">海拔</label>
+									<div class="layui-input-block">
+										<input type="number" value="0" type="number" autocomplete="off" class="layui-input" id="GPS海拔" name="XDLMGPS海拔" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">测点说明：</label>
+								<div class="layui-input-block">
+									<textarea class="layui-textarea" id="测点说明" name="XDLM测点说明"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 时代 -->
+					<div class="layui-card">
+						<div class="layui-card-header">时代</div>
+						<div class="layui-card-body">
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">朝代：</label>
+									<div class="layui-input-block">
+										<select id="年代" name="XDLM年代">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">具体年代：</label>
+									<div class="layui-input-block">
+										<input class="layui-input" id="具体年代" name="XDLM具体年代" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 载体类型 -->
+					<div class="layui-card">
+						<div class="layui-card-header">载体类型</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item" id="ztlx">
+								<input type="radio" lay-filter="filter" checked="" name="XDLM载体一类型" value="古墓葬" title="古墓葬">
+								<input type="radio" lay-filter="filter" name="XDLM载体一类型" value="摩崖石刻" title="摩崖石刻">
+								<input type="radio" lay-filter="filter" name="XDLM载体一类型" value="石窟造像" title="石窟造像">
+								<input type="radio" lay-filter="filter" name="XDLM载体一类型" value="古建筑" title="古建筑">
+								<input type="radio" lay-filter="filter" name="XDLM载体一类型" value="单体石刻" title="单体石刻">
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item lx2" id="gmz">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">古墓葬类型：</label>
+									<div class="layui-input-block">
+										<select class="zt2" id="古墓葬类型" name="">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">古墓葬用途：</label>
+									<div class="layui-input-block">
+										<select id="古墓葬用途" class="yt2" name="">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item hide lx2" id="mysk">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">摩崖石刻类型：</label>
+									<div class="layui-input-block">
+										<select class="zt2" id="摩崖石刻类型" name="">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">摩崖石刻用途：</label>
+									<div class="layui-input-block">
+										<select id="摩崖石刻用途" class="yt2" name="">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item hide lx2" id="skzx">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">石窟造像类型：</label>
+									<div class="layui-input-block">
+										<select class="zt2" id="石窟造像类型" name="">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">石窟造像用途：</label>
+									<div class="layui-input-block">
+										<select id="石窟造像用途" class="yt2" id="石窟造像用途" name="">
+
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item hide lx2" id="gjz">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">古建筑类型：</label>
+									<div class="layui-input-block">
+										<select class="zt2" id="古建筑类型" name="">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">古建筑用途：</label>
+									<div class="layui-input-block">
+										<select id="古建筑用途" class="yt2" name="">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space10 layui-form-item hide lx2" id="dtsk">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">单体石刻类型：</label>
+									<div class="layui-input-block">
+										<select class="zt2" id="单体石刻类型" name="">
+										</select>
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">单体石刻用途：</label>
+									<div class="layui-input-block">
+										<select id="单体石刻用途" class="yt2" name="">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!--<div class="layui-card">
+						<div class="layui-card-header">上传现状图片</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileXZ">
+								<i class="layui-icon">&#xe67c;</i>上传文件
+							</button>
+											<input type="hidden" id="gov_purchase">
+											<div class="layui-upload-list">
+												<table class="layui-table">
+													<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>状态</th>
+														<th>上传进度</th>
+														<th>操作</th>
+													</thead>
+													<tbody id="showfileXZ">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>-->
+
+					<!-- 主图 -->
+					<div class="layui-card layui-hide" id="mainPhoto">
+						<div class="layui-card-header">
+							<span>拓片主图</span>
+						</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<div class="layui-form-item ">
+									<label class="layui-form-label">拓片主图</label>
+									<div class="layui-input-inline texterea-width1">
+										<div class="imgDiv" style="cursor: pointer;">
+											<div class="layadmin-homepage-pad-ver">
+												<img class="layadmin-homepage-pad-img" id="lastImportPic" src="" width="66" height="66">
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 上传远景照片 -->
+					<div class="layui-card">
+						<div class="layui-card-header">
+							<span>上传远景照片</span>
+							<div style="color: red;display:inline-block;margin-left:35px;position: relative;">
+								<i class="layui-icon layui-icon-about" style="left: -25px;right: 0px;"></i>
+								<span>提示：要求看到石刻全貌及周边环境</span>
+							</div>
+						</div>
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<!--选择是对应上传-->
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileYJ">
+												<i class="layui-icon">&#xe67c;</i>上传文件
+											</button>
+
+											<div class="layui-upload-list">
+												<table class="layui-table" id="table_yj" lay-filter="table_yj" lay-size="sm"></table>
+												<!-- <table class="layui-table yj-table">
+													<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>上传进度</th>
+														<th>状态</th>
+														<th>操作</th>
+
+													</thead>
+													<tbody id="showfileXZ">
+													</tbody>
+												</table> -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+					<!-- 上传近景照片 -->
+					<div class="layui-card">
+						<div class="layui-card-header">
+							<span>上传近景照片</span>
+							<div style="color: red;display:inline-block;margin-left:35px;position: relative;">
+								<i class="layui-icon layui-icon-about" style="left: -25px;right: 0px;"></i>
+								<span>提示：要求石刻全貌</span>
+							</div>
+						</div>
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<!--选择是对应上传-->
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileJJ">
+												<i class="layui-icon">&#xe67c;</i>上传文件
+											</button>
+
+											<div class="layui-upload-list">
+												<table class="layui-table" id="table_jj" lay-filter="table_jj" lay-size="sm"></table>
+												<!-- <table class="layui-table jj-table">
+													<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>上传进度</th>
+														<th>状态</th>
+														<th>操作</th>
+
+													</thead>
+													<tbody id="showfileJJ">
+													</tbody>
+												</table> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 上传拓片图片 -->
+					<div class="layui-card">
+						<div class="layui-card-header">上传拓片图片</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<!--选择是对应上传-->
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileTP">添加</button>
+											<div class="layui-upload-list">
+												<table class="layui-table" id="table_tp" lay-filter="table_tp" lay-size="sm"></table>
+												<!-- <table class="layui-table">
+														<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>上传进度</th>
+														<th>状态</th>
+														<th>操作</th>
+
+													</thead>
+													<tbody id="showfileTP">
+													</tbody>
+												</table> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 上传拓片扫描件 -->
+					<!-- <div class="layui-card">
+						<div class="layui-card-header">上传拓片扫描件</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileTPSM"> 添加</button>
+											<div class="layui-upload-list">
+												<table class="layui-table">
+													<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>长</th>
+														<th>宽</th>
+														<th>图筒编号</th>
+														<th>操作</th>
+													</thead>
+													<tbody id="showfileTPSM">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+
+					<!-- 上传视频 -->
+					<div class="layui-card">
+						<div class="layui-card-header">上传视频</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<!--选择是对应上传-->
+								<div class="layui-form-item ">
+									<label class="layui-form-label">附件</label>
+									<div class="layui-input-block">
+										<div class="layui-upload">
+											<button type="button" class="layui-btn" id="changefileSP">
+												<i class="layui-icon">&#xe67c;</i>上传文件
+											</button>
+											<input type="hidden" id="gov_purchase">
+											<div class="layui-upload-list">
+												<table class="layui-table" id="table_sp" lay-filter="table_sp" lay-size="sm"></table>
+												<!-- <table class="layui-table">
+													<thead>
+														<th>缩略图</th>
+														<th>文件名</th>
+														<th>状态</th>
+														<th>上传进度</th>
+														<th>操作</th>
+													</thead>
+													<tbody id="showfileSP"></tbody>
+												</table> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 所有权 -->
+					<div class="layui-card">
+						<div class="layui-card-header">所有权</div>
+						<div class="layui-card-body">
+							<div class="layui-form-item">
+								<label class="layui-form-label">所有权：</label>
+								<div class="layui-input-block" id="syq">
+									<input type="radio" name="XDLM所有权" value="国家" title="国家" checked="">
+									<input type="radio" name="XDLM所有权" value="集体" title="集体">
+									<input type="radio" name="XDLM所有权" value="个人" title="个人">
+									<input type="radio" name="XDLM所有权" value="不明" title="不明">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 使用情况 -->
+					<div class="layui-card">
+						<div class="layui-card-header">使用情况</div>
+						<div class="layui-card-body">
+							<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">用人单位(或人)：</label>
+
+									<div class="layui-input-block">
+										<input class="layui-input" id="使用类型" name="XDLM使用类型" />
+									</div>
+								</div>
+								<div class="layui-col-lg6">
+									<label class="layui-form-label">隶属：</label>
+									<div class="layui-input-block">
+										<input class="layui-input" id="使用隶属" name="XDLM使用隶属" />
+									</div>
+								</div>
+
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">用途：</label>
+								<div class="layui-input-block" id="syyt">
+
+									<input type="radio" name="XDLM使用用途" value="办公场所" title="办公场所" checked="">
+									<input type="radio" name="XDLM使用用途" value="开放参观" title="开放参观">
+									<input type="radio" name="XDLM使用用途" value="宗教活动" title="宗教活动">
+									<input type="radio" name="XDLM使用用途" value="工农业生产" title="工农业生产">
+									<input type="radio" name="XDLM使用用途" value="商业用途" title="商业用途">
+									<input type="radio" name="XDLM使用用途" value="居住场所" title="居住场所">
+									<input type="radio" name="XDLM使用用途" value="教育场所" title="教育场所">
+									<input type="radio" name="XDLM使用用途" value="无人使用" title="无人使用">
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- 级别 -->
+					<div class="layui-card">
+						<div class="layui-card-header">级别</div>
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">级别：</label>
+								<div class="layui-input-block" id="jb">
+									<input type="radio" name="XDLM级别" value="全国重点文物保护单位" title="全国重点文物保护单位" checked=" ">
+									<input type="radio" name="XDLM级别" value="省级文物保护单位" title="省级文物保护单位">
+									<input type="radio" name="XDLM级别" value="市、县级文物保护单位" title="市、县级文物保护单位">
+									<input type="radio" name="XDLM级别" value="尚未核定为保护单位" title="尚未核定为保护单位">
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- 数量 -->
+					<div class="layui-card">
+						<div class="layui-card-header">数量</div>
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<label class="layui-form-label ">数量(通/幅)：</label>
+								<div class="layui-input-block">
+									<input class="layui-input" id="数量" type="number" name="XDLM数量" value="0" />
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- 简介 -->
+					<div class="layui-card">
+						<div class="layui-card-header">简介</div>
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<label class="layui-form-label ">简介：</label>
+								<div class="layui-input-block">
+									<textarea class="layui-textarea" id="简介" name="XDLM简介" style="height: 200px;"></textarea>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="layui-input-block" style="text-align: center;">
+				<a class="layui-btn" id="formSubmit">添加</a>
+				<!-- <button class="layui-btn " id="formSubmit" lay-submit lay-filter="formSubmit">添加</button> -->
+				<button type="reset" class="layui-btn layui-btn-primary ">重置</button>
+			</div>
+
+			<div class="" style="margin:25px auto;margin-left:20px;display:none;" id="JWDBox1">
+				<label for="">经度：</label>
+				<input type="number" id="du1" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px;" />&nbsp;度
+				<input type="number" id="fen1" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px;margin:auto 10px;" />&nbsp;分
+				<input type="number" id="miao1" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px" />&nbsp;秒
+				<span class="layui-btn btn-success" id="qd1" style="margin-bottom:0px;">确定</span>
+			</div>
+
+			<div class="" style="margin:25px auto;margin-left:20px;display:none;" id="JWDBox2">
+				<label for="">纬度：</label>
+				<input type="number" id="du2" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px" />&nbsp;度
+				<input type="number" id="fen2" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px;margin:auto 10px;" />&nbsp;分
+				<input type="number" id="miao2" value="0" style="width: 120px; border:1px solid #ddd;line-height:30px" />&nbsp;秒
+				<span class="layui-btn btn-success" id="qd2" style="margin-bottom:0px;">确定</span>
+			</div>
+
+		</form>
+
+		<div style="display: none;" id="modifyDifferenceDisplay">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<dl class="layuiadmin-card-status" id="modifyDifference">
+						
+					</dl>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

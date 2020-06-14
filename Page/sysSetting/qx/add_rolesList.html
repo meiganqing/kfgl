@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<link rel="stylesheet" href="../../../layui/css/layui.css">
+		<script type="text/javascript" src="../../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+		<script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script>
+			<script type="text/javascript" src="js/add_rolesList.js"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<div class="layui-container" style="padding:15px;">
+
+			<form class="layui-form" >
+				<input type="hidden" name="TblNum" value="7013">
+				<input type="hidden" name="XDLMID" id="id">
+				<input type="hidden" name="XDLMlmid" id="lmid" value="-1">
+				<input type="hidden" name="XDLMroleNum" id="roleNum">
+				<input type="hidden" name="XDLMqx" id="qx" value="900000">
+				<input type="hidden" name="XDLMxmbh" id="xmbh" value="sykf">
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色名称</label>
+					<div class="layui-input-block">
+						<input type="text" id="rolename" name="XDLMrolename" autocomplete="off" class="layui-input" lay-verify="required">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色描述</label>
+					<div class="layui-input-block">
+						<input type="text" id="miaoshu" name="XDLMmiaoshu" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button id="addxm" class="layui-btn" lay-submit lay-filter="addData">添加</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

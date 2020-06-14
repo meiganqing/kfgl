@@ -1,0 +1,237 @@
+		html,body,.layui-fluid {
+			background-color: #FFFFFF;
+			height: 100%!important;
+		}
+		
+		.module-store {
+			/*float: left;*/
+			padding: 20px 40px;
+			box-sizing: border-box;
+		}
+		
+		.store-border-top {
+			padding: 3px 10px;
+			box-sizing: border-box;
+			/*border: 3px solid #000000;*/
+			background-color: #b1b1b1;
+		}
+		
+		.content-bottom {
+			height: 12px;
+			box-sizing: border-box;
+			/*border: 3px solid #000000;*/
+			background-color: #accad2;
+			text-align: center;
+			color: #FFFFFF;
+		}
+		
+		.content-md {
+			padding: 0px 22px;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-border-left,
+		.store-border-right {
+			padding: 0px 3px;
+			/*border-left: 3px solid #000000;*/
+			/*border-right: 3px solid #000000;*/
+			display: inline-block;
+			height: 100%;
+			box-sizing: border-box;
+			background-color: #b1b1b1;
+		}
+		
+		.store-border-left {
+			position: absolute;
+			top: 0px;
+			left: 16px;
+		}
+		
+		.store-border-right {
+			position: absolute;
+			top: 0px;
+			right: 16px;
+		}
+		
+		.store-content-mid {
+			/*display: inline-block;*/
+			width: 100%;
+			/*height: 60px;*/
+			/*background-color: red;*/
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-level {
+			height: 70px;
+			width: 100%;
+			background-color: #f0f0f0;
+			box-sizing: border-box;
+			padding-top: 12px;
+			padding-left: 12px;
+			cursor: pointer;
+			position: relative;
+			/*overflow: hidden;*/
+		}
+		
+		.store-level-content {
+			width: 100%;
+			height: 100%;
+			background-color: #FFFFFF;
+		}
+		
+		.store-level-botborder {
+			/*border-bottom: 3px solid #000000;*/
+			position: relative;
+			/*padding-bottom: 16px;*/
+		}
+		
+		.store-level-botborder::after {
+			width: 100%;
+			height: 6px;
+			content: "";
+			/*border-top: 3px solid #000000;*/
+			/*border-bottom: 3px solid #000000;*/
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+			z-index: 100;
+			background-color: #accad2;
+		}
+		
+		.store-grid {
+			float: left;
+			width: 33.33%;
+			height: 100%;
+			background-color: green;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-grid-border {
+			padding-right: 12px;
+		}
+		
+		.store-grid-border::after {
+			width: 8px;
+			height: 100%;
+			content: "";
+			border-left: 2px solid #000000;
+			border-right: 2px solid #000000;
+			display: inline-block;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 100;
+			background-color: #FFFFFF;
+		}
+		
+		.store-level-content ul {
+			list-style: none;
+			width: 100%;
+		}
+		
+		.store-level-content ul li {
+			width: 8px;
+			height: 8px;
+			border-radius: 4px;
+
+			float: left;
+			margin: 6px 2px;
+			border: 1px solid #b1b1b1;
+			box-sizing: border-box;
+		}
+		.good-color{
+			background-color: pink;
+			
+		}
+		.store-level-content {
+			width: 100%;
+			height: 100%;
+			transform: rotate(180deg);
+			/*position: absolute;
+		bottom: 0px;
+		left: 0px;*/
+		}
+		/*.store-grid::before{*/
+		
+		.store-mark {
+			width: 0px;
+			height: 30px;
+			padding-right: 40px;
+			background-color: rgba(32, 34, 42, 0.6);
+			display: inline-block;
+			content: "";
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			top: 3px;
+			z-index: 100;
+			transition: all 2s;
+			vertical-align: middle;
+			/*background-color: #FFFFFF;*/
+		}
+		
+		.store-mark:hover {
+			width: 60%;
+			cursor: pointer;
+			background-color: rgba(32, 34, 42, 0.6);
+		}
+		
+		.store-mark span {
+			height: 30px;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			color: #FFFFFF;
+			/*line-height: 30px;*/
+			padding: 6px;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
+		
+		.storeTitle {
+			text-align: center;
+			line-height: 40px;
+			font-size: 16px;
+			color: #333333;
+			font-family: "微软雅黑";
+		}
+		
+		.gd-div {
+			margin-bottom: 30px;
+			margin-top: 30px;
+		}
+		
+		.good-num {
+			margin-top: -8px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: 16px;
+			font-style: normal;
+			color: #333333;
+			z-index: 1000;
+			transform: rotate(-180deg);
+		}
+		.volume {
+			position: absolute;
+			top: 3px;
+			right: -26px;
+			width: 20px;
+			height: 30px;
+			/*border: 1px solid darkblue;*/
+			border-radius: 0px 4px 4px 0px;
+			-moz-border-radius-topright: 4px;
+			-moz-border-radius-bottomright: 4px;
+			font-size: 12px;
+			text-align: center;
+			color: #FFFFFF;
+		}
+		.view {
+			display: flex;
+			flex-wrap:wrap;
+			align-items:flex-end;
+		}

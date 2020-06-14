@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="../../layui/css/layui.css" />
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <script type="text/javascript" src="../../lib/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../lib/js/echarts.js"></script>
+    <script type="text/javascript" src="../../lib/js/store.min.js"></script>
+    <script type="text/javascript" src="../../SysJS/xdDataMange.js"></script>
+    <script type="text/javascript" src="../../SysJs/tableSetting.js"></script>
+    <script type="text/javascript" src="js/wwzttjt.js"></script>
+    <style type="text/css">
+        .layui-input-block {
+            margin-left: 110px;
+            min-height: 36px;
+            width: 66%;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="layui-form">
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">保存状态:<span id="基础类型Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="保存状态" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">入藏时间_范围:<span id="摩崖石刻Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="入藏时间_范围" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">年代_纪年选项A:<span id="基础类型Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="年代_纪年选项A" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">年代_纪年选项B:<span id="古墓葬Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="年代_纪年选项B" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">质量_范围:<span id="使用用途Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="质量_范围" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+
+                                <div class="layui-card-header">完残程度:<span id="石窟造像Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="完残程度" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+
+                                <div class="layui-card-header">文物来源:<span id="单体石刻Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="文物来源" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+
+                                <div class="layui-card-header">文物类别_范围:<span id="年代Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="文物类别_范围" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">文物类别_具体类别:<span id="公司Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="文物类别_具体类别" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">质地类别:<span id="地域Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="质地类别" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="layui-inline layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">文物级别:<span id="古建筑Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="文物级别" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">质地类别_单一质地_有机质:<span id="级别Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="质地类别_单一质地_有机质" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">质地类别_单一质地_无机质:<span id="无机级别Num"></span></div>
+                                <div class="layui-card-body">
+                                    <div id="质地类别_单一质地_无机质" style="width: 98%; height:250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>

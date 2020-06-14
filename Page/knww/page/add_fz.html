@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+		<script type="text/javascript" src="../../../layui/layui.js"></script>
+		<script src="../../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+		<script type="text/javascript" src="../../../SysJS/xdDataMange.js"></script>
+		<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+		<script type="text/javascript" src="../js/add_fz.js"></script>
+	</head>
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-header layuiadmin-card-header-auto" style="text-align: center;">
+					<span style="font-size: 30px;color: #01AAED;">文物组</span>
+				</div>
+				 <div class="layui-card-body">
+				 	<button class="layui-btn layuiadmin-btn-tags" data-type="add" id="add">添加</button>
+				 	<table class="layui-table layuiadmin-page-table" id="wwz" lay-filter="wwz"></table>
+				 </div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/html" id="opeTpl">
+    <a class="layui-btn layui-btn-xs layui-btn-green1" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>

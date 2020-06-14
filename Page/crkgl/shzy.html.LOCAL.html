@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome/css/font-awesome.css"/>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script src="../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../lib/js/store.min.js"></script>
+		<script src="../../SysJS/xdDataMange.js"></script>
+		<script type="text/javascript" src="../../SysJs/tableSetting.js"></script>
+		<script type="text/javascript" src="js/shzy.js"></script>
+		<style type="text/css">
+			td {
+				width: 150px;
+			}
+			
+			tr {
+				height: 30px;
+			}
+			
+			.layui-form-label {
+				float: left;
+				display: block;
+				padding: 9px 15px;
+				width: 162px;
+				font-weight: 400;
+				line-height: 23px;
+				text-align: right;
+			}
+			.texterea-width{
+				width: 50%;
+			}
+			.texterea-width1 {
+				width: 75% !important;
+			}
+			.imgDiv {
+				float: left;
+				padding: 15px;
+				box-sizing: border-box;
+				border: 1px solid #BFBFBF;
+				box-shadow: 2px 2px 3px #aaaaaa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form class="layui-form" action="">
+		<input type="hidden" value="" id="wwknbh" name="XDLM文物库内编号" />
+		<input type="hidden" id="jlblsh" name="XDLM记录表流水号" />
+		<div class="layui-fluid" style="width: 80%;margin: auto;">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-form layui-card-header " id="approveMsg">
+							<i class="title-icon fa fa-tags"></i>出库信息
+						</div>
+						<div class="layui-form layui-card-body layuiadmin-card-list layui-row">
+							<table class="layui-table" style="text-align: center;">
+								<tr>
+									<td>登记号</td>
+									<td id="XDLM登记号"></td>
+									<td>库房名</td>
+									<td id="XDLM库房名"></td>
+								</tr>
+								<tr>
+									<td>移交人</td>
+									<td id="XDLM移交人"></td>
+									<td>接收人</td>
+									<td id="XDLM接收人"></td>
+								</tr>
+								<tr>
+									<td>监督人</td>
+									<td id="XDLM监督人"></td>
+									<td>记录类型</td>
+									<td id="XDLM记录类型"></td>
+								</tr>
+								<tr>
+									<td>记录内容</td>
+									<td colspan="3" id="XDLM记录内容"></td>
+								</tr>
+								<tr>
+									<td colspan="4">记录图</td>
+								</tr>
+								<tr>
+									<td colspan="4" rowspan="3">
+										<div class="layui-card-body" id="picBodyCK" style="overflow: hidden;">
+
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="layui-card">
+						
+							<div class="layui-form layui-card-header " id="approvelType">
+								<i class="title-icon fa fa-tags"></i>出库审核
+							</div>
+							<div class="layui-form layui-card-body layuiadmin-card-list layui-row">
+							<div class="layui-col-xs12 layui-col-sm12" style="margin-top: 30px;">
+									<div class="">
+										<label class="layui-form-label" for="">审核人</label>
+										<div class="layui-input-inline" >
+											<input class="layui-input" type="text" readonly="" id="approvePeople" name="XDLM审核人"/>
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-xs12 layui-col-sm12" style="margin-top: 30px;">
+									<div class="">
+										<label class="layui-form-label" for="">审核状态</label>
+										<div class="layui-input-inline" id="approveStatus">
+											
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-xs12 layui-col-sm12 layui-hide" id="approveIdea" style="margin-top: 30px;">
+									<div class="">
+										<label class="layui-form-label" for="">拒绝理由</label>
+										<div class="layui-input-inline texterea-width1" >
+												<textarea class="layui-textarea " name="XDLM审核意见" placeholder="请输入拒绝理由" rows="" cols=""></textarea>
+										</div>
+									</div>
+								</div>
+								<!--<div class="layui-col-xs12 layui-col-sm12" style="margin-top: 30px;">
+									<div class="">
+										<label class="layui-form-label" for="">备注</label>
+										<div class="layui-input-inline texterea-width1" >
+											<textarea class="layui-textarea " name="XDLM备注" rows="" cols=""></textarea>
+										</div>
+									</div>
+								</div>-->
+							
+								<div class="layui-col-xs12 layui-col-sm12" style="margin-top: 30px;">
+									<div class="layui-col-sm-offset4 layui-form-item">
+										<div class="layui-input-block">
+											<button class="layui-btn" id="wwrkbc" lay-submit lay-filter="submit">确定</button>
+											<button type="reset" class="layui-btn layui-btn-primary">取消</button>
+										</div>
+									</div>
+								</div>
+							</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+			</form>
+	</body>
+
+</html>

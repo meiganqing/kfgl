@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>考古文物库房管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <!--<link href="/SXSY/layuiadmin/style/admin.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+ 
+    <script src="js/index.js"></script>
+</head>
+<style type="text/css">
+    /* 字体颜色二级 */
+
+    .layui-side-scroll .layui-nav .layui-nav-item a {
+        color: #8c5b67 !important;
+    }
+
+    .item-nav a i {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        position: absolute;
+        top: 70%;
+        left: 20px;
+        margin-top: -19px;
+    }
+
+    .me-icon1 i {
+        background-image: url(images/ico_02.png);
+        background-size: cover;
+    }
+
+    .me-icon2 i {
+        background-image: url(images/icon_03.png);
+        background-size: cover;
+    }
+
+    .me-icon3 i {
+        background-image: url(images/icon_06.png);
+        background-size: cover;
+    }
+
+    .me-icon4 i {
+        background-image: url(images/icon_05.png);
+        background-size: cover;
+    }
+
+    .me-icon5 i {
+        background-image: url(images/icon_07.png);
+        background-size: cover;
+    }
+
+    .me-icon6 i {
+        background-image: url(images/icon_04.png);
+        background-size: cover;
+    }
+
+    .me-icon7 i {
+        background-image: url(images/all-store.png);
+        background-size: cover;
+    }
+
+    .layui-layout-admin .layui-footer {
+        position: fixed;
+        left: 200px;
+        right: 0;
+        bottom: 0;
+        height: 44px;
+        line-height: 44px;
+        padding: 0 15px 0px 30px;
+        background-color: #eee;
+        height: 35px;
+        line-height: 35px;
+        z-index: 1000;
+        box-sizing: border-box;
+    }
+
+    .comp-logo {
+        position: absolute;
+        left: 20px;
+        bottom: 0px;
+    }
+
+    .layui-side-menu {
+        margin-top: 72px;
+        box-sizing: border-box;
+    }
+
+    .layui-header {
+        /* background-image: url(./images/bg-header.png); */
+        background-image: url("./images/kfimgnew/top0.jpg");
+    }
+
+    .header-img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 600px;
+        height: 100%;
+        vertical-align: middle;
+        line-height: 74px;
+        padding-left: 15px;
+    }
+
+    .fullscreen {
+        top: 0px;
+        right: 80px;
+    }
+
+    .refresh {
+        top: 0px;
+        right: 120px;
+    }
+
+    .word-white {
+        color: #FFFFFF;
+    }
+
+    .layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+        color: #FFFFFF !important;
+    }
+
+    .list-flexible {
+        height: 40px;
+        line-height: 40px;
+        color: #FFFFFF;
+        text-align: center;
+        background-color: #AD6C42;
+    }
+
+    .layadmin-side-shrink .layui-layout-admin .list-flexible {
+        width: 60px;
+    }
+
+    body .layui-nav-itemed > .layui-nav-child {
+        display: block;
+        padding: 0;
+        background-color: #F7EFDD !important;
+    }
+
+    .layui-nav-item .ww-item .item-nav {
+        background: #FFFBF1 !important;
+    }
+
+    .layui-side-scroll {
+        background: #FFFAF0 !important;
+    }
+
+    .layui-nav-tree .layui-this,
+    .layui-nav-tree .layui-this > a,
+    .layui-nav-tree .layui-nav-child dd.layui-this,
+    .layui-nav-tree .layui-nav-child dd.layui-this a {
+        background-color: #FFFAF0 !important;
+    }
+
+    .layui-side-scroll > .layui-nav > .item-nav > .layui-nav-child > .layui-this {
+        background-color: #FFFAF0 !important;
+    }
+    /* 左侧竖条 */
+
+    .layui-nav-tree .layui-nav-bar {
+        width: 5px;
+        height: 0;
+        background-color: #ac6c43;
+    }
+
+    .demo-class {
+        background-color: transparent;
+        /*背景透明*/
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        /*前景无阴影*/
+    }
+
+    .logoImg1 {
+        margin-right: 13px;
+    }
+
+    .logoImg2 {
+    }
+
+    .layadmin-flexible {
+        display: flex;
+        align-items: center;
+        padding-left: 23px;
+    }
+
+    .layui-nav-bar {
+        display: none;
+    }
+
+    .layui-nav {
+        padding: 0;
+    }
+</style>
+
+<body class="layui-layout-body" style="">
+    <div id="LAY_app">
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header">
+                <!-- 头部区域 -->
+                <div class="header-img">
+                    <img class="logoImg1" src="" id="logo" alt="" />
+                    <img class="logoImg2" src="./images/logo_img_6.png" alt="">
+                    <!-- <span style="font-size: 22px;color: red;font-weight: 600;">(测试版)</span> -->
+                </div>
+                <!-- newkf -->
+                <!-- <ul class="layui-nav">
+                    <li class="layui-nav-item layadmin-flexible" lay-unselect>
+                        <img class="logoImg1" id="logo" src="" alt="">
+                        <img class="logoImg2" src="./images/logo_img_6.png" alt="">
+                        <span style="font-size: 22px;color: red;font-weight: 600;display: inline-block; vertical-align: -webkit-baseline-middle;">(测试版)</span>
+                    </li>
+                </ul> -->
+                <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+
+                    <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                        <a href="javascript:;" id="currentStore1">
+                            <img src="./images/storage.png" alt="" style="margin-right: 5px;" />
+                            <span class="word-white" id="currentStore"></span>
+                        </a>
+                        <!--<dl class="layui-nav-child" id="storeList" style="max-height: 300px;overflow: auto;">-->
+                        <!--授权访问的库房-->
+                        <!--</dl>-->
+                    </li>
+                    <li class="layui-nav-item" lay-unselect style="margin-right: 40px;">
+
+                        <a href="javascript:;">
+
+                            <img src="./images/user.png" alt="" style="margin-right: 5px;" />
+
+                            <span class="word-white" id="userName" style="margin-right: 5px;"></span>
+                        </a>
+                        <dl class="layui-nav-child" style="max-height: 400px;overflow: auto;" id="xitong">
+
+                            <!--<dd style="text-align: center;">
+                                <a href="javascript:;" id="signOut"><i class="fa fa-power-off" style="margin-right:6px;"></i>退出</a>
+                            </dd>-->
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <!-- 侧边菜单 -->
+            <div class="layui-side layui-side-menu">
+                <div class="layui-side-scroll">
+                    <!--<div class="layui-logo">
+                            <img src="./images/bg-logo.png" alt="" />
+                        </div>-->
+                    <div class="list-flexible">
+                        <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                            <i style="color: #FFFFFF;" class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                        </a>
+                    </div>
+                    <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+
+                        <li class="layui-nav-item ww-item layui-nav-itemed item-nav layui-hide" id="文物管理_li">
+                            <a href="javascript:;" class="me-icon1">
+                                <i></i>
+                                <cite>文物管理</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="文物管理">
+                                <!-- <dd id="SY2018112809351435142">
+                                    <a href="javascript:;" data-icon="fa-tasks" kit-target data-id='101' lay-href="./Page/knww/page/wwlb.html?limit=SY2018112809351435142"> <i class="fa fa-tasks"></i> <span>文物列表</span> </a>
+                                </dd>
+                                <dd id="SY201811280932173217208">
+                                    <a href="javascript:;" data-icon="fa-tasks" kit-target data-id='102' lay-href="./Page/crkgl/xrkww.html?limit=SY201811280932173217208"> <i class="fa fa-tasks"></i> <span>新文物入库</span> </a>
+                                </dd>
+                                <dd id="SY201811280932553255113">
+                                    <a href="javascript:;" data-icon="fa-tasks" kit-target data-id='103' lay-href="./Page/crkgl/wwrklsjl.html?limit=SY201811280932553255113&tabnum=305"> <i class="fa fa-tasks"></i> <span>文物入库流水记录</span> </a>
+                                </dd>
+                                <dd id="SY20181128093312331280">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/wwcklsjl.html?limit=SY20181128093312331280&tabnum=305" data-icon="fa-tasks" kit-target data-id='104'> <i class="fa fa-tasks"></i> <span>文物出库流水记录</span> </a>
+                                </dd>
+                                <dd id="SY201811280933553355166">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/drkww.html?type=drk" data-icon="fa-tasks" kit-target data-id='105'> <i class="fa fa-tasks"></i> <span>待入库文物</span> </a>
+                                </dd>
+                                <dd id="SY201811280934183418109">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/dckww.html" data-icon="fa-tasks" kit-target data-id='106'> <i class="fa fa-tasks"></i> <span>待出库文物</span> </a>
+                                </dd>
+                                <dd id="2019030913433743378526292219">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/refusePage.html?tabnum=305&limit=2019030913433743378526292219" data-icon="fa-tasks" kit-target data-id='109'> <i class="fa fa-tasks"></i> <span>拒绝出库文物</span> </a>
+                                </dd>
+                                <dd id="SY201811280936523652216">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=SY201811280936523652216&type=01&tabnum=305" data-icon="fa-tasks" kit-target data-id='107'> <i class="fa fa-tasks"></i> <span>图片列表展示</span> </a>
+                                </dd>
+                                <dd id="SY201811280937163716230">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/swlbzs.html?limit=SY201811280937163716230&type=ww" data-icon="fa-tasks" kit-target data-id='108'> <i class="fa fa-tasks"></i> <span>三维列表展示</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item tp-item item-nav layui-hide" id="拓片管理_li">
+                            <a href="javascript:;" class="me-icon1">
+                                <i></i>
+                                <cite>拓片管理</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="拓片管理">
+                                <!-- <dd id="20190108175226522689935289204">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/djblb.html?limit=20190108175226522689935289204" data-icon="fa-tasks" kit-target data-id='201'> <i class="fa fa-tasks"></i> <span>拓片列表</span> </a>
+                                </dd>
+                                <dd id="20190108175301531867017051">
+                                    <a href="javascript:;" data-icon="fa-tasks" kit-target data-id='202' lay-href="./Page/crkgl/wwrklsjl.html?limit=20190108175301531867017051&tabnum=386"> <i class="fa fa-tasks"></i> <span>拓片入库流水记录</span> </a>
+                                </dd>
+                                <dd id="2019010817533053308697815752">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/wwcklsjl.html?limit=2019010817533053308697815752&tabnum=386" data-icon="fa-tasks" kit-target data-id='203'> <i class="fa fa-tasks"></i> <span>拓片出库流水记录</span> </a>
+                                </dd>
+                                <dd id="201901081754255425835839408">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/drkww.html?limit=201901081754255425835839408&tabnum=386" data-icon="fa-tasks" kit-target data-id='204'> <i class="fa fa-tasks"></i> <span>待入库拓片</span> </a>
+                                </dd>
+                                <dd id="20190108175442544287315811136">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/dckww.html?limit=20190108175442544287315811136&tabnum=386" data-icon="fa-tasks" kit-target data-id='205'> <i class="fa fa-tasks"></i> <span>待出库拓片</span> </a>
+                                </dd>
+                                <dd id="20190309134357435782867035124">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/refusePage.html?tabnum=386&limit=20190309134357435782867035124" data-icon="fa-tasks" kit-target data-id='209'> <i class="fa fa-tasks"></i> <span>拒绝出库拓片</span> </a>
+                                </dd> -->
+                                <!-- 此处之前就已注释 --start-->
+                                <!--<dd id="2019010817550355383600149154">
+                                        <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=2019010817550355383600149154&type=02&tabnum=386" data-icon="fa-tasks" kit-target data-id='206'> <i class="fa fa-tasks"></i> <span>拓片图片展示</span> </a>
+                                    </dd>
+                                    <dd id="20190109140407478262044148">
+                                        <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=20190109140407478262044148&type=03&tabnum=386" data-icon="fa-tasks" kit-target data-id='208'> <i class="fa fa-tasks"></i> <span>远景图片展示</span> </a>
+                                    </dd>
+                                    <dd id="20190515103957395785150025122">
+                                        <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=20190515103957395785150025122&type=04&tabnum=386" data-icon="fa-tasks" kit-target data-id='208'> <i class="fa fa-tasks"></i> <span>近景图片展示</span> </a>
+                                    </dd>
+                                    <dd id="2019101217360436483091593224">
+                                        <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=2019101217360436483091593224&type=05&tabnum=386" data-icon="fa-tasks" kit-target data-id='209'> <i class="fa fa-tasks"></i> <span>拓片扫描件展示</span> </a>
+                                    </dd>-->
+                                    <!-- 此处之前就已注释 --end-->
+                                <!-- <dd id="2019031111280528582209899245">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tptongbu.html?limit=2019031111280528582209899245" data-icon="fa-tasks" kit-target data-id='208'> <i class="fa fa-tasks"></i> <span>同步拓片</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+                        <!-- <li class="layui-nav-item tp-item item-nav layui-hide" id="图片列表_li">
+                            <a href="javascript:;" class="me-icon1">
+                                <i></i>
+                                <cite>图片列表</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="图片列表">
+
+                                <dd id="2019010817550355383600149154">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=2019010817550355383600149154&type=02&tabnum=386" data-icon="fa-tasks" kit-target data-id='206'> <i class="fa fa-tasks"></i> <span>拓片图片展示</span> </a>
+                                </dd>
+                                <dd id="20190109140407478262044148">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=20190109140407478262044148&type=03&tabnum=386" data-icon="fa-tasks" kit-target data-id='208'> <i class="fa fa-tasks"></i> <span>远景图片展示</span> </a>
+                                </dd>
+                                <dd id="20190515103957395785150025122">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=20190515103957395785150025122&type=04&tabnum=386" data-icon="fa-tasks" kit-target data-id='208'> <i class="fa fa-tasks"></i> <span>近景图片展示</span> </a>
+                                </dd>
+                                <dd id="2019101217360436483091593224">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=2019101217360436483091593224&type=05&tabnum=386" data-icon="fa-tasks" kit-target data-id='209'> <i class="fa fa-tasks"></i> <span>拓片扫描件展示</span> </a>
+                                </dd>
+
+                            </dl>
+                        </li> -->
+
+                        <!-- <li class="layui-nav-item  item-nav layui-hide" id="出入库管理_li">
+                            <a href="javascript:;" class="me-icon1">
+                                <i></i>
+                                <cite>出入库管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+
+                                <dd id="SY201811280932173217208">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="新文物入库" kit-target data-id='100' lay-href="./Page/crkgl/xrkww.html?limit=SY201811280932173217208"> <i class="fa fa-tasks"></i> <span>新文物入库</span> </a>
+                                </dd>
+                                <dd id="SY201811280932553255113">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="文物入库流水记录" kit-target data-id='101' lay-href="./Page/crkgl/wwrklsjl.html?limit=SY201811280932553255113"> <i class="fa fa-tasks"></i> <span>文物入库流水记录</span> </a>
+                                </dd>
+                                <dd id="SY20181128093312331280">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/wwcklsjl.html?limit=SY20181128093312331280" data-icon="fa-tasks" data-title="文物出库流水记录" kit-target data-id='102'> <i class="fa fa-tasks"></i> <span>文物出库流水记录</span> </a>
+                                </dd>
+                                <dd id="SY201811280933553355166">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/drkww.html?limit=SY201811280933553355166" data-icon="fa-tasks" data-title="待入库文物" kit-target data-id='103'> <i class="fa fa-tasks"></i> <span>待入库文物</span> </a>
+                                </dd>
+                                <dd id="SY201811280934183418109">
+                                    <a href="javascript:;" lay-href="./Page/crkgl/dckww.html?limit=SY201811280934183418109" data-icon="fa-tasks" data-title="待出库文物" kit-target data-id='104'> <i class="fa fa-tasks"></i> <span>待出库文物</span> </a>
+                                </dd>
+                                <dd id="SY201811280936523652216">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/tplbzs.html?limit=SY201811280936523652216" data-icon="fa-tasks" data-title="系统管理" kit-target data-id='204'> <i class="fa fa-tasks"></i> <span>图片列表展示</span> </a>
+                                </dd>
+                                <dd id="SY201811280937163716230">
+                                    <a href="javascript:;" lay-href="./Page/knww/page/swlbzs.html?limit=SY201811280937163716230" data-icon="fa-tasks" data-title="管理员管理" kit-target data-id='205'> <i class="fa fa-tasks"></i> <span>三维列表展示</span> </a>
+                                </dd>
+                            </dl>
+                        </li> -->
+
+                        <li class="layui-nav-item item-nav layui-hide" id="文物数据统计_li">
+                            <a href="javascript:;" class="me-icon3 ">
+                                <i></i>
+                                <cite>数据统计</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="文物数据统计">
+                                <!-- <dd class="tp-item layui-hide" id="20190311112858285882609910114">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="拓片状态统计图" kit-target data-id='206' lay-href="./Page/sjtj/TongJiTu.html?limit=20190311112858285882609910114"> <i class="fa fa-tasks"></i> <span>拓片状态统计图</span> </a>
+                                </dd>
+                                <dd class="ww-item  layui-hide" id="20190311112917291788403095252">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="库内文物" kit-target data-id='202' lay-href="./Page/sjtj/wwzttjt.html?limit=20190311112917291788403095252"> <i class="fa fa-tasks"></i> <span>文物状态统计图</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+
+                        <li class="layui-nav-item item-nav layui-hide" id="拓片数据统计_li">
+                            <a href="javascript:;" class="me-icon3 ">
+                                <i></i>
+                                <cite>数据统计</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="拓片数据统计">
+                           
+                            </dl>
+                        </li>
+
+                        <li class="layui-nav-item item-nav layui-hide" id="库房管理_li">
+                            <a href="javascript:;" class="me-icon4 ">
+                                <i></i>
+                                <cite>库房管理</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="库房管理">
+                                <!-- <dd id="SY201811280937593759247">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="库房设置" kit-target data-id='301' lay-href="./Page/kfgl/page/kfsz.html?limit=SY201811280937593759247"> <i class="fa fa-tasks"></i> <span>库房设置</span> </a>
+                                </dd>
+                                <dd id="SY201811280938313831244">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="库容查看" kit-target data-id='302' lay-href="./Page/kfgl/page/krck.html?limit=SY201811280938313831244"> <i class="fa fa-tasks"></i> <span>库容查看</span> </a>
+                                </dd> -->
+                                <!-- 此处之前就已注释 --start-->
+                                <!--<dd id="20190112095855585586227363245">
+                                        <a href="javascript:;" data-icon="fa-tasks" data-title="拓片库容查看" kit-target data-id='303' lay-href="./Page/kfgl/page/krck_tp.html?limit=20190112095855585586227363245"> <i class="fa fa-tasks"></i> <span>拓片库容查看</span> </a>
+                                    </dd>-->
+                                    <!-- 此处之前就已注释 --end-->
+                            </dl>
+                        </li>
+
+                        <li class="layui-nav-item item-nav layui-hide" id="库管记录_li">
+                            <a href="javascript:;" class="me-icon6 ">
+                                <i></i>
+                                <cite>库管记录</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="库管记录">
+                                <!-- <dd id="SY20181128094138413892">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="申请属性修改记录" kit-target data-id='601' lay-href="./Page/kgjl/xgjl.html?limit=SY20181128094138413892"> <i class="fa fa-tasks"></i> <span>申请属性修改记录</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+
+                        <li class="layui-nav-item item-nav layui-hide" id="全库房管理_li">
+                            <a href="javascript:;" class="me-icon7">
+                                <i></i>
+                                <cite>全库房管理</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="全库房管理">
+                                <!-- <dd id="20190311112957295782291545133">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库统计" kit-target data-id='601' lay-href="./Page/allkfgl/all_main.html?limit=20190311112957295782291545133"> <i class="fa fa-tasks"></i> <span>全库房数据</span> </a>
+                                </dd>
+                                <dd id="2019031111301130118859614537">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库文物列表" kit-target data-id='602' lay-href="./Page/allkfgl/all_wwlb.html?limit=2019031111301130118859614537"> <i class="fa fa-tasks"></i> <span>全库文物列表</span> </a>
+                                </dd>
+                                <dd id="20190311113036303681926070119">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库拓片列表" kit-target data-id='603' lay-href="./Page/allkfgl/all_tplb.html?limit=20190311113036303681926070119"> <i class="fa fa-tasks"></i> <span>全库拓片列表</span> </a>
+                                </dd>
+                                <dd id="201903111131073178182162167">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库拓片状态统计图" kit-target data-id='604' lay-href="./Page/allkfgl/all_tptj.html?limit=201903111131073178182162167"> <i class="fa fa-tasks"></i> <span>全库拓片状态统计图</span> </a>
+                                </dd>
+                                <dd id="20190311113125312585836900245">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库文物状态统计图" kit-target data-id='605' lay-href="./Page/allkfgl/all_wwtj.html?limit=20190311113125312585836900245"> <i class="fa fa-tasks"></i> <span>全库文物状态统计图</span> </a>
+                                </dd>
+                                <dd id="20190311113144314487028280165">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="文物数据查重" kit-target data-id='606' lay-href="./Page/allkfgl/repeatedRecord.html?tabnum=305&limit=20190311113144314487028280165"> <i class="fa fa-tasks"></i> <span>文物数据查重</span> </a>
+                                </dd>
+
+                                <dd id="2019031111320032089364712243">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="拓片数据查重" kit-target data-id='607' lay-href="./Page/allkfgl/repeatedRecord.html?tabnum=386&limit=2019031111320032089364712243"> <i class="fa fa-tasks"></i> <span>拓片数据查重</span> </a>
+                                </dd>
+                                <dd id="20190315143927392780581230217">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="全库申请属性修改记录" kit-target data-id='601' lay-href="./Page/kgjl/xgjl.html?type=all&limit=20190315143927392780581230217"> <i class="fa fa-tasks"></i> <span>全库申请属性修改记录</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item item-nav layui-hide" id="系统管理_li">
+                            <a href="javascript:;" class="me-icon5 ">
+                                <i></i>
+                                <cite>系统管理</cite>
+                            </a>
+                            <dl class="layui-nav-child" id="系统管理">
+                                <!-- 此处之前就已注释 --start-->
+                                <!--<dd id="">
+                                        <a href="javascript:;" data-icon="fa-tasks" data-title="系统设置" kit-target data-id='401' lay-href="./Page/xtgl/xtsz.html"> <i class="fa fa-tasks"></i> <span>系统设置</span> </a>
+                                    </dd>-->
+                                    <!-- 此处之前就已注释 --end-->
+                                <!-- <dd id="SY201811280939163916160">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="文物属性管理" kit-target data-id='402' lay-href="./Page/xtgl/wwsxgl.html?limit=SY201811280939163916160"> <i class="fa fa-tasks"></i> <span>文物属性管理</span> </a>
+                                </dd>
+                                <dd id="20190418164111411188003779138">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="行政区设置" kit-target data-id='402' lay-href="./Page/xtgl/administrativeRegion.html?limit=20190418164111411188003779138"> <i class="fa fa-tasks"></i> <span>行政区设置</span> </a>
+                                </dd>
+                                <dd id="SY201811280939593959162">
+                                    <a href="javascript:;" lay-href="./Page/xtgl/xtrz.html?limit=SY201811280939593959162" data-icon="fa-tasks" data-title="系统日志" kit-target data-id='403'> <i class="fa fa-tasks"></i> <span>系统日志</span> </a>
+                                </dd> -->
+                                <!-- 此处之前就已注释 --start-->
+                                <!--<dd id="SY20181128094036403694">
+                                        <a href="javascript:;" lay-href="./Page/xtgl/sjcc.html?limit=SY20181128094036403694" data-icon="fa-tasks" data-title="数据查重" kit-target data-id='404'> <i class="fa fa-tasks"></i> <span>数据查重</span> </a>
+                                    </dd>-->
+                                    <!-- 此处之前就已注释 --end-->
+                                <!-- <dd id="SY201811280941154115162">
+                                    <a href="javascript:;" lay-href="./Page/xtgl/wwz.html?limit=SY201811280941154115162" data-icon="fa-tasks" data-title="文物组" kit-target data-id='405'> <i class="fa fa-tasks"></i> <span>文物组</span> </a>
+                                </dd> -->
+                                <!-- 此处之前就已注释 --start-->
+                                <!--<dd>
+                                        <a href="javascript:;" data-icon="fa-tasks" data-title="个人资料" kit-target data-id='402' lay-href="./Page/sysSetting/myInfo.html"> <i class="fa fa-tasks"></i> <span>个人资料</span> </a>
+                                    </dd>-->
+                                    <!-- 此处之前就已注释 --end-->
+
+                                <!-- <dd id="SY201811280942444244134">
+                                    <a href="javascript:;" data-icon="fa-tasks" data-title="管理员列表" kit-target data-id='501' lay-href="./Page/glygl/glylb.html?limit=SY201811280942444244134"> <i class="fa fa-tasks"></i> <span>管理员列表</span> </a>
+                                </dd>
+                                <dd id="SY20181128094306436129">
+                                    <a href="javascript:;" lay-href="./Page/sysSetting/dataList.html?type=role&limit=SY20181128094306436129" data-icon="fa-tasks" data-title="角色表" kit-target data-id='404'> <i class="fa fa-tasks"></i> <span>角色表</span> </a>
+                                </dd>
+                                <dd id="2019021809112411248377452355">
+                                    <a href="javascript:;" lay-href="./Page/xtgl/xtsz.html?limit=2019021809112411248377452355" data-icon="fa-tasks" kit-target data-id='405'> <i class="fa fa-tasks"></i> <span>系统设置</span> </a>
+                                </dd>
+                                <dd id="2019021809114911498045173514">
+                                    <a href="javascript:;" lay-href="./Page/xtgl/xtpz.html?limit=2019021809112411248377452355" data-icon="fa-tasks" kit-target data-id='406'> <i class="fa fa-tasks"></i> <span>系统配置</span> </a>
+                                </dd> -->
+                            </dl>
+                        </li>
+
+                    </ul>
+                    <div class="comp-logo">
+                        <img src="images/logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- 页面标签 -->
+            <div class="layadmin-pagetabs" id="LAY_app_tabs">
+                <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+                <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+                <div class="layui-icon layadmin-tabs-control refresh">
+                    <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                        <i class="layui-icon layui-icon-refresh-3"></i>
+                    </a>
+                </div>
+                <div class="layui-icon layadmin-tabs-control fullscreen">
+                    <a href="javascript:;" layadmin-event="fullscreen">
+                        <i class="layui-icon layui-icon-screen-full"></i>
+                    </a>
+                </div>
+                <div class="layui-icon layadmin-tabs-control layui-icon-down">
+                    <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+                        <li class="layui-nav-item" lay-unselect>
+                            <a href="javascript:;"></a>
+                            <dl class="layui-nav-child layui-anim-fadein">
+                                <dd layadmin-event="closeThisTabs">
+                                    <a href="javascript:;">关闭当前标签页</a>
+                                </dd>
+                                <dd layadmin-event="closeOtherTabs">
+                                    <a href="javascript:;">关闭其它标签页</a>
+                                </dd>
+                                <dd layadmin-event="closeAllTabs">
+                                    <a href="javascript:;">关闭全部标签页</a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+                    <ul class="layui-tab-title" id="LAY_app_tabsheader">
+
+                        <li lay-id="./main.html" lay-attr="./main.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主体内容 -->
+            <div class="layui-body" id="LAY_app_body" style="margin-bottom:35px;">
+                <div class="layadmin-tabsbody-item layui-show">
+                    <iframe src="./main.html" frameborder="0" class="layadmin-iframe"></iframe>
+                </div>
+            </div>
+
+            <!-- 辅助元素，一般用于移动设备下遮罩 -->
+            <div class="layadmin-body-shade" layadmin-event="shade"></div>
+            <div class="layui-footer">
+                <a href="javascript:;" style="float:left;">
+                    <i class="fa fa-exclamation-circle"></i>
+
+                    <span id="copyright_name_value"></span>
+                </a>
+                <a href="javascript:;" style="float:right;">
+
+                    <span id="support_name_value"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+    layui.config({
+        base: './layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use('index');
+
+    //点击事件 库房中菜单记录暂不启用
+    // $(".layui-nav-child").click(function (){
+    // 	console.log("点击菜单事件")
+    // 	console.log($(this).find('a').attr("data-title"))
+    // 	var title=$(this).find('a').attr("data-title")
+    // 	var menuUrl=$(this).find('a').attr("data-url")
+
+    // 	postData( "wwAddNewRow", {
+    // 	TblNum:7019,
+    // 		XDLMname:title,
+    // 		XDLMurl:menuUrl,
+    // 		XDLMuser_name:getCookieName("mUserName"),
+    // 	XKLX: "syyh",
+    // 	sykf: "syyh"
+    // },"/wwSYGR/wwData/wwDataManageGR.ashx")
+    // })
+</script>

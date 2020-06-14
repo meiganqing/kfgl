@@ -1,0 +1,100 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-12-05 18:14:22
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../lib/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+    <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+    <script src="../../../SysJs/xdDataMange.js"></script>
+    <script src="../js/Modifybatch.js"></script>
+    <!-- <script src="../js/wwlb.js"></script> -->
+
+    <!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+    
+    <style type="text/css">
+    	#yzm {
+			width: 70%;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		.hide {
+			display: none;
+		}
+    </style>
+</head>
+
+<body>
+	<form class="layui-form" lay-filter="formData">
+        <div class="layui-tab-content">
+            <div id="appendDiv">
+        
+                <div id="datashow" style="padding: 20px 20px 20px 0">
+                        <div class="layui-form-item">
+                                <div class="layui-block">
+                                    <label class="layui-form-label" id="dataRq">项目名称</label>
+                                    <div class="layui-input-block">
+                                    <select 
+                                    id="alter" 
+                                    class="layui-input" lay-filter="alterChange">
+                                        
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                    <div class="layui-block">
+                                        <label class="layui-form-label" id="dataRq">项目值</label>
+                                        <div class="layui-input-block">
+                                                <input type="text"
+                                                lay-verify="required" 
+                                                id="lienumb" 
+                                                placeholder="" 
+                                                autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                        <div class="">
+                            <div class="layui-footer" style="left:0px; display: flex;justify-content: center;">
+                                <button class="layui-btn" id="TrainManageAddBtn" lay-submit=""
+                                >立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary" onclick="closethis()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</form>
+</body>
+
+</html>
+
+
+
+
+
+

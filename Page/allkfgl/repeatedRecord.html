@@ -1,0 +1,161 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title></title>
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+    <script src="../../SysJs/kfDataManage.js"></script>
+    <script src="/SXSY/layuiextend/xm-select.js"></script>
+    <script src="js/repeatedRecord.js"></script>
+
+    <style type="text/css">
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 70px;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .layui-input-inline {
+            width: 50% !important;
+        }
+
+        .layui-form-select .layui-input {
+            padding-right: 30px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .btn-width {
+            width: 46px;
+        }
+
+        .layui-table-cell {
+            height: auto !important;
+        }
+    </style>
+</head>
+
+<body class="no-skin" style="background-color: rgb(242, 242, 242); color: rgb(102, 102, 102);">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：数据查重工作较为耗时，默认打开时不执行检查，请点击【数据查重】按钮。
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+
+                    <div class="layui-col-md12">
+                        <div class="layui-inline">
+
+                            <div class="layui-inline search-type" id="keyworDiv">
+                                <label class="layui-form-label" style="width: 100px;">检查属性：</label>
+                                <div class="layui-inline" style="width: 800px;">
+                                    <div class="xm-select-demo" id="keyWords"></div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="layui-inline" style="margin-left: 30px;">
+                                <button class="layui-btn own-btn-red" type="button" name="searchData" id="searchData">数据查重</button>
+                            </div>
+
+                            <!--<div class="layui-inline">
+                                <button class="layui-btn own-btn-blue userLimit-btn-edit" id="modifyAll">批量修改</button>
+                            </div>-->
+                            <!--<div class="layui-inline">
+                                <button class="layui-btn own-btn-blue" id="delBatch">批量删除</button>
+                            </div>-->
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+            </div>
+        </div>
+    </div>
+    <div class="" style="display: none;padding: 15px;" id="operateBtn">
+
+    </div>
+</body>
+
+
+</html>
+<script type="text/html" id="opeTpl">
+    {{# if(d['库存状态'] == '在库'||d['库存状态'] == '归还入库'||d['库存状态'] == '暂存'){ }}
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="">详情</a>-->
+    {{# if(limitConfig("applyLimt", 2)){ }}
+    <a class="layui-btn own-btn-blue layui-btn-xs btn-width" lay-event="edit">修改</a> {{# } }} {{# if(limitConfig("applyLimt", 3)){ }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="del" id="">删除</a> {{# } }}{{# }else if(d['库存状态'] == '待入库'||d['库存状态'] == '待出库'){}}
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a>-->
+    {{# }else if(d['库存状态'] == '移交'){}}
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a>-->
+    {{#}else{ }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a> {{#}}}
+</script>
+<script type="text/html" id="colorMC">
+    <span style="color:#097FD0;cursor: pointer;" lay-event="xq">	{{ QueryKeyColor(d['登记名称']) }}</span>
+</script>
+<script type="text/html" id="kczt">
+    {{# if(d['审核状态']){ }}
+    <span id="" style="color:{{statusColor(d['审核状态'])}}">{{d['审核状态']}}</span> {{# }else{ }}
+    <span style="color:{{statusColor(d['库存状态'])}}">{{d['库存状态']}}</span> {{#}}}
+</script>
+
+<script type="text/html" id="positionDisplay">
+    {{ combinePosition(d) }}
+</script>
+
+<script type="text/html" id="smallPicture">
+    <img style="width: 65px;height:65px;cursor: pointer;" src="{{getPictureUrl(d['图片地址']).replace('ss.','.')}}" alt="" lay-event="scanPic" />
+</script>
+
+<script type="text/html" id="positionAdress">
+    {{ combinepositionAdress(d) }}
+</script>
+<script type="text/html" id="colorKNBH">
+    {{ QueryKeyColor(d['文物库内编号']) }}
+</script>
+<script type="text/html" id="colorBH">
+    {{ QueryKeyColor(d['编号']) }}
+</script>
+<script type="text/html" id="colornewBH">
+
+
+
+</script>
+
+<script type="text/html" id="colorMC">
+
+    <span style="color:#097FD0;cursor: pointer;" lay-event="xq">	{{ QueryKeyColor(d['登记名称']) }}</span>
+</script>
+<script type="text/html" id="colorND">
+    {{ QueryKeyColor(d['年代']) }}
+</script>
+<script type="text/html" id="colorSL">
+    {{ QueryKeyColor(d['数量']) }}
+</script>
+<script type="text/html" id="colorZTYLX">
+    <span>{{d['载体一类型']}}</span>
+    <!--{{ QueryKeyColor(d['载体一类型']) }}-->
+</script>
+<script type="text/html" id="colorZTELX">
+    <span>{{ QueryKeyColor(d['载体二类型']) }}</span>
+    <!--{{ QueryKeyColor(d['载体二类型']) }}-->
+</script>

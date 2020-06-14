@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+
+		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+		<script type="text/javascript" src="../../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+		<script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script>
+		<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+		<!--<script type="text/javascript" src="../js/wwjcxx.js"></script>-->
+		<script type="text/javascript" src="../../crkgl/js/ckHtml.js">
+		</script>
+		<style type="text/css">
+			body,
+			html {
+				background: #FFFFFF;
+				font-size: 12px;
+			}
+			
+			td {
+				width: 200px;
+			}
+			
+			tr {
+				height: 30px;
+			}
+			
+			.imgDiv {
+				float: left;
+				padding: 8px;
+				box-sizing: border-box;
+				/*border: 1px solid #BFBFBF;*/
+				/*box-shadow: 2px 2px 3px #aaaaaa;*/
+			}
+			
+			.color_ {
+				background: url(../../../images/shandow.jpg);
+				border: 1px solid black;
+			}
+			
+			.store-content {
+				width: 100%;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.three-3D {
+				border: none!important;
+				overflow: hidden;
+			}
+			
+			.three3D-module {
+				float: left;
+				width: 33.33%;
+				height: 200px;
+				padding: 10px;
+				box-sizing: border-box;
+				position: relative;
+			}
+			
+			.three-3D iframe {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.three-3D .me-icon {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(../../../images/fullScreen01.png);
+				z-index: 1000;
+				cursor: pointer;
+			}
+			
+			table,
+			table tr th,
+			table tr td {
+				border: 1px solid #5A5A58;
+				border-collapse: collapse;
+				/*padding: 12px 5px;*/
+			}
+			
+			table tr {
+				text-align: center;
+			}
+			
+			table tr td {
+				height: 30px;
+				font-size: 14px;
+				box-sizing: border-box;
+				padding-left: 2px;
+				border: 1px solid #000000!important;
+				font-family: '楷体';
+				font-weight: 600;
+			}
+			
+			#recordList img {
+				max-width: 60px;
+				max-height: 60px;
+			}
+			
+			.picture-div {
+				width: 100%;
+				height: 100%;
+				padding: 10px;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			
+			.picture-div img {
+				max-width: 90%!important;
+				max-height: 180px!important;
+				height: auto;
+			}
+			
+			#pageTitle3 {
+				font-size: 30px;
+				font-family: '楷体';
+				font-weight: 600;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<form class="layui-form  site-text">
+	<input type="hidden" id="newRK" />
+				<div class="layui-inline layui-btn-container no-print" style="float: right;">
+
+					<!--<span class="layui-btn" id="printBtnA5">A5打印</span>-->
+					<span class="layui-btn" id="printBtn">A4打印</span>
+					<!--<span class="layui-btn" id="printWord">输出Word</span>-->
+				</div>
+				<div class="layui-row">
+					<div>
+						<div class="layui-col-md12">
+							<div class=" " id="print">
+
+								<div id="basicDisplay" class="" style="text-align: center;padding-bottom: 56px">
+									<div style="float: right;">
+										<div class="layui-inline  layui-btn-container" style="float: right;">
+											<div id="qrcode" style="display:none;"></div>
+											<img src=" " id="qrimage" width="64" height="64" />
+										</div>
+
+									</div>
+									<div>
+										<p id="pageTitle3" style="font-size: 30px;font-weight: 500">文物入库登记表</p>
+
+									</div>
+
+								</div>
+								<div class="">
+									<table class="" style="text-align: left;width: 100%;">
+										<tr>
+
+											<td class="td-left">系统登记号 </td>
+											<td id="文物库内编号"></td>
+											<td class="td-left">记录类型</td>
+											<td id="">新入库</td>
+											<td rowspan="6" style="width: 400px;" align="center">
+
+												<div class="picture-div" id="picBodyImportant">
+
+												</div>
+
+											</td>
+										</tr>
+										<tr>
+
+											<td class="td-left">原登记号 </td>
+											<td id="XDLM现藏品总登记号"></td>
+											<td class="td-left">移交人</td>
+											<td id="归库移交人" align="left"></td>
+										</tr>
+										<tr>
+
+											<td class="td-left">文物名称 </td>
+											<td id="XDLM登记名称"></td>
+											<td class="td-left">接收人</td>
+											<td id="归库接收人" align="left"></td>
+										</tr>
+
+										<tr>
+
+											<td class="td-left">存放位置 </td>
+											<td id="">
+												<span id="XDLM库房名"></span>
+												<span id="XDLM柜架号"></span>
+												<span id="XDLM层号"></span>
+												<span id="XDLM分区号"></span>
+											</td>
+											<td class="td-left">录入人</td>
+											<td id="归库录入人" align="left"></td>
+										</tr>
+										<tr>
+
+											<td class="td-left">曾用名 </td>
+											<td id="XDLM原名"></td>
+											<td class="td-left">监督人</td>
+											<td id="归库监督人" align="left"></td>
+										</tr>
+										<tr>
+
+											<td class="td-left">项目名称 </td>
+											<td id="XDLM项目名称"> </td>
+											<td class="td-left">入库时间</td>
+											<td id="归库记录时间"> </td>
+										</tr>
+										<tr>
+
+											<td class="td-left">领队（负责人） </td>
+											<td id="XDLM考古发掘信息_领队"> </td>
+											<td class="td-left">保存状态</td>
+											<td colspan="2" id="XDLM保存状态"> </td>
+										</tr>
+
+										<tr>
+
+											<td class="td-left">来源方式 </td>
+											<td id="XDLM文物来源"> </td>
+											<td class="td-left">数量（组/件）</td>
+											<td colspan="2"> <span id="XDLM数量_件套"></span>
+												<span>组</span>
+												<span id="XDLM数量"></span>
+												<span id="XDLM数量单位"></span></td>
+
+										</tr>
+
+										<tr>
+
+											<td class="td-left">出土时间 </td>
+											<td id="XDLM考古发掘信息_出土时间"> </td>
+
+											<td class="td-left">完残程度</td>
+											<td colspan="2" id="XDLM完残程度"> </td>
+											<!--<span id="XDLM数量"></span>
+												<span id="XDLM数量单位"></span></td>-->
+										</tr>
+
+										<tr>
+
+											<td class="td-left">出土地点 </td>
+											<td id="XDLM考古发掘信息_出土地点"> </td>
+											<td class="td-left">原入库时间</td>
+											<td colspan="2" id="XDLM入藏时间_具体时间"> </td>
+										</tr>
+
+										<tr>
+
+											<td class="td-left ">GPS </td>
+											<td class="gps-display">
+												<span id="XDLM经度">0 </span>,
+												<span id="XDLM纬度">0 </span>,
+												<span id="XDLM高度">0</span>
+											</td>
+											<td class="td-left">外形尺寸</td>
+											<td colspan="2">
+												<!--<span>通长：</span>
+												<span id="XDLM外形尺寸_通长"></span>
+												<span>通宽：</span>
+												<span id="XDLM外形尺寸_通宽"></span>
+												<span>通高：</span>
+												<span id="XDLM外形尺寸_通高"></span>-->
+												<span id="XDLM外形尺寸"></span>
+											</td>
+										</tr>
+
+										<tr>
+
+											<td class="td-left">时代（纪年 ）</td>
+											<td>
+												<p id="XDLM年代_纪年选项A"></p>
+												<p id="XDLM年代_纪年选项B"></p>
+											</td>
+											<td class="td-left">具体质量</td>
+											<td colspan="2" id="XDLM质量_具体质量"> </td>
+										</tr>
+										<tr>
+
+											<td class="td-left">文物级别</td>
+											<td id="XDLM文物级别"> </td>
+											<td class="td-left">质地类别</td>
+											<td colspan="2" id="XDLM质地类别"> </td>
+										</tr>
+
+										<tr>
+
+											<td class="td-left">功能类别</td>
+											<td id="XDLM文物类别_具体类别"> </td>
+											<td class="td-left">考古机构</td>
+											<td colspan="2" id="XDLM考古发掘信息_考古机构">
+										</tr>
+
+										<td class="td-left">文物描述</td>
+										<td colspan="4" style="padding: 2px;height: 60px;" align="left">
+											<div id="XDLM文物描述">
+
+											</div>
+										</td>
+										<tr>
+
+											<td class="td-left">备注</td>
+											<td colspan="4" style="padding: 2px;" align="left">
+												<div id="XDLM保管信息_备注"></div>
+											</td>
+
+										</tr>
+									</table>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>
+<script id="tpldemo" type="text/html">
+
+	<div class="table-module">
+		<div class="table-content">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend><i class="fa fa-tags"></i>{{d['柜架号']}}</legend>
+			</fieldset>
+			<div class="layui-form">
+				<table class="layui-table">
+					<tbody>
+						{{# layui.each(d['分层集合'], function(indexs, items){ }}
+						<tr>
+							<td>{{items['层号']}}</td>
+							{{# layui.each(items['分区集合'], function(indexss, itemss){ }} {{# if(itemss['现容量']||itemss['现容量']=="0"){}}
+
+							<td class="store-list " id="{{itemss['柜架号']}},{{itemss['层号']}},{{itemss['分区号']}}" CNTR_no="{{itemss['柜架号']}}" Level_no="{{itemss['层号']}}" area_no="{{itemss['分区号']}}">
+								{{# if(!setKrColor(d,itemss['柜架号'],itemss['层号'],itemss['分区号'])){}}
+
+								<img style="height: 30px;width: 100%;" src="../../../images/shandow.jpg" alt="" /> {{#}}}
+
+								<div class="store-content">
+									<div class="area-module layui-badge layui-bg-black">
+
+										<span class=" ">{{itemss['分区号']}}</span>
+									</div>
+									{{#if(itemss['柜架号']==d.currentgj&&itemss['层号']==d.currentch&&itemss['分区号']==d.currentfq){}}
+
+									<a style="width: 100%;display: inline-block;text-align: center;" href="#">当前位置:{{itemss['现容量']}}</a>
+
+									{{#}else{}}
+									<a style="width: 100%;display: inline-block;text-align: center;" href="#">{{itemss['现容量']}}</a>
+
+									{{#}}}
+
+								</div>
+							</td>
+
+							{{# }}} {{# }); }}
+						</tr>
+						{{# }); }}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</script>

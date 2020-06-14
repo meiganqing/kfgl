@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多文件上传</title>
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<link rel="stylesheet" href="../../Widget/citysel/city.css">
+<script src="../../layui/layui.js"></script>
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../SysJS/xdDataMange.js"></script>
+<script src="mutiUpload.js"></script>
+<!--<script src="../selSelect.js"></script>-->
+</head>
+<body >
+<div  class="layui-container" style="padding:35px;">
+     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>多文件上传</legend>
+     </fieldset>
+     <div class="layui-upload">
+          <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+          <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+          <div class="layui-upload-list">
+               <table class="layui-table">
+                    <thead>
+                    <th>文件名</th>
+                         <th>大小</th>
+                         <th>状态</th>
+                         <th>操作</th>
+                         
+                              </thead>
+                    <tbody id="demoList">
+                    </tbody>
+               </table>
+          </div>
+     </div> 
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>多文件自动上传</legend>
+     </fieldset>
+     <div class="layui-upload">
+          <button type="button" class="layui-btn layui-btn-normal" id="testLista">选择多文件</button>
+          <div class="layui-upload-list">
+               <table class="layui-table">
+                    <thead>
+                    <th>文件名</th>
+                         <th>大小</th>
+                         <th>状态</th>
+                         <th>操作</th>
+                         
+                              </thead>
+                    <tbody id="demoLista">
+                    </tbody>
+               </table>
+          </div>
+     </div>
+     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>单文件拖拽上传</legend>
+     </fieldset>
+     <div>
+          <div class="layui-upload-drag" id="test10"> <i class="layui-icon"></i>
+               <p>点击上传，或将文件拖拽到此处</p>
+               <input type="hidden" id="fileRoute">
+          </div>
+          <div class="layui-upload-list">
+               <table class="layui-table">
+                    <thead>
+                    <th>文件名</th>
+                         <th>状态</th>
+                         <th>操作</th>
+                         
+                              </thead>
+                    <tbody id="viewList">
+                    </tbody>
+               </table>
+          </div>
+     </div>
+</div>
+</body>
+</html>

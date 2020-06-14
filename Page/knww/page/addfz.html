@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+		<script type="text/javascript" src="../../../layui/layui.js"></script>
+		<script src="../../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+		<script src="../../../SysJS/xdDataMange.js"></script>
+		<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+		<script src="../js/addfz.js"></script>
+	</head>
+
+	<body>
+		<div class="layui-fluid" style="margin-top: 0px;">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<form class="layui-form">
+						<input type="hidden" name="TblNum" value="384" />
+						<input type="hidden" name="XDLMID" id="XDLMid" value="" />
+						<div class="layui-row">
+							<div class="layui-form-item">
+								<label class="layui-form-label">分组名：</label>
+								<div class="layui-input-block">
+									<input class="layui-input" name="XDLMgroupName" id="XDLMgroupName">
+								</div>
+							</div>
+							<div class="layui-form-item" style="text-align: center;">
+								<div class="layui-input-block">
+									<button class="layui-btn" id="formSubmit" lay-submit lay-filter="formSubmit">确定</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<link rel="stylesheet" href="select2.css">
+<link rel="stylesheet" href="/layui/css/layui.css">
+<!--
+<link rel="stylesheet" href="../blackdemocss/assets/js/select2/select2-bootstrap.css">
+<link rel="stylesheet" href="../blackdemocss/assets/js/multiselect/css/multi-select.css">
+-->
+<body>
+<div class="form-group">
+     <label class="control-label col-sm-2 control-label">流程完成条件:</label>
+     <div class="col-sm-10">
+          <select class="form-control" name="XDLM流程完成条件" id="LCend" multiple style="width:95%;">
+               <option></option>
+               <optgroup label="完成条件" id="completeIf"> 
+               	<option value="1">
+               		1
+               	</option>
+               	<option value="2">
+               		2
+               	</option>
+               </optgroup>
+          </select>  
+            
+     </div>
+</div>
+	
+	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="select2.min.js"></script>
+<script>
+	$("#LCend").select2({
+		placeholder: '请选择完成条件',
+		allowClear: true
+	})	
+	var valsNew=[1];
+$("#LCend").select2("val",valsNew); 
+</script>
+</body>
+</html>

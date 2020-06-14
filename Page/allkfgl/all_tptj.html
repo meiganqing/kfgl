@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+
+
+  <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+  <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+  <script src="/SXSY/js/SysCongfig.js"></script>
+  <script src="/SXSY/widget/echarts/echarts.js"></script>
+
+  <!-- <script type="text/javascript" src="../../SysJs/xdDataMange.js"></script> -->
+  <script type="text/javascript" src="js/all_tptj.js"></script>
+</head>
+
+<body>
+  <form class="layui-form">
+    <div class="layui-fluid">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+          <div class="layui-row layui-col-space15">
+
+            <!-- 001年代 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-header">年代,总数
+                  <!-- <span id="基础类型Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="年代" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="layui-row layui-col-space15">
+            <!-- 002载体类型 -->
+            <div class="layui-col-md12 layui-col-sm12">
+              <div class="layui-card">
+                <div class="layui-card-header">载体一类型,总数
+                  <!-- <span id="古墓葬Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="载体一类型" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 新增 -->
+            <div class="layui-inline layui-col-md12 layui-col-sm12">
+              <div class="layui-card">
+                <div class="layui-card-header">载体二类型,总数
+                  <!-- <span id="摩崖石刻Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="载体二类型" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- 003级别总数-->
+            <div class="layui-inline layui-col-md6 layui-col-sm12">
+              <div class="layui-card">
+                <div class="layui-card-header">级别,总数
+                  <!-- <span id="单体石刻Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="级别" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-md6">
+              <div class="layui-card">
+                <div class="layui-card-header">所有权
+                  <!-- <span id="公司Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="所有权" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="layui-row layui-col-space15">
+
+              <!-- <div class="layui-col-md6">
+                <div class="layui-card">
+                  <div class="layui-card-header">区域,总数:<span id="古建筑Num"></span></div>
+                  <div class="layui-card-body">
+                    <div id="市" style="width: 98%; height:250px;"></div>
+                  </div>
+                </div>
+              </div> -->
+              <!--             <div class="layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header">所属公司,总数:<span id="石窟造像Num"></span></div>
+                <div class="layui-card-body">
+                  <div id="所属公司" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div> -->
+
+            </div>
+
+          </div>
+          <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-md6">
+              <div class="layui-card">
+                <div class="layui-card-header">使用用途,总数
+                  <!-- <span id="年代Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="使用用途" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- 新增 -->
+            <div class="layui-col-md6">
+              <div class="layui-card">
+                <div class="layui-card-header">载体用途,总数
+                  <!-- <span id="载体年代Num"></span> -->
+                </div>
+                <div class="layui-card-body">
+                  <div id="载体用途" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 载体二联动 -->
+            <!-- 
+            <div class="layui-col-md6">
+              <div class="layui-card">
+                <div class="layui-card-header">单体石刻,总数:<span id=""></span></div>
+                <div class="layui-card-body">
+                  <div id="单体石刻" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+
+          <!-- 载体二联动取消 -->
+
+          <!-- <div class="layui-row layui-col-space15">
+            <div class="layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header">古墓葬,总数:<span id=""></span></div>
+                <div class="layui-card-body">
+                  <div id="古墓葬" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header">摩崖石刻,总数:<span id=""></span></div>
+                <div class="layui-card-body">
+                  <div id="摩崖石刻" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header">石窟造像,总数:<span id=""></span></div>
+                <div class="layui-card-body">
+                  <div id="石窟造像" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header">古建筑,总数:<span id=""></span></div>
+                <div class="layui-card-body">
+                  <div id="古建筑" style="width: 98%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" href="/SXSY/widget/yanzheng/css/verify.css" media="all">
+
+		<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+		<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/SXSY/widget/yanzheng/js/verify.js"></script>
+		<!-- <script type="text/javascript" src="../../../lib/js/store.min.js"></script> -->
+		<!-- <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script> -->
+		<!-- <script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script> -->
+		<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+		<script type="text/javascript" src="/SYKFGL/SysJs/kfDataManage.js"></script>
+		<script type="text/javascript" src="../js/addPicture.js"></script>
+	</head>
+<style>
+	html,body,#editPictureDisplay,form,.layui-card{
+		height: 100%;
+	}
+	.layui-layer-page{
+		z-index: 999999999999999 !important;
+	}
+</style>
+	<body>
+		<div id="editPictureDisplay">
+			<form action="" class="layui-form">
+				<input type="hidden" name="XDLMID" id="modifyPictureId" />
+				<!--新添加的修改-->
+				<input type="hidden" id="modifyPictureSrc" />
+				<!-- <input type="hidden" name="TblNum" id="modifyPictureId" value="104" /> -->
+				<div class="layui-card">
+					<div class="layui-card-body ">
+
+						<div class="layui-row layui-col-space10 layui-form-item">
+								<div class="layui-form-item">
+									<label class="layui-form-label" for="">图筒：</label>
+									<div class="layui-input-block">
+										<div class="layui-input-inline ">
+											<input type="text" id="图筒" name="XDLM图筒" placeholder="请选择图筒" class="layui-input"/>
+										</div>
+										<div class="layui-input-inline ">
+											<span class="layui-btn" id="addPreliminary">添加图筒</span>
+										</div>
+									</div>
+
+								</div>
+							<div class="layui-col-lg6 layui-col-sm6">
+								<label class="layui-form-label">拓片名称：</label>
+								<div class="layui-input-block">
+									<input type="text" id="文图名称" class="layui-input"  placeholder="请输入图片名称" name="XDLM文图名称" />
+								</div>
+							</div>
+							<div class="layui-col-lg6 layui-col-sm6">
+								<label class="layui-form-label">拓片编号：</label>
+								<div class="layui-input-block">
+									<input type="text" id="图片编号" class="layui-input" placeholder="请输入图片编号" name="XDLM图片编号" />
+								</div>
+							</div>
+							<div class="layui-col-lg6 layui-col-sm6">
+								<label class="layui-form-label">拓片长度：</label>
+								<div class="layui-input-block">
+									<input type="number" id="长" class="layui-input" id="" placeholder="请输入长度" name="XDLM长" />
+								</div>
+							</div>
+							<div class="layui-col-lg6 layui-col-sm6">
+								<label class="layui-form-label">拓片宽度：</label>
+								<div class="layui-input-block">
+									<input type="number" id="宽" class="layui-input" id="" placeholder="请输入宽度" name="XDLM宽" />
+								</div>
+							</div>
+							
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">上传方式</label>
+							<div class="layui-input-block">
+								<input type="radio" name="uploadType" lay-filter="autoUpload" value="系统上传" title="批次导入" id="sysUpload" checked="">
+								<input type="radio" name="uploadType" lay-filter="autoUpload" value="手动上传" id="autoUpload" title="手动上传">
+
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">备注：</label>
+							<div class="layui-input-block">
+								<textarea class="layui-textarea" id="备注" placeholder="请输入备注" name="XDLM备注"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item layui-hide" id="uploadFileDiv">
+							<!--选择是对应上传-->
+							<div class="layui-form-item ">
+								<label class="layui-form-label">附件</label>
+								<div class="layui-input-block">
+									<div class="layui-upload">
+										<button type="button" class="layui-btn" id="changefileXZ">
+											<i class="layui-icon">&#xe67c;</i>上传文件
+										</button>
+
+										<div class="layui-upload-list">
+											<table class="layui-table" id="grid_table" lay-filter="grid_table" lay-size="sm"></table>
+											<!-- <table class="layui-table">
+												<thead>
+													<th>缩略图</th>
+													<th>文件名</th>
+													<th>状态</th>
+													<th>上传进度</th>
+													<th>操作</th>
+												</thead>
+												<tbody id="showfileXZ">
+												</tbody>
+											</table> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="" style="text-align: center;">
+							<a class="layui-btn" id="pictureSubmit">确定</a>
+
+						</div>
+					</div>
+
+				</div>
+
+			</form>
+		</div>
+	</body>
+
+</html>
+
+<script type="text/html" id="operate">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>

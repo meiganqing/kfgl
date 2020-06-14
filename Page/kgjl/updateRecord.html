@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+    <script type="text/javascript" src="js/updateRecord.js"></script>
+    <style type="text/css">
+        td {
+            width: 150px;
+        }
+
+        tr {
+            height: 30px;
+        }
+
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 162px;
+            font-weight: 400;
+            line-height: 23px;
+            text-align: right;
+        }
+
+        .texterea-width {
+            width: 50%;
+        }
+
+        .texterea-width1 {
+            width: 75% !important;
+        }
+
+        .imgDiv {
+            float: left;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 1px solid #BFBFBF;
+            box-shadow: 2px 2px 3px #aaaaaa;
+        }
+
+        .modify-detail {
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+            .modify-detail:first-child {
+                color: red;
+            }
+
+            .modify-detail:last-child {
+                color: green;
+            }
+
+        .picture-div {
+            /*display: inline-block;border: 1px dashed gray;*/
+            min-height: 64px;
+            min-width: 64px;
+            box-sizing: border-box;
+        }
+
+        .pic-module {
+            float: left;
+            line-height: 64px;
+            margin-bottom: 5px;
+        }
+
+        .modifyContent-content {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="layui-form" action="">
+
+        <input type="hidden" value="" id="wwknbh" name="XDLM文物库内编号" />
+        <input type="hidden" id="jlblsh" name="XDLM记录表流水号" />
+        <div class="layui-fluid" style="width: 80%;margin: auto;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-form layui-card-header " id="approveMsg">
+                            <i class="title-icon fa fa-tags"></i>文物申请修改信息
+                        </div>
+                        <div class="layui-form layui-card-body layuiadmin-card-list layui-row">
+                            <table class="layui-table" style="text-align: center;">
+                                <tr>
+                                    <td>审核人</td>
+                                    <!-- <td id="审核人"></td> -->
+                                    <td id="修改人用户名"></td>
+                                    <td>名称</td>
+                                    <td id="登记名称"></td>
+                                </tr>
+                                <tr>
+                                    <td>申请时间</td>
+                                    <td id="申请更改时间"></td>
+
+                                    <td>审核时间</td>
+                                    <td id="完成修改时间"></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-card">
+
+                        <div class="layui-form layui-card-header " id="approvelType">
+                            <i class="title-icon fa fa-tags"></i>修改审核
+                        </div>
+                        <div class="layui-form layui-card-body layuiadmin-card-list layui-row">
+                            <table class="layui-table" style="text-align: center;">
+                                <tr>
+                                    <td>修改原因</td>
+                                    <td id="修改原因"></td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>修改内容</td>
+                                    <td id="">
+                                        <div class="layui-input-inline" id="modifyContent">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="modifyReason">
+                                    <td>修改意见</td>
+                                    <td>
+                                        <div class="layui-input-inline" id="">
+                                            <input lay-filter="filter" type="radio" name="当前状态" value="已修改" title="同意修改" checked="">
+                                            <input lay-filter="filter" type="radio" name="当前状态" value="拒绝修改" title="拒绝修改">
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                                <tr id="refuseReson" class="layui-hide">
+                                    <td>拒绝理由</td>
+                                    <td>
+                                        <textarea id="拒绝原因" name="XDLM拒绝原因" placeholder="请输入拒绝原因" class="layui-textarea"></textarea>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <div class="layui-col-xs12 layui-col-sm12" style="margin-top: 30px;" id="submitBtn">
+                        <div class="layui-col-sm-offset4 layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" id="wwrkbc"  type="button"  >确定</button>
+                                <!--<button type="reset" class="layui-btn layui-btn-primary">取消</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

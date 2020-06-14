@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="opsead/js/jquery-1.11.3.min.js"></script>
+		<script src="opsead/js/openseadragon.min.js"></script>
+		<script src="opsead/js/openseadragon-annotations.js"></script>
+	</head>
+	<style>
+		body #content {
+			width: 100%;
+			background: #FFFFFF!important;
+			height: 100%;
+		}
+		
+		body {
+			margin: 0px;
+		}
+		
+		.picdetail-text {
+			padding: 15px;
+			box-sizing: border-box;
+		}
+		
+		.hide {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div id="content">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12 layui-col-sm12">
+					<div class="layadmin-contact-box">
+						<div class="layui-col-md8 layui-col-sm8">
+							<a href="javascript:;">
+								<div class="layadmin-text-center" style="padding:15px;box-sizing: border-box;">
+
+									<div id="toolbarDiv" style="width:600px; height:30px;"></div>
+
+									<div id="openseadragon1" style="width: 100%; height: 650px;"></div>
+
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+	</body>
+
+</html>
+<script>
+	String.prototype.getQuery = function(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = this.substr(this.indexOf("?") + 1).match(reg);
+		if(r != null) return unescape(r[2]);
+		return null;
+	}
+	var reg = new RegExp("(^|&)path=([^&]*)(&|$)");
+	var url = window.location.href.getQuery("path")
+	var issection = window.location.href.getQuery("issection");
+	var system = window.location.href.getQuery("system") //系统上传生成
+	var xml = url.split(".")[0] + ".xml"; //存放路径
+	//1)判断切片是否生成
+	if(issection && issection == "true") {
+		var viewer = OpenSeadragon({
+			id: "openseadragon1",
+			visibilityRatio: 0.1, //图片在框内的最小比例
+			prefixUrl: "./img/images/", //框架图标
+			toolbar: "toolbarDiv", //设置toolbar的值为所对应的div的id
+			showNavigator: true, //突出显示的区域显示用户当前正在查看的图像的那一部分
+			tileSources: xml,
+			showNavigator: false, //右上角的小图范围
+
+		});
+		viewer.initializeAnnotations();
+	} else { //切片还没有生成
+		if(issection == "false") {
+			self.location.href = '../imgTools/ShowImage.html?path=' + url;
+		} else { //后台没有返回来是否有切片
+			if(system == "1") {
+				var xml_ = url.split(".")[0] + "/ImageProperties.xml"
+				//				var xml_ = "/TPDATA1/TP0000002/TP0000002/ImageProperties.xml"
+				$.ajax({
+					type: "GET",
+					url: xml_,
+					async: true,
+					success: function(dataxml) {
+						var width_ = Number($(dataxml).find("IMAGE_PROPERTIES").attr("WIDTH"));
+						var heigh_ = Number($(dataxml).find("IMAGE_PROPERTIES").attr("HEIGHT"));
+						var viewer = OpenSeadragon({
+							id: "openseadragon1",
+							visibilityRatio: 0.1, //图片在框内的最小比例
+							prefixUrl: "./img/images/", //框架图标
+							// preserveViewport: true,
+							showNavigator: true, //突出显示的区域显示用户当前正在查看的图像的那一部分
+							tileSources: [{
+								type: "zoomifytileservice",
+								toolbar: "toolbarDiv", //设置toolbar的值为所对应的div的id
+								width: width_,
+								height: heigh_,
+								tilesUrl: url.split(".")[0] + "/"
+							}],
+							showNavigator: false, //右上角的小图范围
+
+						});
+
+						viewer.initializeAnnotations();
+					},
+					error: function() {
+						console.log("没有返回切片")
+						self.location.href = '../imgTools/ShowImage.html?path=' + url;
+					}
+				});
+			} else {
+				$.ajax({
+					type: "GET",
+					url: xml,
+					async: true,
+					success: function(data) {
+						console.log("返回切片")
+						var xml = url.split(".")[0] + ".xml"; //存放路径
+						var viewer = OpenSeadragon({
+							id: "openseadragon1",
+							visibilityRatio: 0.1, //图片在框内的最小比例
+							prefixUrl: "./img/images/", //框架图标
+							// preserveViewport: true,
+							showNavigator: true, //突出显示的区域显示用户当前正在查看的图像的那一部分
+							tileSources: xml,
+							showNavigator: false, //右上角的小图范围
+							fullPageButton: "full-page"
+						});
+						viewer.initializeAnnotations();
+					},
+					error: function() {
+
+						self.location.href = '../imgTools/ShowImage.html?path=' + url;
+					}
+				});
+			}
+		}
+
+	}
+</script>

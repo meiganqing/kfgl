@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>    <!--<link rel="stylesheet" href="../../layui/css/layui.css" />-->
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+    <script src="/SXSY/layuiextend/jquery.jqprint-0.3.js"></script>
+    <script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+    <script type="text/javascript" src="js/wwcklsjl.js"></script>
+
+    <!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 70px;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .layui-input-inline {
+            width: 60% !important;
+        }
+
+        .layui-table-cell {
+            height: auto !important;
+        }
+
+        .list-img-mudule {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body class="no-skin" style="background-color: rgb(242, 242, 242); color: rgb(102, 102, 102);">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间l空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body">
+                <form class="layui-form" action="">
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <!--<div class="layui-col-md3 layui-form-item">-->
+                            <div class="layui-inline">
+                                <label class="layui-form-label">记录类型：</label>
+                                <div class="layui-input-inline">
+                                    <select id="jllx" lay-filter='selxmz'>
+                                        <option value="所有">所有</option>
+                                        <option value="移交">移交</option>
+                                        <option value="文物出展">文物出展</option>
+                                        <option value="文物修复">文物修复</option>
+                                        <option value="文物拍照">文物拍照</option>
+                                        <option value="资料整理">资料整理</option>
+                                        <option value="移库">移库</option>
+                                        <option value="其他原因">其他原因</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <!--<div class="layui-col-md3 layui-inline">-->
+                            <div class="layui-inline">
+                                <label class="layui-form-label">查询类别：</label>
+                                <div class="layui-inline">
+                                    <select id="cxlb" lay-search lay-filter="cxlb">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                            <div class="layui-inline layui-hide" id="serachDate">
+                                <label class="layui-form-label"></label>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" style="width: 300px;">
+                                        <input type="text" id="start" class="layui-input test-item" placeholder="请选择开始时间">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" layui-inline " id="keyWord">
+                                <label class="layui-form-label">关键字</label>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" name="keyWords" id="queryK" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class=" layui-inline">
+                                <button class="layui-btn own-btn-red" type="button" name="searchData" id="searchData">查询</button>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" type="button" id="outfile">出库导出</button>
+
+                            </div>
+
+                            <!-- <div class="layui-inline">
+                                <button class="layui-btn" id="outfileCKD">出库单导出</button>
+
+                            </div> -->
+                           
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间l空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body">
+                <table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<!-- <script type="text/html" id="opeTpll">
+    <a class="layui-btn layui-btn-xs " lay-event="ck" id="ckxq">出库单</a>
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="xq" id="">详情</a>
+</script>
+
+<script type="text/html" id="smallPicture">
+    <div class="list-img-mudule" style="">
+        <img style="max-width: 60px;max-height:60px;cursor: pointer;" src="{{getPictureUrl(d['记录图']).replace('ss.','.')}}" alt="" lay-event="scanPic" />
+    </div>
+</script>
+<script type="text/html" id="recordType">
+    <span style="color:{{statusColor(d['记录类型'])}}">{{d['记录类型']}}</span>
+</script> -->
+
+

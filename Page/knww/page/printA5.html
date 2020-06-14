@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="../../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../../lib/css/verify.css">
+		<link rel="stylesheet" type="text/css" href="../../../lib/css/font-awesome/css/font-awesome.css" />
+		<script type="text/javascript" src="../../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+		<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+		<script type="text/javascript" src="../../../lib/js/verify.js"></script>
+		<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+		<script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script>
+		<script type="text/javascript" src="../js/printA5.js"></script>
+	</head>
+	<style type="text/css">
+		html,
+		body {
+			/*background: #FFFFFF;
+		height: 100%;
+		width: 100%;*/
+		}
+	</style>
+
+	<body>
+		<div class="layui-fluid">
+			<!--文物基础信息表-->
+			<div class="layui-card" id="ww">
+
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto" style="text-align: center;padding-bottom: 35px">
+					<div style="float: right;">
+						<div class="layui-inline  layui-btn-container" style="float: right;">
+							<div id="qrcode" style="display:none;"></div>
+							<img class="ww" src=" " id="qrimage" width="64" height="64" />
+						</div>
+
+					</div>
+					<div>
+						<h1>文物基础信息表</h1>
+
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-table">
+						<tbody>
+							<tr>
+								<td>文物名称</td>
+								<td id="ww登记名称"></td>
+								<td rowspan="6">
+									<div style="text-align: center;">
+										<img id="wwPicture" style="width: 200px;height: 180px;" src="">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>原登记号</td>
+								<td id="ww现藏品总登记号" style="font-family: '宋体';font-size: 14px;"></td>
+							</tr>
+							<tr>
+								<td>现登记号</td>
+								<td id="ww现藏品总登记号"></td>
+							</tr>
+							<tr>
+								<td>存放位置</td>
+								<td>
+									<span id="ww库房名"></span>
+									<span id="ww柜架号"></span>
+									<span id="ww层号"></span>
+									<span id="ww分区号"></span>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="2">移交人</td>
+								<td id="ww移交人">
+
+								</td>
+							</tr>
+							<tr>
+								<td>签字:</td>
+							</tr>
+							<tr>
+								<td rowspan="2">接收人</td>
+								<td id="ww接收人"></td>
+								<td rowspan="4" id="ww文物描述"></td>
+							</tr>
+							<tr>
+								<td>签字：</td>
+							</tr>
+							<tr>
+								<td>监督人</td>
+								<td id="ww监督人"></td>
+							</tr>
+							<tr>
+								<td>备注</td>
+								<td id="ww保管信息_备注"></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--拓片基础表-->
+			<div class="layui-card" id="tp">
+
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto" style="text-align: center;padding-bottom: 35px">
+					<div style="float: right;">
+						<div class="layui-inline  layui-btn-container" style="float: right;">
+							<div id="qrcode" style="display:none;"></div>
+							<img class="tp" src=" " id="qrimage" width="64" height="64" />
+						</div>
+
+					</div>
+					<div>
+						<h1>拓片基础信息表</h1>
+
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-table">
+						<tbody>
+							<tr>
+								<td>编号</td>
+								<td id="tp编号"></td>
+								<td rowspan="5">
+									<div style="text-align: center;">
+										<img id="现状" style="width: 200px;height: 100px;" src="">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>名称</td>
+								<td id="tp登记名称" style="font-family: '宋体';font-size: 14px;"></td>
+							</tr>
+							<tr>
+								<td>库内编号</td>
+								<td id="tp文物库内编号"></td>
+							</tr>
+							<tr>
+								<td>存放位置</td>
+								<td>
+									<span id="tp库房名"></span>
+									<span id="tp柜架号"></span>
+									<span id="tp层号"></span>
+									<span id="tp分区号"></span>
+								</td>
+
+							</tr>
+							<tr>
+								<td rowspan="2">位置</td>
+								<td id="">
+									<span id="tp市"></span>
+									<span id="tp县"></span>
+									<span id="tp乡"></span>
+
+									<span id="tp村"></span>
+									<span id="tp组"></span>
+
+									<span id="tp小地方"></span>
+									<span id="tp具体位置"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>签字:</td>
+								<td rowspan="5">
+									<div style="text-align: center;">
+										<img id="拓片" style="width: 200px;height: 100px;" src="">
+
+									</div>
+
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="2">接收人</td>
+								<td id="tp接收人"></td>
+
+							</tr>
+							<tr>
+								<td>签字：</td>
+							</tr>
+							<tr>
+								<td>监督人</td>
+								<td id="tp监督人"></td>
+							</tr>
+							<tr>
+								<td>备注</td>
+								<td id="tp简介"></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

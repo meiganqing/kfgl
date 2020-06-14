@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title></title>
+	<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+	<link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+	<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+	<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+	<script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+	<script src="/SXSY/js/SysCongfig.js"></script>
+
+	<script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+	<script type="text/javascript" src="../js/ghwwdjb.js"></script>
+
+	<style type="text/css">
+		td {
+			width: 150px;
+		}
+
+		tr {
+			height: 30px;
+		}
+
+		.imgDiv {
+			float: left;
+			padding: 15px;
+			box-sizing: border-box;
+			border: 1px solid #BFBFBF;
+			box-shadow: 2px 2px 3px #aaaaaa;
+		}
+	</style>
+</head>
+
+	<body>
+		<div class="layui-fluid">
+			<form class="layui-form" action="" id="XMForm">
+			 
+				<div class="layui-card">
+					<div class="layui-card">
+						<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+							<div class="layui-row">
+								<div class="layui-col-md12" style="text-align: center;">
+									<div class="layui-col-md12">
+										<h2><span id="currentStore"></span>文物出库/归库登记表</h2>
+										<h3 id="jllsh"></h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form layui-card-body layuiadmin-card-list layui-row">
+							<table class="layui-table" style="text-align: center;">
+								<!--文物基础信息 -->
+								<tr class="gh_ww">
+									<td colspan="2">文物名称</td>
+									<td colspan="2" id="登记名称"></td>
+									<td colspan="2">现登记号</td>
+									<td colspan="2" id="文物库内编号"></td>
+								</tr>
+								<tr class="gh_ww">
+									<td colspan="2">出土地点</td>
+									<td colspan="6" id="考古发掘信息_出土地点"></td>
+								</tr>
+								<tr class="gh_ww">
+									<td>时代</td>
+									<td id="年代_纪年选项A"></td>
+									<td>尺寸</td>
+									<td id="外形尺寸"></td>
+									<td>质地</td>
+									<td id="zdlb"></td>
+									<!-- <td id="质地类别_单一质地_无机质"></td> -->
+									<td>数量</td>
+									<td><span id="数量_件套"></span>组<span id="数量"></span><span id="数量单位"></span></td>
+								</tr>
+								<tr class="gh_ww">
+									<td colspan="2">出土时间</td>
+									<td colspan="2" id="考古发掘信息_出土时间"></td>
+									<td colspan="2">资料移交时间</td>
+									<td colspan="2" id="保管信息_入库时间"></td>
+								</tr>
+								<tr class="gh_ww">
+									<td colspan="2">保存现状</td>
+									<td colspan="2" id="保存状态"></td>
+									<td colspan="2">完整程度</td>
+									<td colspan="2" id="完残程度"></td>
+								</tr>
+
+								<!-- 拓片基础信息 -->
+								<tr class="gh_tp">
+									<td colspan="2">拓片名称</td>
+									<td colspan="2" id="登记名称"></td>
+									<td colspan="2">现登记号</td>
+									<td colspan="2" id="文物库内编号"></td>
+								</tr>
+								<tr class="gh_tp">
+									<td colspan="2">具体位置</td>
+									<td colspan="2" id="具体位置"></td>
+									<td colspan="2">具体年代</td>
+									<td colspan="2" id="具体年代"></td>
+								</tr>
+								<tr class="gh_tp">
+									<td>纵(cm)</td>
+									<td colspan="2" id="长"></td>
+									<td>横(cm)</td>
+									<td colspan="2" id="宽"></td>
+									<td>数量(通/幅)</td>
+									<td id="数量"></td>
+								</tr>
+								<tr class="gh_tp">
+									<td colspan="2">载体一类型</td>
+									<td colspan="2" id="载体一类型"></td>
+									<td colspan="2">载体二类型</td>
+									<td colspan="2" id="载体二类型"></td>
+								</tr>
+
+
+
+
+								<!-- 流水信息 -->
+								<tr>
+									<td colspan="2">出库事由</td>
+									<td colspan="2" id="记录类型"></td>
+									<td colspan="2">文物去向</td>
+									<td colspan="2" id="出库去向"></td>
+								</tr>
+								<tr>
+									<td colspan="2">文物库内编号</td>
+									<td colspan="2" id="文物库内编号"></td>
+									<!-- <td colspan="2" id="现藏品总登记号"></td> -->
+									<td colspan="2">存放位置</td>
+									<td colspan="2">
+										<span id="库房名"></span>
+										<span id="柜架号"></span>
+										<span id="层号"></span>
+										<span id="分区号"></span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">出库时间</td>
+									<td colspan="2" id="出库时间"></td>
+									<td colspan="2">归库时间</td>
+									<td colspan="2" id="XDLM归库时间"></td>
+								</tr>
+								<tr>
+									<td colspan="2">移交人</td>
+									<td colspan="2" id="移交人"></td>
+									<td colspan="2">移交人</td>
+									<td colspan="2">
+										<input class="layui-input" lay-verify="required"   id="归库移交人" autocomplete="off" placeholder="请填写移交人">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">接收人</td>
+									<td colspan="2" id="接收人"></td>
+									<td colspan="2">接收人</td>
+									<td colspan="2">
+										<input class="layui-input" lay-verify="required"  id="归库接收人" autocomplete="off" placeholder="请填写接收人">
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2">监督人</td>
+									<td colspan="2" id="监督人"></td>
+									<td colspan="2">监督人</td>
+									<td colspan="2">
+										<input class="layui-input" lay-verify="required"   id="归库监督人" autocomplete="off" placeholder="请填写监督人">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">出库备注</td>
+									<td colspan="6" id="记录内容"></td>
+								</tr>
+								<tr>
+									<td colspan="2">文物出库记录图</td>
+									<td colspan="6" id="文物出库记录图">
+										<div class="layui-card-body" id="picBody" style="overflow: hidden;">
+
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">文物归库备注</td>
+									<td colspan="6" id="">
+										<textarea class="layui-textarea" id="归库记录内容"   rows="" cols=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">文物归库记录图</td>
+									<td colspan="6" id="文物归库记录图">
+										<div class="layui-form-item ">
+											<div class="layui-input-block " style="margin-left: 0px;">
+												<div class="layui-upload" style="text-align: left;">
+													<button type="button" class="layui-btn" id="changefileWWGK">
+								 					 	<i class="layui-icon">&#xe67c;</i>上传文件
+													</button>
+													<div style="color: red;text-align: right;">
+														<i class="layui-icon layui-icon-about"></i>
+														<span>提示：建议最多上传6张</span>
+													</div>
+													<div class="layui-upload-list">
+														<table class="layui-table" id="grid_table" lay-filter="grid_table" lay-size="lg"></table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</table>
+							<div class="layui-col-md12" style="text-align: center;margin-top: 20px;">
+								<div class="layui-inline">
+									<button class="layui-btn" id="tjsq"  type="button">文物归还入库</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</body>
+
+</html>

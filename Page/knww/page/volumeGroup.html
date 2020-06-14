@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--<link rel="stylesheet" href="../../../layui/css/layui.css" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" />
+	<link rel="stylesheet" type="text/css" href="../../../lib/css/verify.css">
+	<link rel="stylesheet" type="text/css" href="../../../lib/css/font-awesome/css/font-awesome.css" />
+	<script type="text/javascript" src="../../../lib/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+	<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+	<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+	<script type="text/javascript" src="../../../lib/js/verify.js"></script>
+	<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+	<script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script>-->
+	<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+	<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+	<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+	<script src="/SXSY/js/SysCongfig.js"></script>
+	<script src="/SXSY/layuiextend/jquery.jqprint-0.3.js"></script>
+	<script type="text/javascript" src="../js/volumeGroup.js"></script>
+
+	<!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+
+	<style type="text/css">
+	
+
+		.texterea-width {
+			width: 49% !important;
+		}
+
+		#tpContent {
+			border: none;
+			height: 1100px;
+		}
+
+			#tpContent body {
+				background: #FFFFFF;
+			}
+	</style>
+</head>
+
+	<body>
+		<div class="layui-fluid">
+
+			<form class="layui-form" action="">
+				<input type="hidden" id="XDLMid" name='WWDJBID'>
+				<div class="layui-card" id="printA4">
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto" id="">
+						<h2><i class="title-icon fa fa-tags"></i>目标分组</h2></div>
+					<div class="layui-card-body layuiadmin-card-list">
+						<div class="layui-block">
+							<label class="layui-form-label">目标分组：</label>
+							<div class="layui-inline" style="width: 80%;">
+								<select id="groupSelect" lay-search lay-filter="groupSelect">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<div class="layui-card" id="printA4">
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto" id="">
+					<h2><i class="title-icon fa fa-tags"></i>添加分组的文物</h2></div>
+				<div class="layui-card-body layuiadmin-card-list">
+					<table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+				</div>
+
+			</div>
+			<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="" style="text-align: center;">
+							<button class="layui-btn" id="tjsq" lay-submit lay-filter="tjsq">确认分组</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/html" id="opeTpl">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">移除</a>
+</script>

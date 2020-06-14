@@ -1,0 +1,120 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-12-05 18:14:22
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html style="background-color: white;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+
+    <script src="../js/uploading.js"></script>
+
+    <!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+   
+    <style type="text/css">
+    	#yzm {
+			width: 70%;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		.hide {
+			display: none;
+        }
+    .layui-form-item .layui-input-inline {
+    float: left;
+    width: 100%!important;
+   
+    margin-right: 10px;
+}
+    </style>
+</head>
+
+<body>
+	<form class="layui-form" lay-filter="formData">
+        <div class="layui-tab-content">
+            <div id="appendDiv">
+        
+                <div id="datashow" style="padding: 20px 20px 20px 0">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header" style="display: flex;align-items: center;background-color: #FDFDF5;">
+                           <div style="font-weight: 700;">温馨提示：</div><div>为了数据正常导入系统，请您使用系统支持的标准Excel模板编辑</div><div style="margin-left: 10px;">  <button type="button" class="layui-btn layui-btn-warm" id="localwenjian">
+                            <i class="layui-icon">&#xe67c;</i>模板下载
+                      </button></div>
+                            </div>
+                            <div class="layui-card-body layuiadmin-card-list">
+                                <div class="layui-row layui-col-space10">
+                            
+                                    <div class="layui-col-xs12 layui-col-sm12">
+                                        <!--选择是对应上传-->
+                                        <div class="layui-form-item ">
+                                            <label class="layui-form-label layui-form-label-left"></label>
+                                            <div class="layui-input-inline texterea-width1">
+                                                <div class="layui-upload">
+                                                    <button type="button" class="layui-btn" id="changefileFJ">
+                                                              <i class="layui-icon">&#xe67c;</i>上传文件
+                                                    </button>
+                                                      
+                                              
+
+                                                  <div id="datamsg" style="margin-top: 8%;">
+                                                 
+
+                                                  </div>
+    
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md12" style="left:0px; display: flex;justify-content: center;margin-top: 20px;">
+                        <button class="layui-btn" id="TrainManageAddBtn" >确定</button>
+                        <button type="reset" class="layui-btn layui-btn-primary" onclick="closethis()">关闭</button>
+                    </div>
+                </div>
+                          
+                    
+                    </div>
+            </div>
+        </div>
+</form>
+</body>
+
+</html>
+
+
+
+
+
+

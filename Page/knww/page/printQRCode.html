@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>标签打印</title>
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript" src="../../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+    <!-- <script type="text/javascript" src="../../../lib/js/store.min.js"></script> -->
+    <!-- <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script> -->
+    <!-- <script src="../../../SysJs/xdDataMange.js"></script> -->
+    <script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+    <script type="text/javascript" src="../js/printQRCode.js"></script>
+</head>
+<style>
+    /*第二种样式*/
+    
+    html,
+    body {
+        background: #FFFFFF;
+    }
+    
+    .content {
+        width: 190px;
+        height: 190px;
+        margin: 0px auto 15px;
+        border-radius: 100px;
+        overflow: hidden;
+        border: 1px dashed #000;
+        font-size: 12px;
+        background: #FFFFFF;
+    }
+    
+    .content .title {
+        font-weight: 700;
+        color: #0C7358;
+    }
+    
+    .icon-img {
+        width: 30px;
+        height: 30px;
+        margin-right: 7px;
+    }
+    
+    .con-top {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .con-md {
+        margin: 5px 0px;
+        width: 100%;
+        overflow: hidden;
+        /*border-top: 1px dashed #000;*/
+        /*border-bottom: 1px dashed #000;*/
+        text-align: center;
+        background: #F5F5F5;
+    }
+    
+    .con-md-ww {
+        margin: 15px 0px 5px 0px;
+        width: 100%;
+        overflow: hidden;
+        /*border-top: 1px dashed #000;*/
+        /*border-bottom: 1px dashed #000;*/
+        text-align: center;
+        background: #F5F5F5;
+    }
+    
+    .con-md-left {
+        width: 50%;
+        height: 70px;
+        float: left;
+        text-align: right;
+        padding: 5px;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+    
+    .con-md-right {
+        width: 50%;
+        height: 60px;
+        float: left;
+        /*padding-left: 10px;*/
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    .con-md-right p {
+        line-height: 17px;
+        font-weight: 700;
+    }
+    
+    .con-bootom {
+        text-align: center;
+        /*font-weight: 700;*/
+    }
+    
+    .con-md-text {
+        /*line-height: 25px;*/
+        height: 30px;
+        display: table-cell;
+        vertical-align: middle;
+        /*background: #F5F5F5;*/
+        width: 100%;
+        width: 190px;
+        padding: 0px 15px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    
+    .con-md-text-ww {
+        /*line-height: 25px;*/
+        height: 30px;
+        display: table-cell;
+        vertical-align: middle;
+        /*background: #F5F5F5;*/
+        width: 100%;
+        width: 100px;
+        /*padding: 0px 15px;*/
+        box-sizing: border-box;
+        /*text-align: center;*/
+        border-bottom: 1px dashed #000;
+    }
+    
+    .con-btm-left {
+        float: left;
+        width: 70%;
+        /*height: 50px;*/
+        overflow: hidden;
+    }
+    
+    .con-btm-right {
+        float: left;
+        width: 30%;
+        text-align: left;
+    }
+    
+    .content-text {
+        line-height: 23px;
+        height: 23px;
+        border-bottom: 1px dashed #000;
+        text-align: left;
+    }
+    
+    .con-btm-btm {
+        float: left;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div id="print">
+        <div class="content tt tp layui-hide" style="margin-top: 35px;">
+            <div class="con-top" style="margin-top:5px;">
+                <!--<span class="title" id="title1"></span>-->
+                <img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+            </div>
+            <div class="con-md">
+                <p class="con-md-text" id="登记名称11"></p>
+
+            </div>
+            <div class="con-bootom layui-row">
+                <div class="con-btm-left">
+                    <div class="content-text"><span>&nbsp;编号：</span><span id="编号11"></span></div>
+                    <div class="content-text"><span>&nbsp;&nbsp;时代：</span><span id="年代11"></span></div>
+
+                </div>
+                <div class="con-btm-right">
+                    <img src=" " id="qrimage11" width="50" height="50" />
+
+                </div>
+                <div class="con-btm-btm">
+                    <div class="con-md-text"><span>地点：</span><span id="市11"></span><span id="县11"></span><span id="村11"></span></div>
+                    <!--<div class="content-text"><span id="图筒11"></span></div>-->
+                </div>
+            </div>
+        </div>
+        <div class="content tt  layui-hide" style="margin-top:65px">
+            <div class="con-top" style="margin-top: 7px;">
+                <!--<span class="title" id="title1"></span>-->
+                <img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+            </div>
+            <div class="con-md">
+                <p class="con-md-text" id="登记名称12"></p>
+
+            </div>
+            <div class="con-bootom layui-row">
+                <div class="con-btm-left">
+                    <div class="content-text"><span>&nbsp;编号：</span><span id="编号12"></span></div>
+                    <div class="content-text"><span>&nbsp;&nbsp;时代：</span><span id="年代12"></span></div>
+
+                </div>
+                <div class="con-btm-right">
+                    <img src=" " id="qrimage12" width="50" height="50" />
+
+                </div>
+                <div class="con-btm-btm">
+                    <div class="con-md-text"><span>位置：</span><span id="市12"></span><span id="县12"></span><span id="村12"></span></div>
+                    <!--<div class="content-text"><span id="图筒12"></span></div>-->
+                </div>
+
+            </div>
+        </div>
+        <!-- <div class="content tt ww layui-hide" style="margin-top:35px"> -->
+        <!--<div class="con-top" style="margin-top: 5px;">
+
+					<img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+				</div>-->
+        <!-- <div class="con-md-ww">
+                <p class="con-md-text" id="登记名称21" style="padding: 0px 37px;"></p>
+
+            </div> -->
+        <!-- <div class="con-bootom layui-row"> -->
+        <!-- <div class="con-btm-left" style="width: 87px;text-align: right;">
+						<img src=" " id="qrimage21" width="60" height="60" />
+						
+
+					</div>
+					<div class="con-btm-right" style="width:100px;">
+						<div class="content-text"><span>&nbsp;</span><span id="title21"></span></div>
+						<div class="con-md-text-ww"><span>&nbsp;&nbsp;</span><span id="现藏品总登记号21"></span></div>
+
+					</div>
+					<div class="con-btm-btm"> -->
+        <!--<p class="con-md-text" id="登记名称21"></p>-->
+        <!-- <div class="content-text" style="text-align: center;"><span>名称：</span><span id="登记名称21"></span></div>
+						
+						<div class="content-text" style="text-align: center;"><span>级别：</span><span id="文物级别21"></span></div>
+						<div class="content-text" style="text-align: center;"><span id="文物类别_具体类别21"></span></div>
+					</div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+
+
+        <div id="div_print2" class="ww layui-hide" style="text-align: center;position: absolute;left:0;right: 0;margin: 0 auto;z-index:-100;width:358px;">
+            <style>
+                .tables td {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                
+                .xz {
+                    transform: rotate(30deg);
+                    ;
+                    -ms-transform: rotate(30deg);
+                    /* IE 9 */
+                    -webkit-transform: rotate(30deg);
+                    ;
+                    /* Safari and Chrome */
+                    -o-transform: rotate(30deg);
+                    ;
+                    /* Opera */
+                    -moz-transform: rotate(30deg);
+                    ;
+                    /* Firefox */
+                }
+                
+                .tables tr td:nth-child(odd) {
+                    width: 40px;
+                    /*										  overflow:hidden;*/
+                }
+                
+                .tables tr td:nth-child(2) {
+                    width: 158px;
+                    /*										  overflow:hidden;*/
+                }
+                
+                .tables tr td:nth-child(4) {
+                    width: 110px;
+                    /*										  overflow:hidden;*/
+                }
+                
+                #printContent2 td {
+                    color: #000;
+                }
+            </style>
+            <div style="vertical-align:middle;height:64px;text-align:center;line-height:64px;margin-top:5px;margin-bottom:5px;padding-right:20px;padding-left:20px;">
+                <p class="p_top" style="text-align: center; font-size:12px;display:inline-block;margin-right:0px;margin:0;vertical-align:middle;">
+                    文物标签</p>
+                <!-- <p style="display:inline-block;margin-left:5px;font-size:12px;margin:0;vertical-align:middle;">【发掘人:<span id="SelectFJR2" style="font-size:11px;"></span>】</p> -->
+                <p style="display:inline-block;margin-left:5px;font-size:12px;margin:0;vertical-align:middle;">【原登记号:<span id="现藏品总登记号21" style="font-size:11px;"></span>】</p>
+                <div style="float:right">
+                    <div id="qrcode" style="display: none;"></div>
+                    <img src=" " id="qrimage21" width="64" height="64" /></div>
+            </div>
+            <form action="" id="printContent2" name="printContent">
+                <table class="tables" style="height:83px; text-align: center;width: 95%;border-collapse:collapse;overflow: hidden;text-overflow:ellipsis;table-layout:fixed;word-break:break-all;">
+                    <tr style="border-bottom: 0.001vw solid #444;">
+                        <td style="font-size: 12px; border: 1px solid #444; padding: 0;">名称</td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="登记名称21">
+                        </td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">编号</td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="title21"></td>
+
+                    </tr>
+                    <tr style="border-bottom: 0.001vw solid #444;">
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">级别</td>
+                        <td class="classfiy" style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="文物级别21">
+                        </td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">数量</td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="数量21"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">类别</td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="文物类别_具体类别21"></td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">状态</td>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="保存状态21"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">来源</td>
+                        <td colspan="3" style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="文物来源21">
+                            <!-- <p id="chtr" style="font-size: 12px;padding: 0;margin-bottom:0px;margin-top: 0;"><span id="JD2"></span> , <span id="WD2"></span> , <span id="GC2"></span></p>
+                            <p id="jwddtr" style="font-size: 12px; padding: 0;margin-bottom:0px;margin-top: 0;"><span id="jdd"></span> , <span id="wdd"></span> , <span id="GC2"></span></p>
+                            <p id="jwddfmtr" style="font-size: 12px; padding: 0;margin-bottom:0px;margin-top: 0;"><span id="jddfm"></span> , <span id="wddfm"></span> , <span id="GC2"></span></p> -->
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;">描述</td>
+                        <td colspan="3" style="height:30px;font-size: 12px; padding: 0; text-align: center; border: 1px solid #444;" id="文物描述21">
+                        </td>
+                    </tr>
+                </table>
+                <table class="tfoot p_down" style="text-align: center;width: 95%;border-collapse:collapse;">
+                    <tr>
+                        <td align="left" width="30px" style="font-size: 12px;padding: 0; text-align: left;padding-left: 10px;border: none;">时间&ensp;</td>
+                        <td id="入库时间21" width="80px" style="font-size: 12px; padding: 0; text-align: left; border: none;"></td>
+                        <td align="right" style="text-align:right;font-size: 12px; padding: 0;border: none;" id="收藏单位名称21">
+
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+        <div class="content tt layui-hide" style="margin-top:65px">
+            <div class="con-top" style="margin-top: 7px;">
+
+                <img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+            </div>
+            <div class="con-md">
+                <p class="con-md-text" id="登记名称22"></p>
+
+            </div>
+            <div class="con-bootom layui-row">
+                <div class="con-btm-left">
+                    <div class="content-text"><span>&nbsp;</span><span id="title22"></span></div>
+                    <div class="content-text"><span>&nbsp;&nbsp;</span><span id="现藏品总登记号22"></span></div>
+
+                </div>
+                <div class="con-btm-right">
+                    <img src=" " id="qrimage22" width="50" height="50" />
+
+                </div>
+                <div class="con-btm-btm">
+                    <div class="content-text" style="text-align: center;"><span>级别：</span><span id="文物级别22"></span></div>
+                    <div class="content-text" style="text-align: center;"><span id="文物类别_具体类别22"></span></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="no-print" style="text-align: center;position: absolute;margin: 0 auto;bottom: 15px;left: 50%;transform: translateX(-50%);">
+        <p class="layui-btn " id="printBtn">打印</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,687 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="../../layui/css/layui.css" />
+	<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script src="../../lib/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../../lib/js/store.min.js"></script>
+	<script type="text/javascript" src="../../SysJs/xdDataMange.js"></script>
+	<!--<script type="text/javascript" src="../../SysJs/tableSetting.js"></script>-->
+	<script type="text/javascript" src="js/detailApp.js"></script>
+	<style>
+	html,body,.layui-card{
+		height: 100%;
+		background: #FFFFFF;
+	}
+	</style>
+	<body>
+		<div class="layui-card" >
+
+			<div class="layui-card-body layui-text" id="content">
+				<table class="layui-table">
+					<colgroup>
+						<col width="100">
+						<col>
+					</colgroup>
+					<tbody id="contentWWdeatil" class="layui-hide">
+						<tr>
+							<td>存放位置</td>
+							<td id="">
+								<span id="XDLM库房名"></span>
+								<span id="XDLM柜架号"></span>
+								<span id="XDLM层号"></span>
+								<span id="XDLM分区号"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>库存状态</td>
+							<td id="XDLM库存状态"></td>
+						</tr>
+						<tr>
+							<td>文物名称</td>
+							<td id="XDLM登记名称"></td>
+						</tr>
+						<tr>
+							<td>曾用名</td>
+							<td id="XDLM原名"></td>
+						</tr>
+						<tr>
+							<td>原登记号</td>
+							<td id="XDLM现藏品总登记号"></td>
+						</tr>
+						<tr>
+							<td>现登记号</td>
+							<td id="XDLM文物库内编号"></td>
+						</tr>
+						<tr>
+							<td>考古编号</td>
+							<td id="XDLM考古学编号"></td>
+						</tr>
+						<tr>
+							<td>项目名称</td>
+							<td id="XDLM项目名称"></td>
+						</tr>
+						<tr>
+							<td>领队（负责人）</td>
+							<td id="XDLM考古发掘信息_领队"></td>
+						</tr>
+						<tr>
+							<td>GPS</td>
+							<td id="">
+								<span>
+									
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>考古机构</td>
+							<td id="XDLM考古发掘信息_考古机构"></td>
+						</tr>
+						<tr>
+							<td>出土时间</td>
+							<td id="XDLM考古发掘信息_出土时间"></td>
+						</tr>
+						<tr>
+							<td>出土地点</td>
+							<td id="XDLM考古发掘信息_出土地点"></td>
+						</tr>
+						<tr>
+							<td>考古发掘备注</td>
+							<td id="XDLM考古发掘信息_备注"></td>
+						</tr>
+						<tr>
+							<td>文物来源</td>
+							<td id="XDLM文物来源"></td>
+						</tr>
+						<tr>
+							<td>文物级别</td>
+							<td id="XDLM文物级别"></td>
+						</tr>
+						<tr>
+							<td>文物范围</td>
+							<td id="XDLM文物类别_范围"></td>
+						</tr>
+						<tr>
+							<td>文物具体类别</td>
+							<td id="XDLM文物类别_具体类别"></td>
+						</tr>
+						<tr>
+							<td> 纪年选项A</td>
+							<td id="XDLM年代_纪年选项A"></td>
+						</tr>
+						<tr>
+							<td> 纪年选项B</td>
+							<td id="XDLM年代_纪年选项B"></td>
+						</tr>
+						<tr>
+							<td>具体时间</td>
+							<td id="XDLM年代_具体时间"></td>
+						</tr>
+
+						<tr>
+							<td>单一质地</td>
+							<td id="">
+								<span id="XDLM质地类别机质"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>具体质量</td>
+							<td id="">
+								<span id="XDLM质量_具体质量"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>尺寸</td>
+							<td id="">
+								<span id="XDLM外形尺寸"></span>
+								<span>
+									通长
+								</span>
+								<span id="XDLM外形尺寸_通长"></span>
+								<span>通宽</span>
+								<span id="XDLM外形尺寸_通宽"></span>
+								<span>通高</span>
+								<span id="XDLM外形尺寸_通高"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>完残程度</td>
+							<td id="XDLM完残程度"></td>
+						</tr>
+						<tr>
+							<td>保存状态</td>
+							<td id="XDLM保存状态"></td>
+						</tr>
+						<tr>
+							<td>数量</td>
+							<td id="">
+								<span id="XDLM数量_件套"></span>
+								<span>组</span>
+								<span id="XDLM数量"></span>
+								<span id="XDLM数量单位"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>入藏时间范围</td>
+							<td id="XDLM入藏时间_范围"></td>
+						</tr>
+						<tr>
+							<td>具体时间</td>
+							<td id="XDLM入藏时间_具体时间"></td>
+						</tr>
+						<tr>
+							<td>文物描述</td>
+							<td id="XDLM文物描述"></td>
+						</tr>
+						<tr>
+							<td>入库时间</td>
+							<td id="XDLM保管信息_入库时间"></td>
+						</tr>
+						<tr>
+							<td>图片信息</td>
+							<td id="pictureWWdetail"></td>
+						</tr>
+						<tr>
+							<td>顺序号</td>
+							<td id="XDLM顺序号"></td>
+						</tr>
+						<tr>
+							<td>收藏单位名称</td>
+							<td id="XDLM收藏单位名称"></td>
+						</tr>
+						<tr>
+							<td>来源信息</td>
+							<td id="XDLM来源信息"></td>
+						</tr>
+						<tr>
+							<td>流传经历</td>
+							<td id="XDLM流传经历"></td>
+						</tr>
+						<tr>
+							<td>著录信息</td>
+							<td id="XDLM著录信息"></td>
+						</tr>
+						<tr>
+							<td>鉴定信息</td>
+							<td id="XDLM鉴定信息"></td>
+						</tr>
+
+						<tr>
+							<td>展览信息</td>
+							<td id="XDLM展览信息"></td>
+						</tr>
+						<tr>
+							<td>原登记号</td>
+							<td id="XDLM现藏品总登记号"></td>
+						</tr>
+						<tr>
+							<td>条形码及其他标识编码号</td>
+							<td id="XDLM保管信息_条形码及其他标识编码号"></td>
+						</tr>
+						<tr>
+							<td>库房名称及编号</td>
+							<td id="XDLM保管信息_库房名称及编号"></td>
+						</tr>
+						<tr>
+							<td>保存位置及编号</td>
+							<td id="XDLM保管信息_保存位置及编号"></td>
+						</tr>
+						<tr>
+							<td>本馆分类名称</td>
+							<td id="XDLM保管信息_本馆分类名称"></td>
+						</tr>
+						<tr>
+							<td>保管信息备注</td>
+							<td id="XDLM保管信息_备注"></td>
+						</tr>
+						<tr>
+							<td>质量范围</td>
+							<td id="XDLM质量_范围"></td>
+						</tr>
+						<tr>
+							<td>行政区划代码</td>
+							<td id="XDLM普查登记号_行政区划代码"></td>
+						</tr>
+						<tr>
+							<td>单位性质代码</td>
+							<td id="XDLM普查登记号_单位性质代码"></td>
+						</tr>
+							<tr>
+							<td>行业分类代码</td>
+							<td id="XDLM普查登记号_行业分类代码"></td>
+						</tr>
+						<tr>
+							<td>单位顺序号</td>
+							<td id="XDLM普查登记号_单位顺序号"></td>
+						</tr>
+							<tr>
+							<td>文物顺序号</td>
+							<td id="XDLM普查登记号_文物顺序号"></td>
+						</tr>
+						<tr>
+							<td>损坏记录</td>
+							<td id="XDLM损坏记录"></td>
+						</tr>
+							<tr>
+							<td>修复记录</td>
+							<td id="XDLM修复记录"></td>
+						</tr>
+						<tr>
+							<td>移动记录</td>
+							<td id="XDLM移动记录"></td>
+						</tr>
+							<tr>
+							<td>鉴定意见</td>
+							<td id="XDLM鉴定意见"></td>
+						</tr>
+						<tr>
+							<td>鉴定人</td>
+							<td id="XDLM鉴定人"></td>
+						</tr>
+						<tr>
+							<td>鉴定时间</td>
+							<td id="XDLM鉴定时间"></td>
+						</tr>
+					</tbody>
+					
+					<!--文物的对账单-->
+					
+							<tbody id="dzdWW" class="layui-hide">
+						<tr>
+							<td>文物名称</td>
+							<td id="XDLM登记名称"></td>
+						</tr>
+						<tr>
+							<td>现登记号</td>
+							<td id="XDLM文物库内编号"></td>
+						</tr>
+						<tr>
+							<td>项目名称</td>
+							<td id="XDLM项目名称"></td>
+						</tr>
+
+						<tr>
+							<td>出土地点</td>
+							<td id="XDLM考古发掘信息_出土地点"></td>
+						</tr>
+						<tr>
+							<td>时代</td>
+							<td id="XDLM年代_纪年选项A"></td>
+						</tr>
+						<tr>
+							<td>尺寸</td>
+							<td id="XDLM外形尺寸"></td>
+						</tr>
+						
+						<tr>
+							<td>质地</td>
+							<td id="XDLM质地类别_单一质地_无机质"></td>
+						</tr>
+						<tr>
+							<td>数量</td>
+							<td id="XDLM数量"></td>
+						</tr>
+						<tr>
+							<td>出土时间</td>
+							<td id="XDLM考古发掘信息_出土时间"></td>
+						</tr>
+						<tr>
+							<td>资料移交时间</td>
+							<td id="XDLM保管信息_入库时间"></td>
+						</tr>
+						
+						<tr>
+							<td>保存现状</td>
+							<td id="XDLM保存状态"></td>
+						</tr>
+						<tr>
+							<td>完残程度</td>
+							<td id="XDLM完残程度"></td>
+						</tr>
+						
+						<tr>
+							<td>原登记号</td>
+							<td id="XDLM现藏品总登记号"></td>
+						</tr>
+						<tr>
+							<td>当前柜架</td>
+							<td id="">
+								<span id="XDLM柜架号"></span>
+								<span id="XDLM层号"></span>
+								<span id="XDLM分区号"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>文物描述</td>
+							<td id="XDLM文物描述"></td>
+						</tr>
+						
+						
+						<tr>
+							<td>出库事由</td>
+							<td id="出库事由"></td>
+						</tr>
+						<tr>
+							<td>文物去向</td>
+							<td id="出库去向"></td>
+						</tr>
+						<tr>
+							<td>存放位置</td>
+							<td>
+								<span id="XDLM库房名">新增拓片库房</span>
+								<span id="XDLM柜架号">4柜号</span>
+								<span id="XDLM层号">6层</span>
+								<span id="XDLM分区号">3区</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td>出库时间</td>
+							<td id="出库记录时间"></td>
+						</tr>
+						<tr>
+							<td>出库移交人</td>
+							<td id="出库移交人"></td>
+						</tr>
+						<tr>
+							<td>出库接收人</td>
+							<td id="出库接收人"></td>
+						</tr>
+						<tr>
+							<td>出库监督人</td>
+							<td id="出库监督人"></td>
+						</tr>
+						<tr>
+							<td>出库备注</td>
+							<td id="出库备注"></td>
+						</tr>
+						<tr>
+							<td>出库记录图</td>
+							<td id="wwPicCK"></td>
+						</tr>
+
+						<tr>
+							<td>归库时间</td>
+							<td id="归库记录时间"></td>
+						</tr>
+						<tr>
+							<td>归库移交人</td>
+							<td id="归库移交人"></td>
+						</tr>
+						<tr>
+							<td>归库接收人</td>
+							<td id="归库接收人"></td>
+						</tr>
+						<tr>
+							<td>归库监督人</td>
+							<td id="归库监督人"></td>
+						</tr>
+						<tr>
+							<td>归库备注</td>
+							<td id="归库备注"></td>
+						</tr>
+						<tr>
+							<td>归库记录图</td>
+							<td id="wwPicRK"></td>
+						</tr>
+
+					</tbody>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<!--拓片的详情-->
+					<tbody id="contentTp" class="layui-hide">
+						<tr>
+							<td>编号</td>
+							<td id="编号"></td>
+						</tr>
+						<tr>
+							<td>名称</td>
+							<td id="登记名称"></td>
+						</tr>
+						<tr>
+							<td>调查人</td>
+							<td id="调查人"></td>
+						</tr>
+						<tr>
+							<td>市（州）</td>
+							<td id="市"></td>
+						</tr>
+						<tr>
+							<td>县（市、区）</td>
+							<td id="县"></td>
+						</tr>
+						<tr>
+							<td>乡（镇、街道）</td>
+							<td id="乡"></td>
+						</tr>
+						<tr>
+							<td>村（社区）</td>
+							<td id="村"></td>
+						</tr>
+						<tr>
+							<td>组（社）</td>
+							<td id="组"></td>
+						</tr>
+						<tr>
+							<td>小地名（如有）</td>
+							<td id="小地方"></td>
+						</tr>
+						<tr>
+							<td>具体位置</td>
+							<td id="具体位置"></td>
+						</tr>
+						<tr>
+							<td>北纬</td>
+							<td id="GPS纬度"></td>
+						</tr>
+						<tr>
+							<td>东经</td>
+							<td id="GPS经度"></td>
+						</tr>
+						<tr>
+							<td>海拔高度</td>
+							<td id="GPS海拔"></td>
+						</tr>
+						<tr>
+							<td>测点说明</td>
+							<td id="测点说明"></td>
+						</tr>
+						<tr>
+							<td>石刻保存环境</td>
+							<td id="保存环境描述"></td>
+						</tr>
+						<tr>
+							<td>类型</td>
+							<td id="载体一类型"></td>
+						</tr>
+						<tr>
+							<td>载体</td>
+							<td id="载体二类型"></td>
+						</tr>
+						<tr>
+							<td>内容</td>
+							<td id="载体用途"></td>
+						</tr>
+						<tr>
+							<td>纵(cm)</td>
+							<td id="长"></td>
+						</tr>
+						<tr>
+							<td>横(cm)</td>
+							<td id="宽"></td>
+						</tr>
+						<tr>
+							<td>朝代</td>
+							<td id="年代"></td>
+						</tr>
+						<tr>
+							<td>具体年代（如有）</td>
+							<td id="具体年代"></td>
+						</tr>
+						<tr>
+							<td>所有权</td>
+							<td id="所有权"></td>
+						</tr>
+						<tr>
+							<td>使用单位（或人）</td>
+							<td id="使用类型"></td>
+						</tr>
+						<tr>
+							<td>隶属</td>
+							<td id="使用隶属"></td>
+						</tr>
+						<tr>
+							<td>用途</td>
+							<td id="使用用途"></td>
+						</tr>
+						<tr>
+							<td>级别</td>
+							<td id="级别"></td>
+						</tr>
+						<tr>
+							<td>数量</td>
+							<td id="数量"></td>
+						</tr>
+						<tr>
+							<td>简介</td>
+							<td id="简介"></td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td id="备注"></td>
+						</tr>
+						</tr>
+						<tr>
+							<td>远景照片</td>
+							<td id="pictureYJ"></td>
+						</tr>
+						<tr>
+							<td>近景照片</td>
+							<td id="pictureJJ"></td>
+						</tr>
+						<tr>
+							<td>拓片照片</td>
+							<td id="pictureTP"></td>
+						</tr>
+
+					</tbody>
+					<!--拓片的出入库单子-->
+					<tbody id="dzdTp" class="layui-hide">
+						<tr>
+							<td>编号</td>
+							<td id="XDLM编号"></td>
+						</tr>
+						<tr>
+							<td>名称</td>
+							<td id="XDLM登记名称"></td>
+						</tr>
+						<tr>
+							<td>调查人</td>
+							<td id="XDLM调查人"></td>
+						</tr>
+
+						<tr>
+							<td>类型</td>
+							<td id="XDLM载体一类型"></td>
+						</tr>
+						<tr>
+							<td>载体</td>
+							<td id="XDLM载体二类型"></td>
+						</tr>
+						<tr>
+							<td>内容</td>
+							<td id="XDLM载体用途"></td>
+						</tr>
+						<tr>
+							<td>出库事由</td>
+							<td id="出库事由"></td>
+						</tr>
+						<tr>
+							<td>文物去向</td>
+							<td id="出库去向"></td>
+						</tr>
+						<tr>
+							<td>存放位置</td>
+							<td>
+								<span id="XDLM库房名">新增拓片库房</span>
+								<span id="XDLM柜架号">4柜号</span>
+								<span id="XDLM层号">6层</span>
+								<span id="XDLM分区号">3区</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td>出库时间</td>
+							<td id="出库记录时间"></td>
+						</tr>
+						<tr>
+							<td>出库移交人</td>
+							<td id="出库移交人"></td>
+						</tr>
+						<tr>
+							<td>出库接收人</td>
+							<td id="出库接收人"></td>
+						</tr>
+						<tr>
+							<td>出库监督人</td>
+							<td id="出库监督人"></td>
+						</tr>
+						<tr>
+							<td>出库备注</td>
+							<td id="出库备注"></td>
+						</tr>
+						<tr>
+							<td>出库记录图</td>
+							<td id="tpPicCK"></td>
+						</tr>
+
+						<tr>
+							<td>归库时间</td>
+							<td id="归库记录时间"></td>
+						</tr>
+						<tr>
+							<td>归库移交人</td>
+							<td id="归库移交人"></td>
+						</tr>
+						<tr>
+							<td>归库接收人</td>
+							<td id="归库接收人"></td>
+						</tr>
+						<tr>
+							<td>归库监督人</td>
+							<td id="归库监督人"></td>
+						</tr>
+						<tr>
+							<td>归库备注</td>
+							<td id="归库备注"></td>
+						</tr>
+						<tr>
+							<td>归库记录图</td>
+							<td id="tpPicRK"></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

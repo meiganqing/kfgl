@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">  
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="../../SysJs/kfDataManage.js"></script>
+    <script src="./js/refusePage.js"></script>
+
+    <!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 70px;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .layui-input-inline {
+            width: 50% !important;
+        }
+
+        .layui-form-select .layui-input {
+            padding-right: 30px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .btn-width {
+            width: 46px;
+        }
+
+        .layui-table-cell {
+            height: auto !important;
+        }
+
+        .list-img-mudule {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body class="no-skin" style="background-color: rgb(242, 242, 242); color: rgb(102, 102, 102);">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <form class="layui-form" action="">
+                        <div class="layui-col-md12">
+                            <div class="layui-inline">
+
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">查询类别：</label>
+                                    <div class="layui-inline">
+                                        <select id="cxlb" lay-search lay-filter="cxlb">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline search-type" id="keyworDiv">
+                                    <label class="layui-form-label">关键字：</label>
+                                    <div class="layui-inline">
+                                        <input class="layui-input key-words" name="keyWords" id="queryK" autocomplete="off">
+                                    </div>
+                                </div>
+
+
+                            
+
+                                <div class="layui-inline" style="margin-left: 30px;">
+                                    <button class="layui-btn own-btn-red" type="button" name="searchData" id="searchData">查询</button>
+                                </div>
+
+                              
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body">
+                <table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+

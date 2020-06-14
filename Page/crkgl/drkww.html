@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css"  />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/SXSY/Widget/yanzheng/css/verify.css"  />
+    <script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+    <script type="text/javascript" src="../../SysJs/kfDataManage.js"></script>
+    <script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+    <script type="text/javascript" src="js/drkww.js"></script>
+
+    <!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 70px;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .layui-form-label1 {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 100px;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .layui-input-inline {
+            width: 50% !important;
+        }
+
+        .layui-form-select .layui-input {
+            padding-right: 30px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        /* .layui-table-cell {
+            height: auto !important;
+        } */
+
+        .list-img-mudule {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body class="no-skin" style="background-color: rgb(242, 242, 242); color: rgb(102, 102, 102);">
+
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body" id="tableHeader">
+                <div class="layui-row">
+                    <form class="layui-form">
+
+                        <!-- <div class="layui-inline" style="display: none;">
+                            <label class="layui-form-label">类别：</label>
+                            <div class="layui-inline">
+                                <select id="wwtype" lay-search lay-filter="wwtype" disabled="true">
+                                </select>
+                            </div>
+                        </div> -->
+
+                        <div class="layui-inline" id="cxdiv_ww">
+                            <label class="layui-form-label">查询类别：</label>
+                            <div class="layui-inline">
+                                <select id="cxlb" lay-search lay-filter="cxlb">
+                                    <option value="模糊查询">模糊查询</option>
+                                    <option value="XDLMC">名称</option>
+                                    <option value="XDLME">原登记号</option>
+                                    <option value="XDLMD">项目名称</option>
+                                    <option value="XDLMU">现登记号</option>
+                                    <option value="XDLMF">文物类别</option>
+                                    <option value="XDLMG">纪年A</option>
+                                    <option value="XDLMH">纪年B</option>
+                                    <option value="XDLMI">文物级别</option>
+                                    <option value="XDLMJ">有机质</option>
+                                    <option value="XDLMK">无机质</option>
+                                    <option value="XDLML">库存状态</option>
+                                    <option value="XDLMM">文物描述</option>
+                                    <option value="XDLMN">保管信息_库房名称及编号</option>
+                                    <option value="XDLMO">出土地点</option>
+                                    <option value="文物组">文物组</option>
+                                    <option value="XDLMQ">领队</option>
+                                    <option value="warehouse">按存放位置查询</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline" id="cxdiv_tp" style="display: none;">
+                            <label class="layui-form-label">查询类别：</label>
+                            <div class="layui-inline">
+                                <select id="cxlb_tp" lay-search lay-filter="cxlb_tp">
+                                    <option value="模糊查询">模糊查询</option>
+                                    <option value="XDLMU">现登记号</option>
+                                    <option value="XDLMD">编号</option>
+                                    <option value="XDLMK">名称</option>
+                                    <option value="XDLML">年代</option>
+                                    <option value="XDLMX">载体一类型</option>
+                                    <option value="XDLMY">载体二类型</option>
+                                    <option value="文物组">文物组</option>
+                                    <option value="warehouse">位置</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline search-type" id="keyworDiv">
+                            <label class="layui-form-label">关键字：</label>
+                            <div class="layui-inline">
+                                <input class="layui-input key-words" name="keyWords" id="queryK" autocomplete="off">
+                            </div>
+                        </div>
+                        <!--文物组形式-->
+                        <div class="layui-inline search-type layui-hide" id="文物组Div">
+
+                            <div class="layui-inline">
+                                <select name="groupkeyWords " class="key-words" id="groupkeyWords"></select>
+
+                            </div>
+                        </div>
+                        <!--位置形式-->
+                        <div class="layui-inline search-type layui-hide" id="warehouseDiv">
+
+                            <div class="layui-inline">
+                                <select name="XDLM柜架号" id="柜架号" lay-search lay-filter="柜架号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="XDLM层号" id="层号" lay-search lay-filter="层号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="XDLM分区号" id="分区号" lay-search lay-filter="分区号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="margin-left: 30px;">
+                            <div class="layui-inline">
+                                <div class="layui-inline">
+                                    <button class="layui-btn own-btn-red" type="button" name="searchData" id="searchData">查询</button>
+                                </div>
+                                <!--<div class="layui-inline" style="margin-left: 10px;">
+                                    <button class="layui-btn own-btn-red" id="dtjcx">多条件查询</button>
+                                </div>-->
+                                <div class="layui-inline">
+                                    <a class="layui-btn" id="outfile">输出Excel</a>
+                                </div>
+                                <!--<div class="layui-inline">
+                                    <button class="layui-btn   userLimit-btn-edit" id="batchApproval">批量审核</button>
+                                </div>-->
+                                <div class="layui-inline">
+                                    <button class="layui-btn" type="button" id="warehousing">批量入库</button>
+                                </div>
+
+                                <div class="layui-inline">
+                                    <button class="layui-btn" type="button" id="warehousingsScan">扫码入库</button>
+                                </div>
+                                <div class="layui-inline layui-hide" id="asyncDataDisplay">
+                                    <a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/knww/page/tptongbu.html','未同步拓片')">
+                                        <span class="layui-btn" id="asyncData">未同步拓片</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间l空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-card-body">
+                <table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+            </div>
+        </div>
+    </div>
+    <form class="layui-form" id="dtjcxHtml" style="display: none;width: 100%;">
+        <div class="layui-row">
+            <div class="layui-col-xs12 layui-col-sm6" style="margin-top: 20px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">文物登记名称：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入文物登记名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6" style="margin-top: 20px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">项目名称：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入项目名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">文物库内编号：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入文物库内编号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">登记号：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入登记号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">纪年A：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入纪年A" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">纪年B：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入纪年B" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">有机质：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入有机质" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">无机质：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入无机质" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">文物类别：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入文物类别" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">文物级别：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入文物级别" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">保存状态：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入保存状态" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label1">文物描述：</label>
+                    <div class="layui-input-inline texterea-width">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入文物描述" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm12">
+                <div class="layui-form-item" align="center">
+                    <button class="layui-btn">多条件查询</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+<script type="text/html" id="opeTpl">
+
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="detail" id="">详情</a> {{# if(limitConfig("applyLimt", 2)){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-warm " lay-event="output" id="output">入库</a> {{# } }}
+
+</script>
+
+<script type="text/html" id="smallPicture">
+    <div style="width: 80px;height: 80px;text-align: center;line-height: 80px;">
+        <img style="max-width: 65px;max-height:65px;cursor: pointer;" src="{{getPictureUrl(d['图片地址']).replace('ss.','.')}}" alt="" lay-event="scanPic" />
+    </div>
+</script>
+
+
+<script type="text/html" id="positionDisplay">
+    {{ combinePosition(d) }}
+</script>

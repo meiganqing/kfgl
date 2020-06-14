@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>表单元素</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+		<link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/template.css" media="all">
+		<link rel="stylesheet" href="../../../lib/css/font-awesome/css/font-awesome.css" />
+		<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+		<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+		<script type="text/javascript" src="../js/editPicture.js"></script>
+	</head>
+	<style>
+		.icon {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			position: absolute;
+			bottom: 5px;
+			cursor: pointer;
+		}
+		
+		.icon:hover {
+			font-weight: 600;
+		}
+		
+		iframe {
+			border: none;
+		}
+		
+		.layadmin-maillist-img {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	</style>
+
+	<body>
+		<div class="layui-fluid layadmin-maillist-fluid">
+			<!-- <blockquote class="layui-elem-quote" style="background: #FFFFFF;">
+				<form class="layui-form">
+					<input type="radio" name="miaoshuType" lay-filter="miaoshuType" value="拓片" title="拓片" checked>
+					<input type="radio" name="miaoshuType" lay-filter="miaoshuType" value="拓片扫描件" title="拓片扫描件">
+
+				</form>
+			</blockquote> -->
+			<div class="layui-hide" style="padding: 50px 0; height: 600px; text-align: center;" id="nothing">
+				<!--<h1>
+    				<i class="layui-icon" style="line-height: 500px; font-size: 500px; color: #393D50;"></i>
+  				</h1>-->
+				<p style="font-size: 20px; font-weight: 300; color: #999;" id="nothingTitle">当前项目没有拓片</p>
+			</div>
+			<div class="layui-row layui-col-space15" id="demoTpl">
+			</div>
+		</div>
+		<div id="editHtml" style="display: none;">
+			<div class="layui-row ">
+				<div class="layui-col-md6 layui-col-sm6">
+					<div class="layadmin-text-center" style="padding:15px">
+						<iframe id="editpictureScan" src="" width="90%" height="650px"></iframe>
+					</div>
+
+				</div>
+				<div class="layui-col-md6 layui-col-sm6 picdetail-text" style="padding:40px 20px 0px 0px">
+					<textarea id="demo" style="display: none;" value="123"></textarea>
+					<div style="text-align: center;"><button class="layui-btn " id="submit">确定</button></div>
+				</div>
+			</div>
+
+		</div>
+		<div id="picDetail" style="display: none;">
+			<div id="content">
+				<div class="layui-row ">
+					<div class="layui-col-md12 layui-col-sm12">
+						<div class="layadmin-contact-box">
+							<div class="layui-col-md8 layui-col-sm8">
+								<a href="javascript:;">
+									<div class="layadmin-text-center" style="padding:15px">
+										<iframe id="pictureScan" src="" width="85%" height="650px"></iframe>
+									</div>
+								</a>
+							</div>
+							<div class="layui-col-md4 layui-col-sm4 picdetail-text" style="padding:40px 25px 0px 0px;box-sizing: border-box;">
+								<div class="layui-card" style="border: 1px dashed #888888;">
+									<div class="layui-card-header">图片详情</div>
+									<div class="layui-card-body">
+										<div class="layadmin-address" id="view" style="height:500px;overflow: auto;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+
+<script>
+</script>
+<!--<script type="text/html" id="templateHtml2">
+	{{# layui.each(d, function(index, item){ }}
+	<ul class="layui-row layui-col-space12">
+		{{# layui.each(d[index], function(index_, item_){ }}
+		<li class="layui-col-xs3" datasrc="{{item['文图名称']}}" dataTp="{{item['是否拓片']}}" onClick="getDetail(this)">
+			<div class="img-item">
+				<a href="javascript:;">
+					<div class="imgicon">
+						<img style="width:auto;height:auto;max-width:120px;max-height:120px;" src='http://localhost:8022/{{item_["文图名称"]}}' alt="" />
+					</div>
+
+					<cite>{{item_["文图名称"]}}</cite>
+				</a>
+			</div>
+
+		</li>
+		{{# }); }}
+	</ul>
+	{{# }); }}
+</script>-->
+<script type="text/html" id="templateHtml">
+	{{# layui.each(d, function(index, item){ }}
+	<div class="layui-col-md4 layui-col-sm6">
+		<div class="layadmin-contact-box">
+			<div class="layui-col-md4 layui-col-sm6">
+				<a href="javascript:;">
+					<div class="">
+						<div style="width:120px;height:120px;">
+
+							<img style="width:auto;height:auto;max-width:100%;max-height:100%;" src='{{getImgSrc(item)}}'>
+						</div>
+
+						<div class="layadmin-maillist-img layadmin-font-blod" style="text-align: center;padding-right: 48px;box-sizing: border-box;">{{item["文图名称"]}}</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="layui-col-md8 layadmin-padding-left20 layui-col-sm6">
+				<a href="javascript:;">
+					<h3 class="layadmin-title">
+              <strong>{{item["分类"]}}</strong>
+            </h3>
+					<p class="layadmin-textimg">
+						库内编号: {{item["文物入库编号"]}}
+					</p>
+				</a>
+				<div class="layadmin-address">
+					<a href="javascript:;">
+
+						图片名称:{{item["文图名称"]}}
+
+						<br>
+
+					</a>
+				</div>
+			</div>
+			<span class="fa fa-pencil icon" style="right: 10px;" onClick="editPic({{" '"+item.id+"' "}},{{" '"+item.分类+"' "}})"></span>
+			<span class="fa fa-eye icon" style="right: 50px;" id="{{item.id}}" knbh="{{item['文物入库编号']}}" datasrc="{{item['图片地址']}}" dataTp="{{item['图片类型']}}" onClick="getDetail(this)"></span>
+
+		</div>
+	</div>
+	{{# }); }}
+</script>

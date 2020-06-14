@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>首页</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+  <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../layui/font" media="all">
+  <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../css/main.css" media="all"> 
+  <link rel="stylesheet" href="../../lib/iconfont/iconfont.css" media="all">
+  <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+  
+</head>
+<body class="childrenBody" id="mainHome">
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <!-- 文物库房全库总数据 -->
+  			<div id="ww" class="ww-display layui-col-space15">
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<a href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_one">
+								<i class="iconfont "></i>
+								<p>数据库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="sumNumww">0</span>
+
+							</div>
+							<div class="bottom-color1 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color1"></div>
+
+						</a>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_two ">
+								<i class="iconfont "></i>
+								<p>在库总数</p>
+							</div>
+							<div class="panel_word">
+								<span class="inStorkeNum" id="inStorkeNumww">0</span>
+
+							</div>
+							<div class="bottom-color2 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color2"></div>
+						</div>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_three">
+								<i class="iconfont "></i>
+								<p>待出库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="outsideNumww">0</span>
+
+							</div>
+							<div class="bottom-color3 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color3"></div>
+						</div>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_four">
+								<i class="iconfont "></i>
+								<p>待入库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="insideNumww">0</span>
+
+							</div>
+							<div class="bottom-color4 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color4"></div>
+						</div>
+					</div>
+
+				</div>
+<!-- 拓片库房全库总数据 -->
+				<div id="tp" class="tp-display layui-hide layui-col-space15">
+
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<a href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_one">
+								<i class="iconfont"></i>
+								<p>数据库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="sumNumtp">0</span>
+
+							</div>
+							<div class="bottom-color1 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color1"></div>
+						</a>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_two ">
+								<i class="iconfont "></i>
+								<p>在库总数</p>
+							</div>
+							<div class="panel_word">
+								<span class="inStorkeNum" id="inStorkeNumtp">0</span>
+
+							</div>
+							<div class="bottom-color2 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color2"></div>
+						</div>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_three">
+								<i class="iconfont "></i>
+								<p>待出库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="outsideNumtp">0</span>
+
+							</div>
+							<div class="bottom-color3 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color3"></div>
+						</div>
+					</div>
+					<div class="panel layui-col-sm6 layui-col-md3">
+						<div href="javascript:;" data-url="" target="_blank" class="panela">
+							<div class="panel_icon panel_color_four">
+								<i class="iconfont "></i>
+								<p>待入库总数</p>
+							</div>
+							<div class="panel_word">
+								<span id="insideNumtp">0</span>
+
+							</div>
+							<div class="bottom-color4 bottom-color">
+								<b class="arrow"></b>
+							</div>
+							<div class="right-color right-color4"></div>
+						</div>
+					</div>
+
+				</div>
+
+        <!--待审核属性修改-->
+        <!-- <div class="panel layui-col-sm6 layui-col-md2">
+          <a href="javascript:newTab('./Page/kgjl/xgjl.html?limit=SY20181128094138413892','收到申请属性修改记录')">
+
+            <div href="javascript:;" data-url="" target="_blank" class="panela">
+              <div class="panel_icon panel_color_three">
+                <i class="iconfont "></i>
+                <p>待批准属性修改</p>
+              </div>
+              <div class="panel_word">
+
+                <span id="ApprovalPendingNum">0</span>
+
+              </div>
+              <div class="bottom-color3 bottom-color">
+                <b class="arrow"></b>
+              </div>
+              <div class="right-color right-color3"></div>
+            </div>
+          </a>
+        </div> -->
+        
+
+    <!-- 统计 -->
+    <div class="layui-col-md8">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+          <div class="layui-card">
+            <div class="layui-card-header">统计</div>
+            <div class="layui-card-body">
+              <div carousel-item id="chart1" style="height: 314px;">
+              </div>
+            </div>
+          </div>
+        </div>
+       <!-- 文物 -->
+        <div class="layui-col-md12">
+          <div class="layui-card">
+            <div class="layui-card-header">
+              <span>文物</span>
+              <div class="layui-inline " style="float: right;">
+                <div class="layui-input-inline">
+                  <input type="text" id="calendarww" class="layui-input" placeholder="请选择年份" >
+                </div>
+              </div>
+            </div>
+            <div class="layui-card-body">
+              <div carousel-item id="chartyearWW" style="height: 314px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 文物入库最新记录 -->
+    <div class="layui-col-md4">
+      <div class="layui-card">
+        <div class="layui-card-header"><i class="title-icon fa fa-tags"></i>文物入库最新记录</div>
+        <div class="layui-card-body layadmin-takerates">
+          <ul id="layorderUl" style="height: 319px;overflow: hidden;">
+          </ul>
+        </div>
+      </div>
+      <!-- 文物出库最新记录 -->
+      <div class="layui-card">
+        <div class="layui-card-header"><i class="title-icon fa fa-tags"></i>文物出库最新记录</div>
+        <div class="layui-card-body layadmin-takerates">
+          <ul id="layorderUlOutside" style="height: 319px;overflow: hidden;">
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<!-- 拓片 -->
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          <span>拓片</span>
+
+          <div class="layui-inline " style="float: right;">
+            <!--<label class="layui-form-label"><span class="calendar" ><i ></i></span></label>-->
+            <div class="layui-input-inline">
+              <input type="text" id="calendartp" class="layui-input" placeholder="请选择年份">
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div carousel-item id="chartyearTP" style="height: 395px;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+<script src="/SXSY/js/SysCongfig.js"></script>
+<script src="/SXSY/widget/echarts/echarts.js"></script>
+
+<!-- <script type="text/javascript" src="../../SysJs/xdDataMange.js"></script> -->
+
+<script type="text/javascript" src="js/all_main.js"></script>
+
+
+<script>
+  layui.config({
+    base: 'layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'console']);
+</script>
+
+</body>
+
+</html>

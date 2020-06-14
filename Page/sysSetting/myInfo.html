@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<link rel="stylesheet" href="../../layui/css/layui.css">
+		<link rel="stylesheet" href="css/myInfo.css">
+		<script src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../lib/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script src="../../SysJS/xdDataMange.js"></script>
+		<script src="./js/myInfo.js"></script>
+	</head>
+	<style>
+		.layui-container .user-msg-text {
+			border: none;
+		}
+		
+		.layui-form-label {
+			text-align: justify;
+			text-align-last: justify;
+			font-weight: 600;
+		}
+		
+		input:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0px 1000px white inset;
+		}
+	</style>
+
+	<body>
+		<form class="layui-form" action="" lay-filter="component-form-element">
+			<input type="hidden" name="TblNum" value="43" />
+			<input type="hidden" name="XDLMID" id="XDLMID" />
+			<div class="layui-container" style="padding:10px;">
+				<div class="mycardDiv">
+					<div class="list-header clearfix">
+						<div class="header-title fl">个人信息:</div>
+						<div class="header-handle fr " id="icon-edit">
+							<b class="bottom"><i class="layui-icon layui-icon-edit" id="iconName" style="font-size: 36px;"></i></b>
+						</div>
+					</div>
+
+					<div class="layui-card">
+						<div class="layui-card-body">
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">用户名:</label>
+								<div class="layui-input-block">
+									<input type="text" id="realName" name="XDLMrealName" lay-verify="required" placeholder="" autocomplete="off" class="user-msg user-msg-text layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">密码:</label>
+								<div class="layui-input-block">
+									<input type="password" id="mUserPassword" name="XDLMmUserPassword" lay-verify="required" placeholder="" autocomplete="off" class="user-msg user-msg-text layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">所属库房:</label>
+								<div class="layui-input-block">
+									<input type="text" id="storages" name="XDLMstorages" lay-verify="required" placeholder="" autocomplete="off" class="user-msg user-msg-text layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">用户级别:</label>
+								<div class="layui-input-block">
+									<input type="text" id="mUserLevel" name="XDLMmUserLevel" lay-verify="required" placeholder="" autocomplete="off" class=" user-msg user-msg-text  layui-input">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="layui-form-item layui-hide" id="submitBtn">
+						<div class="layui-col-sm-offset3 layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" id="wwrkbc" lay-submit lay-filter="modifyData">修改</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+
+</html>

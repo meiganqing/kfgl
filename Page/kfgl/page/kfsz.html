@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+    
+</head>
+<style type="text/css">
+    li a {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+    
+    .store-icon {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        background: url(../../../images/store-01.png) no-repeat;
+        position: absolute;
+        top: 26px;
+        left: 10px;
+    }
+    
+    .module {
+        width: 100%;
+        height: 95px;
+        padding-left: 60px;
+        box-sizing: border-box;
+        background-color: #F8F8F8;
+        position: relative;
+    }
+    
+    .store-name {
+        line-height: 85px;
+        font-size: 16px;
+    }
+    
+    .module-right {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .layadmin-carousel {
+        height: 560px!important;
+    }
+    
+    .layui-form-radio {
+        margin: 0;
+    }
+    
+    .layui-card-header .layui-icon {
+        line-height: initial;
+        position: relative;
+        right: -3px;
+        top: 0%;
+        margin-top: 0px;
+    }
+</style>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div style="display: flex;justify-content: space-between;">
+                   
+                    <div>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn own-btn-blue" id="addStore">增加库房</button>
+                        </div>
+                    </div>
+
+               
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; ">
+                    <div carousel-item="">
+                        <ul class="layui-row layui-col-space10 layui-this" id="storeContent">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="demo0"></div>
+        <!--添加弹框-->
+        <form class="layui-form  site-text" id="addLayerHtml" style="display: none;width: 100%;">
+
+            <div class="layui-card-body layui-row layui-form-item">
+                <div class="layui-col-md12 layui-inline" id="out_addstore">
+                    <label class="layui-form-label"><span class="spark">*</span>分类</label>
+                    <div class="layui-input-block">
+                        <select name="" id="storageType">
+								<option value="文物">文物</option>
+								<option value="拓片">拓片</option>
+							</select>
+                    </div>
+                </div>
+                <div class="layui-col-md12 layui-inline" id="out_addstore">
+                    <label class="layui-form-label"><span class="spark">*</span>库房名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="addstore" required lay-verify="required" placeholder="请输入库房名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-md12 layui-inline" id="out_addstore">
+                    <label class="layui-form-label"><span class="spark">*</span>过道位置</label>
+                    <div class="layui-input-block">
+                        <input type="number" value="1" min="1" required lay-verify="required|number" id="aisle" placeholder="请输入过道位置" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-md12 layui-inline" id="out_addstore">
+                    <label class="layui-form-label"><span class="spark">*</span>行柜架数</label>
+                    <div class="layui-input-block">
+                        <input type="number" value="1" min="1" required lay-verify="required|number" id="columnNum" placeholder="请输入行柜架数" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-md12 layui-inline" id="out_addstore">
+                    <label class="layui-form-label"><span class="spark">*</span>库房排序</label>
+                    <div class="layui-input-block">
+                        <input type="number" value="" min="1" required lay-verify="required|number" id="storageSort" placeholder="请输入排序" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item site-text" style="text-align: center;">
+                <div class="" >
+                    <span class="layui-btn own-btn-green" id="addsubmit">确认</span>
+                </div>
+            </div>
+        </form>
+<!-- 
+        //修改库房 -->
+        <form class="layui-form  site-text" id="editkfsortHtml" style="display: none;width: 100%;">
+
+            <div class="layui-card-body layui-row layui-form-item">
+                <input type="hidden" name="XDLMCID" autocomplete="off" value="6000">
+                <input type="hidden" name="XDLMSID" autocomplete="off" value="DYBH201908231246284628143155">
+                <input type="hidden" id="kfdhid" name="XDLMID" autocomplete="off" value="">
+                <div class="layui-col-md12 layui-inline" >
+                    <label class="layui-form-label"><span class="spark">*</span>分类</label>
+                    <div class="layui-input-block">
+                        <select  name="XDLM分类" id="wwfl" disabled>
+								<option value="文物">文物</option>
+								<option value="拓片">拓片</option>
+							</select>
+                    </div>
+                </div>
+                
+                <div class="layui-col-md12 layui-inline">
+                    <label class="layui-form-label">库房名称</label>
+                    <div class="layui-input-block">
+                        <input readonly="true" type="text" id="pxkfname" placeholder="请输入库房名称" name="XDLM库房名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                
+                <div class="layui-col-md12 layui-inline">
+                    <label class="layui-form-label"><span class="spark">*</span>当前排序</label>
+                    <div class="layui-input-block">
+                        <input type="number"  name="XDLM序号" id="pxkfpx" placeholder="请输入排序" lay-verify="required" autocomplete="off " class="layui-input ">
+                    </div>
+                </div>
+
+
+                <div class="layui-col-md12 layui-inline">
+                    <label class="layui-form-label"><span class="spark">*</span>每行柜架数</label>
+                    <div class="layui-input-block">
+                        <input readonly="true" type="number" name="XDLM每行柜架数" id="gjs" placeholder="请输入排序"  autocomplete="off " class="layui-input ">
+                    </div>
+                </div>
+
+                <div class="layui-col-md12 layui-inline">
+                    <label class="layui-form-label"><span class="spark">*</span>过道位置</label>
+                    <div class="layui-input-block">
+                        <input readonly="true" type="number" name="XDLM过道位置" id="gds" placeholder="请输入过道位置"  autocomplete="off " class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item site-text " style="text-align: center; ">
+                <div class=" ">
+                    <span class="layui-btn own-btn-green " id="xgpx" lay-submit lay-filter="xgpx">确认</span>
+                </div>
+            </div>
+        </form>
+</body>
+
+</html>
+
+<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+<script src="/SXSY/js/SysCongfig.js"></script>
+<!-- <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script> -->
+
+
+
+<script type="text/javascript" src="../js/kfsz.js"></script>

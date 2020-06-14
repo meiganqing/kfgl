@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>登记表基础信息</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css"  />
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">	
+		<link rel="stylesheet" href="../../../lib/css/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="../../../lib/cityPicker/css/city-picker.css" />
+		<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+		<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+		
+		<!-- <script type="text/javascript" src="../../../lib/js/store.min.js"></script> -->
+		<!-- <script type="text/javascript" src="../../../SysJs/xdDataMange.js"></script> -->
+		<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+		<script type="text/javascript" src="../js/carrierDetail.js"></script>
+	</head>
+	<style>
+		body,
+		html {
+			background: #FFFFFF;
+		}
+		
+		.title {
+			font-weight: 600;
+		}
+		
+		.text {
+			display: block;
+			padding: 9px 15px;
+			font-weight: 400;
+			line-height: 20px;
+		}
+		
+		.layuiadmin-card-team li {
+			padding: 5px 0 5px 10px!important;
+		}
+		
+		.layui-fluid {
+			padding: 1% 2% !important;
+			/* padding: 15px 150px!important; */
+		}
+		
+		.layui-form-label {
+			width: 100px!important;
+			text-align: justify!important;
+		}
+		
+		.layui-elem-field legend {
+			font-size: 14px!important;
+		}
+		
+		.title-text {
+			font-weight: 600;
+		}
+		
+		.imgDiv {
+			float: left;
+			padding: 15px;
+			box-sizing: border-box;
+			border: 1px solid #BFBFBF;
+			box-shadow: 2px 2px 3px #aaaaaa;
+			margin-left: 15px;
+		}
+		
+		.color_ {
+			background: url(../../../images/shandow.jpg);
+			border: 1px solid black;
+		}
+		
+		.store-content {
+			width: 100%;
+			position: absolute;
+			top: 0px;
+			left: 23px;
+		}
+		
+		.three-3D {
+			border: none!important;
+			overflow: hidden;
+		}
+		
+		.three3D-module {
+			float: left;
+			width: 33.33%;
+			height: 200px;
+			padding: 10px;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.three-3D iframe {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.three-3D .me-icon {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background: url(../../../images/fullScreen01.png);
+			z-index: 1000;
+			cursor: pointer;
+		}
+		
+		.tp-div {
+			width: 120px;
+			/*height: 120px;*/
+			float: left;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.tp-div p {
+			font-size: 12px;
+			line-height: 24px;
+		}
+		
+		.tp-img {
+			padding: 10px 10px;
+			width: 126px;
+			height: 116px;
+			display: flex;
+			align-items: center;
+		}
+		
+		body .tp-word {
+			padding: 0px 10px;
+			width: 300px;
+			border-left: 1px dashed black;
+		}
+		
+		.download {
+			display: inline-block;
+			width: 32px;
+			height: 32px;
+			background: url(../../../images/downLoad.png);
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
+		
+		.tt-print {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			background: url(../../../images/tutongPrint.png);
+			position: absolute;
+			top: 3px;
+			right: 32px;
+			background-size: 100%;
+		}
+		
+		table,
+		table tr th,
+		table tr td {
+			border: 1px solid #e6e6e6;
+			border-collapse: collapse;
+			/*padding: 12px 5px;*/
+		}
+		
+		table tr td {
+			height: 42px;
+			box-sizing: border-box;
+			padding-left: 10px;
+		}
+	</style>
+
+	<body>
+		<div class="layui-inline inner-no-show no-print layui-btn-container" style="text-align: right;width: 100%;padding-top: 10px;">
+			<!--<span class="layui-btn" id="printBtnA5">A5打印</span>-->
+			<span class="layui-btn" id="printBtn" style="margin-right: 2%;">A4打印</span>
+			<!--<button class="layui-btn" id="outfile">导出</button>-->
+		</div>
+		<div class="detail-content layui-fluid">
+			<div id="print">
+				<div class="" id="demo">
+					<!--文物入库信息-->
+					<div id="newrkDisplay" class="layui-hide">
+						<div style="padding: 20px 0px;">
+							<h2>文物入库信息</h2>
+						</div>
+						<div>
+							<table class="" id="wwrkmsg" style="width: 100%;">
+								<tr>
+
+									<td>现登记号 </td>
+									<td id="rk文物库内编号">
+									</td>
+									<td>识别码</td>
+									<td style="padding: 10px;">
+										<div class="layui-inline  layui-btn-container" style="float: right;">
+											<div id="qrcode2" style="display:none;"></div>
+											<img src=" " id="qrimage2" width="100" height="100" />
+										</div>
+									</td>
+								</tr>
+								<tr>
+
+									<td>入库时间 </td>
+									<td id="rk记录时间">
+
+									</td>
+									<td>记录类型</td>
+									<td id="rk记录类型"></td>
+								</tr>
+								<tr>
+
+									<td>移交人 </td>
+									<td id="rk移交人">
+
+									</td>
+									<td>监督人</td>
+									<td id="rk监督人"></td>
+								</tr>
+								<tr>
+
+									<td>接收人 </td>
+									<td id="rk接收人">
+
+									</td>
+									<td>录入人</td>
+									<td id="rk录入人"></td>
+								</tr>
+								<tr>
+
+									<td colspan="">备注 </td>
+									<td colspan="3" id="rk记录内容" style="height: 58px;">
+
+									</td>
+
+								</tr>
+							</table>
+						</div>
+						<div style="padding: 20px 0px;">
+							<h2>文物基础信息表</h2>
+						</div>
+					</div>
+					<div id="basicDisplay" class="layui-form layui-hide  layuiadmin-card-header-auto" style="text-align: center;padding-bottom: 42px">
+						<div style="float: right;">
+							<div class="layui-inline  layui-btn-container" style="float: right;">
+								<div id="qrcode" style="display:none;"></div>
+								<img src=" " id="qrimage" width="100" height="100" />
+							</div>
+
+						</div>
+						<div>
+							<h1>登记表基础信息</h1>
+
+						</div>
+
+					</div>
+
+					<div class="">
+
+						<table class="" style="width: 100%;">
+							<colgroup>
+								<col width="150">
+								<col width="200">
+								<col>
+							</colgroup>
+							<tbody>
+
+								<tr>
+									<td class="title-text">名称</td>
+									<td colspan="2" id="登记名称"></td>
+									<td class="title-text">编号</td>
+									<td id="编号" colspan="3"></td>
+									<!-- <td class="title-text">文物点名称</td>
+									<td colspan="3" id="文物点名称"></td> -->
+								</tr>
+								<!-- <tr>
+									<td class="title-text">年代</td>
+									<td colspan="2" id="年代"></td>
+									<td class="title-text">具体年代</td>
+									<td colspan="3" id="具体年代"></td>
+								</tr> -->
+								
+								<tr>
+									<td class="title-text">市（州）</td>
+									<td id="市"></td>
+									<td class="title-text">县（市、区）</td>
+									<td id="县"></td>
+									<td class="title-text">乡（镇、街道）</td>
+									<td colspan="2" id="乡"></td>
+								</tr>
+								<tr>
+									<td class="title-text">村（社区）</td>
+									<td id="村"></td>
+									<td class="title-text">组（社）</td>
+									<td id="组"></td>
+									<td class="title-text">小地名（如有）</td>
+									<td colspan="2" id="小地方"></td>
+								</tr>
+								<tr>
+									<td class="title-text">具体位置</td>
+									<td colspan="6" id="具体位置"></td>
+
+								</tr>
+
+								<tr>
+									<td rowspan="2" class="title-text">GPS坐标</td>
+									<td class="title-text">北纬</td>
+									<td id="GPS纬度"></td>
+									<td class="title-text">东经</td>
+									<td id="GPS经度"></td>
+									<td class="title-text">海拔高度</td>
+									<td id="GPS海拔"></td>
+
+								</tr>
+								<tr>
+									<td class="title-text">测点说明</td>
+									<td colspan="5" id="测点说明"></td>
+
+								</tr>
+								<tr>
+									<td class="title-text">石刻保存环境</td>
+									<td colspan="6" id="保存环境描述"></td>
+								</tr>
+								<tr>
+									<td rowspan="2" class="title-text">载体、内容</td>
+									<td class="title-text">类型</td>
+									<td colspan="2" id="载体一类型"></td>
+									<td class="title-text">载体</td>
+									<td colspan="2" id="载体二类型"></td>
+								</tr>
+								<tr>
+
+									<td class="title-text">内容</td>
+									<td colspan="6" id="载体用途"></td>
+								</tr>
+								<tr>
+
+									<td class="title-text">尺寸</td>
+									<td class="title-text">纵(cm)</td>
+									<td id="长" colspan="2"></td>
+									<td class="title-text">横(cm)</td>
+									<td id="宽" colspan="2"></td>
+								</tr>
+								<tr>
+									<td rowspan="2" class="title-text">时代</td>
+									<td class="title-text">朝代</td>
+									<td colspan="5" id="年代"></td>
+								</tr>
+								<tr>
+									<td class="title-text">具体年代（如有）</td>
+									<td colspan="6" id="具体年代"></td>
+
+								</tr>
+								<tr>
+									<td class="title-text">所有权</td>
+									<td colspan="6" id="所有权"></td>
+								</tr>
+								<tr>
+									<td rowspan="2" class="title-text">使用情况</td>
+									<td class="title-text">使用单位（或人）</td>
+									<td colspan="" id="使用类型"></td>
+									<td class="title-text">隶属</td>
+									<td colspan="" id="使用隶属"></td>
+									<td class="title-text">调查人</td>
+									<td id="调查人"></td>
+								</tr>
+								<tr>
+									<td class="title-text">用途</td>
+									<td colspan="6" id="使用用途"></td>
+								</tr>
+								<tr>
+									<td class="title-text">级别</td>
+									<td colspan="6" id="级别"></td>
+								</tr>
+								<tr>
+									<td class="title-text">数量</td>
+									<td colspan="6" id="数量"></td>
+								</tr>
+								<tr>
+									<td class="title-text">简介</td>
+									<td colspan="6" id="简介" style="height: 113px;"></td>
+								</tr>
+								<tr>
+									<td class="title-text">远景照片</td>
+									<td colspan="6">
+										<div class="layui-card-body" id="picBody2" style="overflow: hidden;">
+
+										</div>
+									</td>
+								</tr>
+								<td class="title-text">近景照片</td>
+								<td colspan="6">
+									<div class="layui-card-body" id="picBody3" style="overflow: hidden;">
+
+									</div>
+								</td>
+								</tr>
+								<tr>
+									<td class="title-text">拓片照片</td>
+									<td colspan="6">
+										<div class="layui-card-body" id="picBody1" style="overflow: hidden;">
+
+										</div>
+									</td>
+								</tr>
+								<!-- <tr>
+									<td class="title-text">拓片扫描件</td>
+									<td colspan="6">
+										<div class="layui-card-body" id="picBody5" style="overflow: hidden;">
+
+										</div>
+									</td>
+								</tr> -->
+								<tr>
+									<td class="title-text">备注</td>
+									<td colspan="6" id="备注"></td>
+								</tr>
+								<tr>
+									<td class="title-text">存放位置示意图</td>
+									<td colspan="6" id="scanPosition">
+										<!--<span class="layui-btn userLimit-btn-look" id="checkPosition">查看位置</span>-->
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div class=" no-print inner-no-show">
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<h2>出入库记录</h2>
+							</div>
+						</div>
+					</div>
+					<div class=" ">
+						<table class="layui-table" id="recordList" style="text-align: center;">
+							<tr>
+								<td>缩略图</td>
+								<td>库房名</td>
+								<td>时间</td>
+								<td>类型</td>
+								<td>出库去向</td>
+								<td>录入人</td>
+								<td>监督人</td>
+								<td>移交人</td>
+								<td>接收人</td>
+								<td>审核状态</td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script id="tpldemo" type="text/html">
+	<div class="table-module">
+		<div class="table-content">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend><i class="fa fa-tags"></i>{{d['库房名']}}-{{d['柜架号']}}</legend>
+			</fieldset>
+			<div class="layui-form">
+				<table class="layui-table">
+					<tbody>
+						{{# layui.each(d['分层集合'], function(indexs, items){ }}
+						<tr>
+							<td>{{items['层号']}}</td>
+							{{# layui.each(items['分区集合'], function(indexss, itemss){ }} {{# if(itemss['现容量']||itemss['现容量']=="0"){}}
+
+							<td class="store-list " id="{{itemss['柜架号']}},{{itemss['层号']}},{{itemss['分区号']}}" CNTR_no="{{itemss['柜架号']}}" Level_no="{{itemss['层号']}}" area_no="{{itemss['分区号']}}">
+								{{# if(!setKrColor(d,itemss['柜架号'],itemss['层号'],itemss['分区号'])){}}
+
+								<img style="height: 30px;width: 100%;" src="../../../images/shandow.jpg" alt="" /> {{#}}}
+
+								<div class="store-content">
+									<div class="area-module layui-badge layui-bg-black">
+
+										<span class=" ">{{itemss['分区号']}}</span>
+									</div>
+									{{#if(itemss['柜架号']==d.currentgj&&itemss['层号']==d.currentch&&itemss['分区号']==d.currentfq){}}
+
+									<a style="width: 100%;display: inline-block;text-align: center;" href="#">当前位置:{{itemss['现容量']}}</a>
+
+									{{#}else{}}
+									<a style="width: 100%;display: inline-block;text-align: center;" href="#">{{itemss['现容量']}}</a>
+
+									{{#}}}
+
+								</div>
+							</td>
+
+							{{# }}} {{# }); }}
+						</tr>
+						{{# }); }}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</script>
+<!-- <script id="tpldemo" type="text/html">
+	<div class="table-module">
+		<div class="table-content">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend><i class="fa fa-tags"></i>{{d['柜架号']}}</legend>
+			</fieldset>
+			<div class="layui-form">
+				<table class="layui-table">
+					<tbody>
+						{{# layui.each(d['分层集合'], function(indexs, items){ }}
+						<tr>
+
+							{{#if(items['柜架号']==d.currentgj&&items['层号']==d.currentch){}}
+
+							<td>当前位置：{{items['层号']}}</td>
+							{{#}else{}}
+							<td>{{items['层号']}}</td>
+
+							{{#}}}
+						</tr>
+						{{# }); }}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</script> -->

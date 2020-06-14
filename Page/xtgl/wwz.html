@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/SXSY/widget/yanzheng/css/verify.css" media="all">
+    <link rel="stylesheet" href="../../lib/css/font-awesome/css/font-awesome.css" />
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <!-- <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <div class="layui-inline">
+                        <div class="layui-btn-group">
+                            <button class="layui-btn own-btn-blue" id="add">添加内容</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="layui-card-body">
+                <table lay-filter="grid_table" id="grid_table"></table>
+            </div>
+        </div>
+    </div>
+    <!--添加弹框-->
+    <form class="layui-form  site-text" id="addLayerHtml" style="display: none;width: 100%;">
+        <div class="layui-card-body layui-row layui-form-item">
+            <div class="layui-col-md12 layui-inline" id="out_addkfmc">
+                <label class="layui-form-label"><span class="spark" style="color: red;">*</span>组名</label>
+                <div class="layui-input-block">
+                    <input type="text" required="" lay-required="" name="XDLMgroupName" id="groupName" placeholder="请输入组名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item site-text" style="text-align: center;">
+            <div class="">
+                <button type="button" class="layui-btn" id="saveHZ">添加</button>
+                <button type="button" class="layui-btn layui-btn-warm" id="qxHZ">取消</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+
+<script type="text/html" id="mTableToolbar">
+    <button class="layui-btn layui-btn-sm" id="toolbar_add" lay-event="add">添加项目</button>
+</script>
+  
+<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+<script type="text/javascript" src="/SXSY/widget/yanzheng/js/verify.js"></script>
+<!-- <script type="text/javascript" src="../../lib/js/store.min.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJs/tableSetting.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJS/xdDataMange.js"></script> -->
+<script type="text/javascript" src="./js/wwz.js"></script>
+
+<!-- 增加时间戳版本号以防止浏览器缓存 -->
+<script>  
+    var scripts = document.getElementsByTagName("script");
+    for(var i = 0;i < scripts.length;i ++){
+        if(scripts[i].src){
+            scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+        }
+    }
+</script>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<title></title>
+		<!-- <link rel="stylesheet" href="../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome/css/font-awesome.css"/> -->
+		<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+		
+	  <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+	  <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+	  <script src="/SXSY/js/SysCongfig.js"></script>
+
+		<script type="text/javascript" src="../../lib/js/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript" src="../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+		<script type="text/javascript" src="../../SysJs/tableSetting.js"></script>
+		<script src="../../SysJS/xdDataMange.js"></script>
+		<script type="text/javascript" src="js/rkHtml.js"></script>
+		<style type="text/css">
+			td {
+				width: 200px;
+			}
+			
+			tr {
+				height: 30px;
+			}
+			
+			.imgDiv {
+				float: left;
+				padding: 15px;
+				box-sizing: border-box;
+				border:1px solid #BFBFBF;
+				box-shadow:2px 2px 3px #aaaaaa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<form class="layui-form site-text">
+
+				<div class="layui-card" id="" >
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<div class="layui-col-md4">
+									<h2><i class="title-icon fa fa-tags"></i>文物入库信息</h2>
+								</div>
+								<div class="layui-col-md8">
+									<div class="layui-inline  layui-btn-container" style="float: right;">
+										<span class="layui-btn" onclick="print('printA4')">A4打印</span>
+										<span class="layui-btn" onclick="print('printA5')">A5打印</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body layuiadmin-card-list" id="printA5">
+						
+						<table class="layui-table" style="text-align: center;">
+							<tr>
+								<td>现登记号：</td>
+								<td colspan="2" id="XDLM文物库内编号"></td>
+								<td>识别号：</td>
+								<td colspan="2" id="">
+									   <div id="qrcode" style="display:none;"></div>
+                                <img src=" " id="qrimage"   width="64" height="64"/>
+
+								</td>
+							</tr>
+							<tr>
+								<td>入库时间：</td>
+								<td colspan="2" id="XDLM记录时间"></td>
+								<td>记录类型：</td>
+								<td colspan="2" id="XDLM记录类型"></td>
+							</tr>
+							<tr>
+								<td>移交人：</td>
+								<td colspan="2" id="XDLM移交人"></td>
+								<td>监督人：</td>
+								<td colspan="2" id="XDLM监督人"></td>
+							</tr>
+							<tr>
+								<td>接收人：</td>
+								<td colspan="2" id="XDLM接收人"></td>
+								<td>录入人：</td>
+								<td colspan="2" id="XDLM录入人"></td>
+							</tr>
+							<tr>
+								<td>备注：</td>
+								<td colspan="5" id="XDLM记录内容"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="layui-card" id="printA4">
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<h2><i class="title-icon fa fa-tags"></i>文物基础信息</h2>
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body layuiadmin-card-list">
+						<table class="layui-table" style="text-align: center;">
+							<tr>
+								<td colspan="3">项目名称</td>
+								<td colspan="3" id="XDLM项目名称"></td>
+							</tr>
+							<tr>
+								<td colspan="3">项目地点</td>
+								<td colspan="3" id="XDLM项目地点"></td>
+							</tr>
+							<tr>
+								<td colspan="3">领队(负责人)</td>
+								<td colspan="3" id="XDLM考古发掘信息_领队"></td>
+							</tr>
+							<tr>
+								<td colspan="3">存放位置</td>
+								<td colspan="3">
+									<span id="XDLM库房名"></span>
+									<span id="XDLM柜架号"></span>
+									<span id="XDLM层号"></span>
+									<span id="XDLM分区号"></span>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="4">考古发掘信息</td>
+								<td colspan="2">出土时间</td>
+								<td colspan="3" id="XDLM考古发掘信息_出土时间"></td>
+							</tr>
+							<tr>
+								<td colspan="2">出土地点</td>
+								<td colspan="3" id="XDLM考古发掘信息_出土地点"></td>
+							</tr>
+							<tr>
+								<td colspan="2">考古机构</td>
+								<td colspan="3" id="XDLM考古发掘信息_考古机构"></td>
+							</tr>
+							<tr>
+								<td colspan="2">备注</td>
+								<td colspan="3" id="XDLM考古发掘信息_备注"></td>
+							</tr>
+							<tr>
+								<td rowspan="4">保管信息</td>
+								<td colspan="2">文物名称</td>
+								<td colspan="3" id="XDLM登记名称"></td>
+							</tr>
+							<tr>
+								<td colspan="2">曾用名</td>
+								<td colspan="3" id="XDLM原名"></td>
+							</tr>
+							<tr>
+								<td colspan="2">考古学编号</td>
+								<td colspan="3" id="XDLM考古学编号"></td>
+							</tr>
+							<tr>
+								<td colspan="2">原登记号</td>
+								<td colspan="3" id="XDLM现藏品总登记号"></td>
+							</tr>
+							<tr>
+								<td colspan="3">文物级别 </td>
+								<td colspan="3" id="XDLM文物级别"></td>
+							</tr>
+							<tr>
+								<td rowspan="2">文物类别</td>
+								<td colspan="2">范围</td>
+								<td colspan="3" id="XDLM文物类别_范围"></td>
+							</tr>
+							<tr>
+								<td colspan="2">具体类别</td>
+								<td colspan="3" id="XDLM文物类别_具体类别"></td>
+							</tr>
+							<tr>
+								<td rowspan="3 ">年代</td>
+								<td rowspan="2 ">纪年选项</td>
+								<td>A</td>
+								<td colspan="3" id="XDLM年代_纪年选项A"></td>
+							</tr>
+							<tr>
+								<td>B</td>
+								<td colspan="3" id="XDLM年代_纪年选项B"></td>
+							</tr>
+							<tr>
+								<td colspan="2">具体时间</td>
+								<td colspan="3" id="XDLM年代_具体时间"></td>
+							</tr>
+							<tr>
+								<td rowspan="4">质地类别</td>
+								<td rowspan="2">单一质地</td>
+								<td>有机质</td>
+								<td colspan="3" id="XDLM质地类别_单一质地_有机质"></td>
+							</tr>
+							<tr>
+								<td>无机质</td>
+								<td colspan="3" id="XDLM质地类别_单一质地_无机质"></td>
+							</tr>
+							<tr>
+								<td rowspan="2 ">复合和组合质地</td>
+								<td>有机质</td>
+								<td colspan="3 " id="XDLM质地类别_复合或组合质地_有机质"></td>
+							</tr>
+							<tr>
+								<td>无机质</td>
+								<td colspan="3 " id="XDLM质地类别_复合或组合质地_无机质"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">外形尺寸(cm)</td>
+								<td colspan="3 " id="XDLM外形尺寸"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">具体质量</td>
+								<td colspan="3 " id="XDLM质量_具体质量"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">完整程度</td>
+								<td colspan="3 " id="XDLM完残程度"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">保存状态</td>
+								<td colspan="3 " id="XDLM保存状态"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">数量</td>
+								<td colspan="3 " id="XDLM数量"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">文物来源</td>
+								<td colspan="3 " id="XDLM文物来源"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">文物描述</td>
+								<td colspan="3 " id="XDLM文物描述"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">入库时间</td>
+								<td colspan="3 " id="XDLM保管信息_入库时间"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">库存状态</td>
+								<td colspan="3 " id="XDLM库存状态"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">图片信息</td>
+								<td colspan="3 ">
+									<div class="layui-card text-center">
+										<div class="layui-card-body" id="picBody" style="overflow: hidden;">
+										
+										</div>
+
+									</div>
+
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="layui-card ">
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto ">
+						<div class="layui-row ">
+							<div class="layui-col-md12 ">
+								<h2><i class="title-icon fa fa-tags"></i>一普信息记录</h2>
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body layuiadmin-card-list ">
+						<table class="layui-table " style="text-align: center; ">
+							<tr>
+								<td rowspan="2 ">入藏时间</td>
+								<td colspan="2 ">范围</td>
+								<td colspan="3 " id="XDLM入藏时间_范围"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">具体时间</td>
+								<td colspan="3 " id="XDLM入藏时间_具体时间"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">顺序号</td>
+								<td colspan="3 " id="XDLM顺序号"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">收藏单位名称</td>
+								<td colspan="3 " id="XDLM收藏单位名称"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">来源信息</td>
+								<td colspan="3 " id="XDLM来源信息"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">流转经历</td>
+								<td colspan="3 " id="XDLM流传经历"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">著录信息</td>
+								<td colspan="3 " id="XDLM著录信息"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">鉴定信息</td>
+								<td colspan="3 " id="XDLM鉴定信息"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">展览信息</td>
+								<td colspan="3 " id="XDLM展览信息"></td>
+							</tr>
+							<tr>
+								<td rowspan="6 ">保管信息</td>
+								<td colspan="2 ">原登记号</td>
+								<td colspan="3 " id="XDLM现藏品总登记号"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">条形码及其他标识编码号</td>
+								<td colspan="3 " id="XDLM保管信息_条形码及其他标识编码号"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">库房（库区）名称及编号</td>
+								<td colspan="3 " id="XDLM保管信息_库房名称及编号"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">保存位置及编号</td>
+								<td colspan="3 " id="XDLM保管信息_保存位置及编号"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">本馆分类名称</td>
+								<td colspan="3 " id="XDLM保管信息_本馆分类名称"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">备注</td>
+								<td colspan="3 " id="XDLM保管信息_备注"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">质量范围</td>
+								<td colspan="3 " id="XDLM质量_范围"></td>
+							</tr>
+							<tr>
+								<td rowspan="5 ">普查登记号</td>
+								<td colspan="2 ">行政区划代码</td>
+								<td colspan="3 " id="XDLM普查登记号_行政区划代码"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">单位性质代码</td>
+								<td colspan="3 " id="XDLM普查登记号_单位性质代码"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">行业分类代码</td>
+								<td colspan="3 " id="XDLM普查登记号_行业分类代码"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">单位顺序号</td>
+								<td colspan="3 " id="XDLM普查登记号_单位顺序号"></td>
+							</tr>
+							<tr>
+								<td colspan="2 ">文物顺序号</td>
+								<td colspan="3 " id="XDLM普查登记号_文物顺序号"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">损坏记录</td>
+								<td colspan="3 " id="XDLM损坏记录"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">修复记录</td>
+								<td colspan="3 " id="XDLM修复记录"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">移动记录</td>
+								<td colspan="3 " id="XDLM移动记录"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">鉴定意见</td>
+								<td colspan="3 " id="XDLM鉴定意见"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">鉴定人</td>
+								<td colspan="3 " id="XDLM鉴定人"></td>
+							</tr>
+							<tr>
+								<td colspan="3 ">鉴定时间</td>
+								<td colspan="3 " id="XDLM鉴定时间"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

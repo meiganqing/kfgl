@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="lib/css/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="layuiadmin/layui/css/layui.css" media="all">
+
+		<link rel="stylesheet" href="layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" href="css/main.css" media="all">
+		<link rel="stylesheet" href="lib/iconfont/iconfont.css" media="all">
+	</head>
+
+	<body class="childrenBody" id="mainHome">
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="panel layui-col-sm6 layui-col-md3">
+					<a href="javascript:;" data-url="" target="_blank" class="panela">
+						<div class="panel_icon panel_color_one">
+							<i class="iconfont icon-tuichangzongshu"></i>
+						</div>
+						<div class="panel_word">
+							<span id="sumNum">0</span>
+							<cite>数据库总数</cite>
+						</div>
+
+						<div class="panel_type ">
+							<div class="panel-color1">
+								<p>文物:<i id="sumNumww">0</i></p>
+
+								<p>拓片:<i id="sumNumtp">0</i></p>
+
+							</div>
+						</div>
+
+					</a>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div href="javascript:;" data-url="" target="_blank" class="panela">
+						<div class="panel_icon panel_color_two layui-bg-black">
+							<i class="iconfont icon-dengjizongshu panel_color_icon"></i>
+						</div>
+						<div class="panel_word">
+							<span class="inStorkeNum" id="inStorkeNum">0</span>
+							<cite>在库总数</cite>
+						</div>
+						<div class="panel_type ">
+							<div class="panel-color2">
+								<a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/knww/page/wwlb.html?limit=SY2018112809351435142','文物列表')">
+
+									<p>文物:<i id="inStorkeNumww">0</i></p>
+								</a>
+								<a class="" href="javascript:newTab('./Page/knww/page/djblb.html?limit=SY201812101449334933120','拓片列表')" data-icon="fa-tasks" kit-target data-id='206'>
+									<p>拓片:<i id="inStorkeNumtp">0</i></p>
+								</a>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div href="javascript:;" data-url="" target="_blank" class="panela">
+						<div class="panel_icon panel_color_three">
+							<i class="iconfont icon-iconfonticon-shebei panel_color_icon"></i>
+						</div>
+						<div class="panel_word">
+							<span id="outsideNum">0</span>
+							<cite>待出库总数</cite>
+						</div>
+						<div class="panel_type ">
+							<div class="panel-color3">
+								<a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/crkgl/dckww.html?limit=SY201811280934183418109','待出库文物')">
+
+									<p class="panel-color3">文物:<i id="outsideNumww">0</i></p>
+								</a>
+								<a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/crkgl/dckww.html?limit=SY201811280934183418109','待出库拓片')">
+
+									<p class="panel-color3">拓片:<i id="outsideNumtp">0</i></p>
+								</a>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div href="javascript:;" data-url="" target="_blank" class="panela">
+						<div class="panel_icon panel_color_four">
+							<i class="iconfont icon-iconfonticon-xitong panel_color_icon"></i>
+						</div>
+						<div class="panel_word">
+							<span id="insideNum">0</span>
+							<cite>待入库总数</cite>
+						</div>
+						<div class="panel_type ">
+							<div class="panel-color4">
+								<a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/crkgl/dckww.html?limit=SY201811280934183418109','待入库文物')">
+									<p class="panel-color4">文物:<i id="insideNumww">0</i></p>
+								</a>
+								<a class="specificModule" lay-filter="demo" href="javascript:newTab('./Page/crkgl/dckww.html?limit=SY201811280934183418109','待入库拓片')">
+									<p class="panel-color4">拓片:<i id="insideNumtp">0</i></p>
+								</a>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="layui-col-md8">
+					<div class="layui-row layui-col-space15">
+						<div class="layui-col-md12">
+							<div class="layui-card">
+								<div class="layui-card-header">统计</div>
+								<div class="layui-card-body">
+									<div carousel-item id="chart1" style="height: 314px;">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="layui-col-md12">
+							<div class="layui-card">
+								<div class="layui-card-header">
+									<span>文物</span>
+									<div class="layui-inline " style="float: right;">
+										<div class="layui-input-inline">
+											<input type="text" id="calendarww" class="layui-input" placeholder="请选择年份">
+										</div>
+									</div>
+								</div>
+								<div class="layui-card-body">
+									<div carousel-item id="chartyearWW" style="height: 314px;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md4">
+					<div class="layui-card">
+						<div class="layui-card-header">文物入库最新记录</div>
+						<div class="layui-card-body layadmin-takerates">
+							<ul id="layorderUl" style="height: 319px;">
+							</ul>
+						</div>
+					</div>
+					<div class="layui-card">
+						<div class="layui-card-header">文物出库最新记录</div>
+						<div class="layui-card-body layadmin-takerates">
+							<ul id="layorderUlOutside" style="height: 319px;">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md8">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							<span>拓片</span>
+
+							<div class="layui-inline " style="float: right;">
+								<!--<label class="layui-form-label"><span class="calendar" ><i ></i></span></label>-->
+								<div class="layui-input-inline">
+									<input type="text" id="calendartp" class="layui-input" placeholder="请选择年份">
+								</div>
+							</div>
+						</div>
+						<div class="layui-card-body">
+							<div carousel-item id="chartyearTP" style="height: 395px;">
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="layui-col-md4">
+					<div class="layui-card">
+						<div class="layui-card-header">我的修改记录</div>
+						<div class="layui-card-body layadmin-takerates">
+							<ul id="amendmentRecord" style="height: 395px;">
+							</ul>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="lib/js/jquery-1.8.3.min.js"></script>
+		<script src="layuiadmin/layui/layui.js?t=1"></script>
+		<script type="text/javascript" src="lib/js/echarts.js"></script>
+		<script type="text/javascript" src="lib/js/store.min.js"></script>
+		<script type="text/javascript" src="SysJs/xdDataMange.js"></script>
+		<script type="text/javascript" src="js/mainHome.js"></script>
+		<script>
+			//			layui.config({
+			//				base: 'layuiadmin/' //静态资源所在路径
+			//			}).extend({
+			//				index: 'lib/index' ,//主入口模块
+			//
+			//			}).use(['index', 'console']);
+		</script>
+
+	</body>
+
+</html>

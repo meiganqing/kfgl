@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="lib/css/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="layui/font" media="all">
+		<link rel="stylesheet" href="layuiadmin/style/admin.css" media="all">
+		<!--<link rel="stylesheet" href="css/main.css" media="all">-->
+		<link rel="stylesheet" href="lib/iconfont/iconfont.css" media="all">
+	</head>
+	<style>
+		html body {
+			background-color: #FFFFFF;
+			height: 100%;
+		}
+		
+		.store-border-top {
+			padding: 3px 10px;
+			box-sizing: border-box;
+			/*border: 3px solid #000000;*/
+			background-color: #b1b1b1;
+		}
+		
+		.content-bottom {
+			height: 12px;
+			box-sizing: border-box;
+			/*border: 3px solid #000000;*/
+			background-color: #accad2;
+			text-align: center;
+			color: #FFFFFF;
+		}
+		
+		.content-md {
+			padding: 0px 22px;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-border-left,
+		.store-border-right {
+			padding: 0px 3px;
+			/*border-left: 3px solid #000000;*/
+			/*border-right: 3px solid #000000;*/
+			display: inline-block;
+			height: 100%;
+			box-sizing: border-box;
+			background-color: #b1b1b1;
+		}
+		
+		.store-border-left {
+			position: absolute;
+			top: 0px;
+			left: 16px;
+		}
+		
+		.store-border-right {
+			position: absolute;
+			top: 0px;
+			right: 16px;
+		}
+		
+		.store-content-mid {
+			position: relative;
+			/*display: inline-block;*/
+			width: 100%;
+			/*height: 60px;*/
+			/*background-color: red;*/
+			box-sizing: border-box;
+		}
+		
+		.store-level {
+			height: 120px;
+			width: 100%;
+			
+			box-sizing: border-box;
+			
+			/*background: -webkit-linear-gradient(left, #f0f0f0 10%, #ffffff); /* Safari 5.1 - 6.0 */
+			/*background: -o-linear-gradient(top, #f0f0f0 10%, #ffffff); /* Opera 11.1 - 12.0 */
+			*/*/
+  /*background: -moz-linear-gradient(right, red, blue); /* Firefox 3.6 - 15 */
+			*/
+			/*background: linear-gradient(to right, red , blue);  标准的语法*/
+		}
+		
+		.store-level-content {
+			width: 100%;
+			height: 100%;
+			background-color: #FFFFFF;
+			position: relative;
+		}
+		
+		.store-level-botborder {
+			/*border-bottom: 3px solid #000000;*/
+			position: relative;
+			/*padding-bottom: 16px;*/
+		}
+		
+		.store-level-botborder::after {
+			width: 100%;
+			height: 6px;
+			content: "";
+			/*border-top: 3px solid #000000;*/
+			/*border-bottom: 3px solid #000000;*/
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+			z-index: 100;
+			background-color: #accad2;
+		}
+		
+		.store-grid {
+			float: left;
+			width: 33.33%;
+			height: 100%;
+
+			box-sizing: border-box;
+			position: relative;
+			padding-top: 25px;
+			padding-left: 25px;
+			background-color: #f0f0f0;
+		}
+		
+		.store-grid-border {
+			padding-right: 12px;
+		}
+		
+		.store-grid-border::after {
+			width: 6px;
+			height: 100%;
+			content: "";
+			/*border-left: 2px solid #000000;*/
+			/*border-right: 2px solid #000000;*/
+			display: inline-block;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 100;
+			background-color: #b1b1b1;
+		}
+		
+		.store-level-content ul {
+			list-style: none;
+			width: 100%;
+		}
+		
+		.store-level-content ul li {
+			width: 14px;
+			height: 14px;
+			border-radius: 7px;
+			background-color: pink;
+			float: left;
+			margin: 6px 2px;
+			border: 1px solid #b1b1b1;
+			box-sizing: border-box;
+		}
+		
+		.store-level-content {
+			width: 105%;
+			height: 100%;
+			transform: rotate(180deg);
+			/*position: absolute;
+		bottom: 0px;
+		left: 0px;*/
+		}
+		/*.store-grid::before{*/
+		
+		.store-mark {
+			width: 0px;
+			height: 30px;
+			padding-right: 40px;
+			background-color: rgba(32, 34, 42, 0.6);
+			display: inline-block;
+			content: "";
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			top: 3px;
+			z-index: 100;
+			transition: all 2s;
+			vertical-align: middle;
+			/*background-color: #FFFFFF;*/
+		}
+		
+		.store-mark:hover {
+			width: 60%;
+			cursor: pointer;
+			background-color: rgba(32, 34, 42, 0.6);
+		}
+		
+		.store-mark span {
+			height: 30px;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			color: #FFFFFF;
+			/*line-height: 30px;*/
+			padding: 6px;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
+		.storeTitle {
+			text-align: center;
+			line-height: 40px;
+			font-size: 16px;
+			color: #333333;
+			font-family: "微软雅黑";
+		}
+		.good-num{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: 16px;
+			font-style: normal;
+			color: #333333;
+			z-index: 1000;
+		}
+		.volume {
+			position: absolute;
+			bottom: -20px;
+			left: 0px;
+			width: 20px;
+			height: 50px;
+			border: 1px solid darkblue;
+			border-left: none;
+			border-radius: 0px 4px 4px 0px;
+			
+		}
+	</style>
+
+	<body class="childrenBody" id="mainHome">
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md5" >
+					<p class="storeTitle">测试一号柜</p>
+					<div class="module-store">
+
+						<div class="content-md">
+							<div class="content-top">
+								<div class="store-border-top"></div>
+							</div>
+							<div class="store-border-left"></div>
+							<div class="store-content-mid">
+								<i class="good-num">15</i>
+								<!--层-->
+								<div class="store-level store-level-botborder">
+									<div class="volume"></div>
+									<div class="store-level-content">
+										<!--<ul>
+											<li></li>
+											<li></li>
+										
+										</ul>-->
+									</div>
+								</div>
+								<div class="store-level store-level-botborder">
+									<div class="store-level-content"></div>
+								</div>
+								<div class="store-level">
+									<div class="store-level-content"></div>
+								</div>
+							</div>
+							<div class="store-border-right"></div>
+						</div>
+						<div class="content-bottom">
+							<!--<p>测试一号柜</p>-->
+						</div>
+					</div>
+
+				</div>
+				<div class="layui-col-md5">
+					<div class="module-store">
+						<div class="content-top">
+							<div class="store-border-top"></div>
+						</div>
+						<div class="content-md">
+							<div class="store-border-left"></div>
+							<div class="store-content-mid">
+								<!--层-->
+								<div class="store-level store-level-botborder">
+									<div class="store-grid store-grid-border">
+									<div class="store-level-content">
+										<div class="volume"></div>
+									</div>
+									</div>
+									<div class="store-grid store-grid-border">
+										<div class="store-level-content">
+									</div>
+									</div>
+									<div class="store-grid ">
+										<div class="store-level-content">
+										<ul>
+											<li></li>
+											<li></li>
+										</ul>
+									</div>
+									</div>
+								</div>
+								<div class="store-level store-level-botborder">
+									<div class="store-grid store-grid-border"></div>
+									<div class="store-grid store-grid-border"></div>
+									<div class="store-grid"></div>
+								</div>
+								<div class="store-level">
+									<div class="store-grid store-grid-border"></div>
+									<div class="store-grid store-grid-border"></div>
+									<div class="store-grid"></div>
+								</div>
+							</div>
+							<div class="store-border-right"></div>
+						</div>
+						<div class="content-bottom">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script src="lib/js/jquery-1.8.3.min.js"></script>
+		<script src="layuiadmin/layui/layui.js?t=1"></script>
+		<script type="text/javascript" src="lib/js/echarts.js"></script>
+		<script type="text/javascript" src="lib/js/store.min.js"></script>
+		<script type="text/javascript" src="SysJs/xdDataMange.js"></script>
+		<!--<script type="text/javascript" src="js/mainHome.js"></script>-->
+		<script>
+			layui.config({
+				base: 'layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'console']);
+		</script>
+
+	</body>
+
+</html>

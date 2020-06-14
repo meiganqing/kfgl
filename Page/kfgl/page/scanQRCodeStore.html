@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../lib/css/font-awesome/css/font-awesome.css" />
+</head>
+
+<body>
+    <!--一键添加弹框-->
+    <form class="layui-form  site-text" id="quicklyLayerHtml" style="width: 100%;">
+        <div class="layui-card-body layui-row layui-form-item">
+            <div class="layui-col-sm12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <div><i class="fa fa-institution own-text-blue " style="font-size: 24px;"></i>&nbsp;&nbsp;<span id="库房名" style="font-size: 24px;"><span></div>
+                    </div>
+                    <div class="layui-tab-content"><input class="layui-input" placeholder="扫码操作" style="font-size: 20px;" name="guncode" id="guncode"></div>
+                    <div class="layui-card-body">
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <table class="layui-table layuiadmin-page-table" lay-skin="line">
+                                    <thead>
+                                        <tr>
+                                            <th>项目名称</th>
+                                            <th>名称前缀</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="移交人_tr" style="display: none;">
+                                            <td>移交人</td>
+                                            <td>
+                                                <input type="text" id="XDLM移交人" name="XDLM移交人" placeholder="请输入移交人" autocomplete="on" class="layui-input">
+                                            </td>
+                                        </tr>
+                                        <tr id="监督人_tr" style="display: none;">
+                                            <td>监督人</td>
+                                            <td>
+                                                <input type="text" id="XDLM监督人" name="XDLM监督人" placeholder="请输入监督人" autocomplete="on" class="layui-input">
+                                            </td>
+                                        </tr>
+                                        <tr id="接收人_tr" style="display: none;">
+                                            <td>接收人</td>
+                                            <td>
+                                                <input type="text" id="XDLM接收人" name="XDLM接收人" placeholder="请输入接收人" autocomplete="on" class="layui-input">
+                                            </td>
+                                        </tr>
+                                        <tr id="录入人_tr" style="display: none;">
+                                            <td>录入人</td>
+                                            <td>
+                                                <input type="text" class="layui-input" name="XDLM录入人" id="XDLM录入人" placeholder="请输入录入人">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>库柜名称</td>
+                                            <td>
+                                                <select name="CNTR" id="柜架号" lay-filter="store"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>层别名称</td>
+                                            <td>
+                                                <select name="level" id="层号" lay-filter="level"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>区域名称</td>
+                                            <td>
+                                                <select name="area" id="分区号" lay-filter="area"></select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-form layui-card-header layuiadmin-card-header-auto" id="">
+                        <h2><i class="fa fa-tags own-text-blue"></i>文物扫码清单</h2>
+                    </div>
+                    <div class="layui-card-body layuiadmin-card-list">
+                        <table class="layui-table" id="wwgkList" lay-filter="wwgkList" style="text-align: center;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item site-text" style="text-align: center;">
+            <div class="">
+                <span class="layui-btn own-btn-green" id="modifyData">修改</span>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/html" id="opeTpl">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">移除</a>
+</script>
+<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js" ></script>
+<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<!-- <script type="text/javascript" src="../../../lib/js/store.min.js"></script> -->
+<script type="text/javascript" src="/SXSY/widget/yanzheng/js/verify.js"></script>
+<!-- <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script> -->
+<!-- <script src="../../../SysJs/xdDataMange.js"></script> -->
+<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+<script type="text/javascript" src="../js/scanQRCodeStore.js"></script>

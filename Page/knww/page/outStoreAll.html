@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+	<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+	<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+	<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+	<script src="/SXSY/js/SysCongfig.js"></script>
+	<script src="/SXSY/layuiextend/jquery.jqprint-0.3.js"></script>
+	<script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+	<script type="text/javascript" src="../js/outStoreAll.js"></script>
+
+	<!-- 增加时间戳版本号以防止浏览器缓存 -->
+    <script>  
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0;i < scripts.length;i ++){
+            if(scripts[i].src){
+                scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+            }
+        }
+    </script>
+
+	<style type="text/css">
+
+
+		.texterea-width {
+			width: 49% !important;
+		}
+
+		#tpContent {
+			border: none;
+			height: 1100px;
+		}
+
+			#tpContent body {
+				background: #FFFFFF;
+			}
+	</style>
+</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-card">
+						<div class="layui-form layui-card-header layuiadmin-card-header-auto" id="">
+						<h2>
+							<i class="title-icon fa fa-tags"></i>文物出库信息
+							<input class="layui-input" placeholder="扫码操作" name="guncode" id="guncode">
+						</h2>
+					</div>			
+			</div>
+
+			<form class="layui-form" action="">
+				<input type="hidden" id="XDLMid" name='WWDJBID'>
+				<div class="layui-card" id="printA4">
+
+					<div class="layui-card-body layuiadmin-card-list">
+
+						<table class="layui-table" style="text-align: center;">
+							<tr>
+								<!--<td>现登记号：</td>
+								<td colspan="" id="wwknbh"></td>-->
+								<td>批次编号：</td>
+								<td colspan="5" id="">
+									<input type="" class="layui-input" name="" id="批次编号" value="" />
+								</td>
+								<!--<td>出库时间：</td>
+								<td colspan="2" id="XDLM出库时间"></td>-->
+
+							</tr>
+							
+								<tr>
+									<td>操作时间：</td>
+								<td colspan="2" id="操作时间"></td>
+									<td>出库时间：</td>
+								<td colspan="2" >
+									<input type="text" class="layui-input" id="出库时间" name="XDLM出库时间" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td>出库事由：</td>
+								<td colspan="2">
+									<select id="记录类型" lay-filter="记录类型" name="XDLM记录类型">
+										<option value=""></option>
+									</select>
+								</td>
+								<td>出库去向：</td>
+								<td colspan="2">
+									<div class="layui-input-inline texterea-width">
+										<select id="出库去向" name="" lay-filter="出库去向" lay-verify="required">
+											<option value=""></option>
+										</select>
+									</div>
+									<div class="layui-input-inline texterea-width" id="描述显示">
+										<input class="layui-input" name="" lay-verify="required" id="库外描述" autocomplete="off">
+									</div>
+									<div class="layui-input-inline texterea-width layui-hide" id="库房显示">
+										<select id="目标库房" name="" lay-verify="required">
+											<option value=""></option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>移交人：</td>
+								<td colspan="2">
+									<input class="layui-input" lay-verify="required" name="XDLM移交人" id="移交人" autocomplete="off">
+								</td>
+								<td>监督人：</td>
+								<td colspan="2">
+									<input class="layui-input" lay-verify="required" name="XDLM监督人" id="监督人" autocomplete="off">
+								</td>
+							</tr>
+							<tr>
+								<td>接收人：</td>
+								<td colspan="2">
+									<input class="layui-input" lay-verify="required" name="XDLM接收人" id="接收人" autocomplete="off">
+								</td>
+								<td>录入人：</td>
+								<td colspan="2" id="录入人" ></td>
+							</tr>
+							<tr>
+								<td>记录内容：</td>
+								<td colspan="5">
+									<textarea class="layui-textarea" id="记录内容" name="XDLM记录内容" rows="" cols=""></textarea>
+
+									<!--<input class="layui-input" name="XDLM图片地址" id="XDLM图片地址" autocomplete="off" value="123">-->
+
+								</td>
+							</tr>
+						
+						</table>
+					</div>
+
+				</div>
+				<div class="layui-card">
+					<div class="layui-form layui-card-header layuiadmin-card-header-auto" id="">
+						<h2><i class="title-icon fa fa-tags"></i>文物出库清单</h2></div>
+					<div class="layui-card-body layuiadmin-card-list">
+						<table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+					</div>
+
+				</div>
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+					<div class="layui-row">
+						<div class="layui-col-md12">
+							<div class="" style="text-align: center;">
+								<button class="layui-btn" id="tjsq"  type="button" lay-filter="tjsq">提交申请</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</body>
+
+</html>
+<script type="text/html" id="opeTpl">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">移除</a>
+</script>

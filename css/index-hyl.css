@@ -1,0 +1,122 @@
+	.item-nav a i {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			position: absolute;
+			top: 70%;
+			left: 20px;
+			margin-top: -19px;
+		}
+		
+		.me-icon1 i {
+			background-image: url(../images/ico_02.png);
+			background-size: cover;
+		}
+		
+		.me-icon2 i {
+			background-image: url(../images/icon_03.png);
+			background-size: cover;
+		}
+		
+		.me-icon3 i {
+			background-image: url(../images/icon_06.png);
+			background-size: cover;
+		}
+		
+		.me-icon4 i {
+			background-image: url(../images/icon_05.png);
+			background-size: cover;
+		}
+		
+		.me-icon5 i {
+			background-image: url(../images/icon_07.png);
+			background-size: cover;
+		}
+		
+		.me-icon6 i {
+			background-image: url(../images/icon_04.png);
+			background-size: cover;
+		}
+		
+		.me-icon7 i {
+			background-image: url(../images/all-store.png);
+			background-size: cover;
+		}
+		
+		.layui-layout-admin .layui-footer {
+			position: fixed;
+			left: 200px;
+			right: 0;
+			bottom: 0;
+			height: 44px;
+			line-height: 44px;
+			padding: 0 15px 0px 30px;
+			background-color: #eee;
+			height: 35px;
+			line-height: 35px;
+			z-index: 1000;
+			box-sizing: border-box;
+		}
+		
+		.comp-logo {
+			position: absolute;
+			left: 20px;
+			bottom: 0px;
+		}
+		
+		.layui-side-scroll .layui-nav .layui-nav-item a {
+			color: #FFFFFF!important;
+		}
+		
+		.layui-side-menu {
+			margin-top: 72px;
+			box-sizing: border-box;
+		}
+		
+		.layui-header {
+			background-image: url(../images/bg-header.png);
+		}
+		
+		.header-img {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 600px;
+			height: 100%;
+			vertical-align: middle;
+			line-height: 74px;
+			padding-left: 15px;
+		}
+		
+		.fullscreen {
+			top: 0px;
+			right: 80px;
+		}
+		
+		.refresh {
+			top: 0px;
+			right: 120px;
+		}
+		
+		.word-white {
+			color: #FFFFFF;
+		}
+		
+		.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+			color: #FFFFFF!important;
+		}
+		
+		.list-flexible {
+			height: 40px;
+			line-height: 40px;
+			color: #FFFFFF;
+			text-align: center;
+			background-color: #ac6c43;
+		}
+		
+		.layadmin-side-shrink .layui-layout-admin .list-flexible {
+			width: 60px;
+		}
+		.layui-side-menu{
+			background: #f6eedd;
+		}

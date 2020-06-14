@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>库容查看</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <!--<link rel="stylesheet" href="../../../lib/css/font-awesome/css/font-awesome.css" />-->
+    <link rel="stylesheet" href="../css/krck_tp.css" />
+</head>
+<style>
+    .layui-card-header .layui-icon {
+        right: 14px!important;
+        top: 39%!important;
+    }
+</style>
+
+<body>
+    <div id="relicPosition" class="relic-position layui-hide">
+        <div class="close-btn" id="closeBtn"></div>
+        <div class="tip-box" id="tipBox"></div>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <div class=" layui-col-md8">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择颜色</label>
+                            <div class="layui-input-inline choose-color">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">空</label>
+                                    <div class="layui-input-inline" id="color0"></div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">小于50%</label>
+                                    <div class="layui-input-inline" id="color1"></div>
+
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">50%~70%</label>
+                                    <div class="layui-input-inline" id="color2"></div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">大于70%</label>
+                                    <div class="layui-input-inline" id="color3"></div>
+                                </div>
+                                <!--<div class="layui-inline">
+										<label class="layui-form-label">爆满</label>
+										<div class="layui-input-inline" id="color4"></div>
+									</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" layui-col-md4" style="text-align: right;">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">过道位置</label>
+                            <div class="layui-input-inline" style="width:50px">
+                                <input type="text" class="layui-input" id="aisle" value="2" />
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">每行柜架数</label>
+                            <div class="layui-input-inline" style="width:50px">
+                                <input type="text" class="layui-input" id="columnNum" value="2" />
+                            </div>
+                        </div>
+                        <div class="layui-btn-group" style="margin-left: 25px;">
+                            <button class="layui-btn own-btn-red" id="sure">确定</button>
+                            <button class="layui-btn own-btn-blue" id="inspect">库容检查</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card-body" style="min-height: 600px;">
+                <div class="view" id="view" style='overflow: hidden;'>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script id="tpldemo" type="text/html">
+    {{# layui.each(d.data, function(index, item){ }} {{# if(setGuoDao(d,index)){}}
+    <div class="module-store" style="width: 5%;padding:55px 0px;text-align: center;font-weight: 600;">
+        <div class="gd-div">
+            <p>过</p>
+            <p>道</p>
+        </div>
+        <div class="gd-div">
+            <p>过</p>
+            <p>道</p>
+        </div>
+    </div>
+    {{#}}}
+    <div class="module-store" style=" {{setWidth(d)}}">
+        <p class="storeTitle">{{item['柜架号']}}</p>
+        <div class="content-md">
+            <div class="content-top">
+                <div class="store-border-top"></div>
+            </div>
+            <div class="store-border-left"></div>
+            <div class="store-content-mid">
+                <!--层-->
+                {{# layui.each(item['分层集合'], function(indexs, items){ }} {{# if((indexs*1+1)==item['分层集合'].length){ }}
+                <div class="store-level " CNTR_no="{{index}}" Level_no="{{indexs}}">
+                    {{# }else { }}
+                    <div class="store-level store-level-botborder" CNTR_no="{{index}}" Level_no="{{indexs}}">
+                        {{# } }}
+                        <a href="javascript:;" title="{{item['柜架号']}}-{{items['层号']}}">
+                            <div class="volume" style="background: {{setKrColor(items)}};">
+                                <p>{{items['图筒集合'].length}}</p>
+                                <!--<p>量</p>-->
+                            </div>
+                            <div class="store-level-content">
+                                <ul>
+                                    {{#for(var i=0;i
+                                    <items[ '最大容量'];i++){}} {{#if(i<items[ '现容量']){}} <li class="good-color">
+                                        </li>
+                                        {{#}else{}}
+                                        <li></li>
+                                        {{#}}} {{#}}}
+                                </ul>
+                                <!--<i class="good-num">{{items['图筒集合'].length}}</i>-->
+                            </div>
+                        </a>
+                    </div>
+                    {{# }); }}
+                </div>
+                <div class="store-border-right"></div>
+            </div>
+            <div class="content-bottom">
+                <!--<p>测试一号柜</p>-->
+            </div>
+        </div>
+        {{# }); }}
+
+</script>
+<!--<script type="text/html" id="ll">
+		{{# layui.each(d.data, function(index, item){ }} {{# if(setGuoDao(d,index)){}}
+		<div class="module-store" style="width: 10%;padding:55px 0px;text-align: center;font-weight: 600;">
+			<p>过</p>
+			<p>道</p>
+		</div>
+		{{#}}}
+		<div class="module-store" style="width: {{setWidth(d)}};">
+			<div class="content-top">
+				<div class="store-border-top">{{item['柜架号']}}</div>
+			</div>
+			<div class="content-md">
+
+				<div class="store-content-mid">
+
+					{{# layui.each(item['分层集合'], function(indexs, items){ }} {{# if((indexs*1+1)==item['分层集合'].length){ }}
+					<div class="store-level " CNTR_no="{{index}}" Level_no="{{indexs}}">
+						{{# }else { }}
+						<div class="store-level store-level-botborder" CNTR_no="{{index}}" Level_no="{{indexs}}">
+							{{# } }}
+							<a href="javascript:;" title="{{item['柜架号']}}-{{items['层号']}}">{{items['图筒集合'].length}}</a>
+						</div>
+						{{# }); }}
+					</div>
+
+				</div>
+
+			</div>
+			{{# }); }}
+	</script>-->
+
+</html>
+<script src="../../../layuiadmin/layui/layui.js" type="text/javascript"></script>
+<script src="../../../lib/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+<script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+<script src="../../../SysJs/xdDataMange.js"></script>
+<script type="text/javascript" src="../js/krck_tp.js"></script>

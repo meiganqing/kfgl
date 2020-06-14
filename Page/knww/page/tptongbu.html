@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title></title>
+    <!-- <link rel="stylesheet" href="../../../layui/css/layui.css" />
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all"> -->
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link href="/SXSY/Widget/yanzheng/css/verify.css" rel="stylesheet" />
+
+    <!-- <script type="text/javascript" src="../../../layui/layui.js"></script>
+    <script src="../../../lib/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../../lib/js/store.min.js"></script>
+     -->
+    
+     <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+     <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+     <script src="/SXSY/js/SysCongfig.js"></script>
+     <script src="/SXSY/layuiextend/jquery.jqprint-0.3.js"></script>
+     <script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+     
+
+    <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script>
+    <script type="text/javascript" src="../js/tptongbu.js"></script>
+</head>
+<style type="text/css">
+    #syncData {
+        position: absolute;
+        top: 1px;
+        right: 15px;
+    }
+</style>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <i class="layui-icon layui-icon-about"></i>
+                <span>提示：数据同步后 请前往【
+						
+						<a style="color: #097FD0;" href="javascript:newTab('./page/crkgl/drkww.html?limit=201901081754255425835839408&tabnum=386','待入库拓片')">待入库拓片</a>
+					】操作。</span>
+            </div>
+
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-inline search-type" id="keyworDiv">
+                    <label class="layui-form-label">拓片年度：</label>
+                    <div class="layui-inline">
+                        <input class="layui-input key-words" id="year" autocomplete="off" placeholder="yyyy">
+                    </div>
+                </div>
+                <div class="layui-inline search-type" id="keyworDiv">
+                    <label class="layui-form-label" style="width: 100px;">文物点名称：</label>
+                    <div class="layui-inline">
+                        <input class="layui-input key-words" id="position_name" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <button class="layui-btn " type="button" name="searchData" id="searchData">查询</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-card">
+            <div class="layui-tab layui-tab-brief layadmin-latestData" style="position: relative;">
+
+                <ul class="layui-tab-title">
+                    <li class="layui-this nav-btn" asyncType="否">未同步拓片</li>
+                    <li class=" nav-btn" asyncType="是">已同步拓片</li>
+
+                </ul>
+
+                <button class="layui-btn layuiadmin-btn-tags" id="syncData">一键调查拓片数据同步</button>
+
+                <div class="layui-card">
+                    <div class="layui-card-header" style="margin-top: 5px;">
+                        温馨提示：多个关键字中间l空格隔开，可实现多关键字模糊查询。
+                    </div>
+                    <div class="layui-card-body">
+                            <table lay-data="{skin:'row', even:true, size:'lg'}" class="layui-table layuiadmin-page-table" id="grid_table" lay-filter="grid_table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+

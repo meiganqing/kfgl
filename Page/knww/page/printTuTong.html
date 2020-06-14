@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>打印图筒编号</title>
+		<link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+		<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+		<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript" src="../../../lib/js/jquery-qrcode-0.14.0.min.js"></script>
+		<!-- <script type="text/javascript" src="../../../lib/js/store.min.js"></script> -->
+		<!-- <script type="text/javascript" src="../../../SysJs/tableSetting.js"></script> -->
+		<!-- <script src="../../../SysJs/xdDataMange.js"></script> -->
+		<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+		<script type="text/javascript" src="../js/printTuTong.js"></script>
+	</head>
+	<style>	
+		/*第二种样式*/
+		.content{
+			width: 190px;
+			height: 190px;
+
+			margin: 0px auto 15px;
+			border-radius: 100px;
+			overflow: hidden;
+			border: 1px dashed #000;
+			font-size: 12px;
+		}
+		.content .title {
+			font-weight: 700;
+			color: #0C7358;
+		}
+		.icon-img {
+			width: 40px;
+			height: 40px;
+			margin-right: 7px;
+		}
+		.con-top {
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 5px;
+			
+		}
+		.con-md {
+			margin: 7px 0px;
+			width: 100%;
+			overflow: hidden;
+			border-top: 1px dashed #000;
+			border-bottom: 1px dashed #000;
+
+		}
+		.con-md-left{
+			width: 50%;
+			height: 70px;
+			float: left;
+			text-align: right;
+			padding: 5px;
+			padding-right: 10px;
+			box-sizing: border-box;
+
+		}
+		.con-md-right{
+			width: 50%;
+			height: 60px;
+			float: left;
+			/*padding-left: 10px;*/
+			box-sizing: border-box;
+			display: flex;
+			flex-direction:column;
+			justify-content:center;
+			margin-top: 5px;
+		}
+		.con-md-right p {
+			line-height: 17px;
+			font-weight: 700;
+		}
+		.con-bootom{
+			text-align: center;
+			font-weight: 700;
+		}
+	</style>
+
+	<body>
+		<div id="print">
+			<div class="content tt" style="margin-top: 35px;">
+				<div class="con-top" style="margin-top: 18px;">
+					<img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+					<span class="title" id="ttbh1"></span>
+				</div>
+				<div class="con-md">
+
+						<div class="q-code con-md-left">
+							<div id="qrcode1" style="display:none;"></div>
+							<img src=" " id="qrimage1" width="60" height="60" />
+						</div>
+
+					<div class="con-md-right">
+						<p id="bh11"></p>
+						<p id="bh12"></p>
+						<p id="bh13"></p>
+						<p id="bh14"></p>
+					</div>
+				</div>
+				<div class="con-bootom">
+					<span id="库房名1"></span><span id="柜架号1"></span><span id="层号1"></span>
+				</div>
+			</div>
+			<div class="content tt" style="margin-top:65px">
+				<div class="con-top">
+					<img class="icon-img" src="../../../images/ttIcon.png" alt="" />
+					<span class="title" id="ttbh2"></span>
+				</div>
+				<div class="con-md">
+
+						<div class="q-code con-md-left">
+							<div id="qrcode2" style="display:none;"></div>
+							<img src=" " id="qrimage2" width="60" height="60" />
+						</div>
+
+					<div class="con-md-right">
+						<p id="bh21"></p>
+						<p id="bh22"></p>
+						<p id="bh23"></p>
+						<p id="bh24"></p>
+					</div>
+				</div>
+				<div class="con-bootom">
+					<span id="库房名2"></span><span id="柜架号2"></span><span id="层号2"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="no-print" style="text-align: center;">
+			<p class="layui-btn " id="printBtn">打印</p>
+		</div>
+	</body>
+
+</html>

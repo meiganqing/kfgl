@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+    <script type="text/javascript" src="/SYKFGL/SysJs/kfDataManage.js"></script>
+    <script type="text/javascript" src="js/all_tplb.js"></script>
+</head>
+
+<body>
+    <div class="layui-fluid" id="qdfluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">
+                温馨提示：多个关键字中间空格隔开，可实现多关键字模糊查询。
+            </div>
+            <div class="layui-form layui-card-body layuiadmin-card-header-auto" style="height: 45px;">
+                <div class="layui-inline">
+                    <label class="layui-form-label">在库状态：</label>
+                    <div class="layui-inline">
+                        <select id="zkzt" lay-search lay-filter="zkzt">
+                            <option value="所有">所有</option>
+                            <option value="在库">在库</option>
+         
+                            <option value="待出库">待出库</option>
+                            <option value="待入库">待入库</option>
+                            <option value="暂存">|—暂存</option>
+                            <option value="移交">|—移交</option>
+                            <option value="调拨">|—调拨</option>
+                       
+                            <option value="文物出展">|—文物出展</option>
+                            <option value="文物修复">|—文物修复</option>
+                            <option value="文物拍照">|—文物拍照</option>
+                            <option value="资料整理">|—资料整理</option>
+                            <option value="其他原因">|—其他原因</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" id="category">
+                    <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+                    <div class="layui-input-block" style="margin-left:90px;">
+                        <select id="cxlb" lay-search lay-filter="cxlb">
+                            <option value="模糊查询">模糊查询</option>
+                            <option value="XDLMK">名称</option>
+                            <option value="XDLMC">新编号</option>
+                            <option value="XDLMD">编号</option>
+                            <!-- <option value="XDLME">图筒号</option> -->
+                            <option value="XDLMG">文物点名称</option>
+                            <option value="XDLMH">整理编号</option>
+                            <option value="XDLMI">文物组</option>
+                            <option value="XDLMJ">拓片年度</option>
+                            <option value="XDLMX">载体一类型</option>
+                            <option value="XDLMY">载体二类型</option>
+                            <option value="XDLMU">文物库内编号</option>
+                            <!-- <option value="warehouse">按存放位置查询</option> -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline" id="keyworDiv">
+                    <label class="layui-form-label" for="queryK" style="width: 56px;padding-right:5px;">关键字:</label>
+                    <div class="layui-input-block" style="margin-left:76px;">
+                        <input type="text" placeholder="请输入" id="queryK" class="layui-input" style="width: 300px;">
+                    </div>
+                </div>
+
+                <!-- 文物组 -->
+                <div class="layui-inline search-type layui-hide" id="XDLMIDiv">
+                    <div class="layui-inline">
+                        <select name="groupkeyWords " class="key-words" id="groupkeyWords"></select>
+                    </div>
+                </div>
+
+                 <!--位置形式-->
+                 <div class="layui-inline search-type layui-hide" id="warehouseDiv">
+
+                    <div class="layui-inline">
+                        <select name="XDLM柜架号" id="柜架号" lay-search lay-filter="柜架号">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <select name="XDLM层号" id="层号" lay-search lay-filter="层号">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <select name="XDLM分区号" id="分区号" lay-search lay-filter="分区号">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline" id="serchdiv">
+                    <button class="layui-btn" type="button" name="searchData" id="searchData">查询</button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table lay-filter="grid_table" id="grid_table"></table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="layui-fluid" style="margin-top: 0px;">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <div class="layui-col-md12">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">查询类别：</label>
+                            <div class="layui-inline">
+                                <select name="city" lay-filter="queryT" id="queryT">
+                                     <option value="">请选择查询类别</option> -->
+                                <!-- </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline search-type" id="keyworDiv">
+                            <label class="layui-form-label">关键字：</label>
+                            <div class="layui-inline">
+                                <input class="layui-input key-words" id="queryK" autocomplete="off">
+                            </div>
+                        </div>
+                        文物组形式-->
+                        <!-- <div class="layui-inline search-type layui-hide" id="文物组Div">
+                            <div class="layui-inline">
+                                <select name="groupkeyWords " class="key-words" id="groupkeyWords"></select>
+                            </div>
+                        </div> -->
+                        <!--位置形式-->
+                        <!-- <div class="layui-inline search-type layui-hide" id="warehouseDiv">
+                            <div class="layui-inline">
+                                <select name="XDLM库房" id="XDLM库房" lay-search lay-filter="XDLM库房">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="XDLM柜架号" id="XDLM柜架号" lay-search lay-filter="XDLM柜架号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="XDLM层号" id="XDLM层号" lay-search lay-filter="XDLM层号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="XDLM分区号" id="XDLM分区号" lay-search lay-filter="XDLM分区号">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-inline">
+                                <button class="layui-btn" type="button" name="searchData" id="searchData">查询</button>
+                            </div> --> 
+                            <!--<div class="layui-inline">-->
+                            <!--<button class="layui-btn userLimit-btn-edit" id="add">新增拓片</button>-->
+                            <!--</div>-->
+                            <!--<div class="layui-inline">-->
+                            <!--<button class="layui-btn userLimit-btn-edit" id="batchOutStore">批量出库</button>-->
+                            <!--</div>-->
+                            <!--<div class="layui-inline">-->
+                            <!--<button class="layui-btn  userLimit-btn-edit" id="grounp">文物分组</button>-->
+                            <!--</div>-->
+                            <!--<div class="layui-inline">-->
+                            <!--<button class="layui-btn userLimit-btn-edit " id="editgrounp">编辑分组</button>-->
+                            <!--</div>-->
+                            <!--<div class="layui-inline">-->
+                            <!--<button class="layui-btn userLimit-btn-export" id="outfile">导出</button>-->
+                            <!--</div>-->
+
+                        <!-- </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-table layuiadmin-page-table" id="djblb" lay-filter="djblb"></table>
+            </div>
+        </div>
+    </div>  -->
+</body>
+
+</html>
+
+<!-- <script type="text/html" id="opeTpl">
+    <a class="layui-btn layui-btn-xs" lay-event="label">标签</a> {{# if(d['库存状态'] == '在库'||d['库存状态'] == '归还入库'||d['库存状态'] == '暂存'){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-green1 btn-width" lay-event="ck">出库</!--> 
+    <!-- <a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a> -->
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs btn-width" style="width:48px;" lay-event="wz">位置</a>-->
+    <!--<a class="layui-btn layui-btn-xs own-btn-blue" lay-event="edit" id="edit">修改</a>-->
+    <!--<a class="layui-btn own-btn-red layui-btn-xs" lay-event="del">删除</a>-->
+    <!-- {{# }else if(d['库存状态'] == '待入库'||d['库存状态'] == '待出库'){}} -->
+    <!--<a class="layui-btn layui-btn-xs btn-width layui-btn-disabled" style="background: rgb(201, 201, 201);color: #FFFFFF;">归还</a>-->
+    <!-- <a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a> -->
+    <!--<a class="layui-btn layui-btn-xs btn-width layui-btn-disabled" style="background: rgb(201, 201, 201);color: #FFFFFF;">出库单</a>-->
+    <!--<a class="layui-btn layui-btn-xs btn-width layui-btn-disabled" style="background: rgb(201, 201, 201);color: #FFFFFF;">修改</a>-->
+    <!--<a class="layui-btn layui-btn-xs btn-width layui-btn-disabled" style="background: rgb(201, 201, 201);color: #FFFFFF;">删除</a>-->
+    <!-- {{#}else{ }} -->
+    <!--<a class="layui-btn layui-btn-xs layui-btn-warm btn-width" lay-event="gh">归还</a>-->
+    <!-- <a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="xq" id="ckxq">详情</a> -->
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs btn-width" lay-event="ckd">出库单</a>-->
+    <!--<a class="layui-btn layui-btn-xs btn-width layui-btn-disabled" style="background: rgb(201, 201, 201);color: #FFFFFF;">修改</a>-->
+    <!--<a class="layui-btn own-btn-red layui-btn-xs" lay-event="del">删除</a>-->
+    <!-- {{#}}} -->
+<!-- </script> --> 
+<!-- <script type="text/html" id="positionDisplay">
+    {{ combinePosition(d) }}
+</script>
+
+<script type="text/html" id="colorKNBH">
+    {{ QueryKeyColor(d['文物库内编号']) }}
+</script>
+<script type="text/html" id="colorBH">
+    {{ QueryKeyColor(d['编号']) }}
+</script>
+<script type="text/html" id="colorMC">
+    {{ QueryKeyColor(d['登记名称']) }}
+</script>
+<script type="text/html" id="colorND">
+    {{ QueryKeyColor(d['年代']) }}
+</script>
+<script type="text/html" id="colorSL">
+    {{ QueryKeyColor(d['数量']) }}
+</script>
+<script type="text/html" id="colorZTYLX">
+    {{ QueryKeyColor(d['载体一类型']) }}
+</script>
+<script type="text/html" id="colorZTELX">
+    {{ QueryKeyColor(d['载体二类型']) }}
+</script> -->

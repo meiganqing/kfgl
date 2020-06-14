@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<title></title>
+	
+		<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+ 
+		<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+		<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+		<script src="/SXSY/Widget/yanzheng/js/verify.js"></script>
+		<script src="/SXSY/js/SysCongfig.js"></script>
+		<script type="text/javascript" src="../js/add_swlx.js"></script>
+
+
+
+		<style type="text/css">
+			.layui-form-label {
+				float: left;
+				display: block;
+				padding: 9px 15px;
+				width: 120px;
+				font-weight: 400;
+				line-height: 20px;
+				text-align: right;
+			}
+			
+			.layui-input,
+			.layui-textarea {
+				display: block;
+				width: 90%;
+				padding-left: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layui-fluid" style="margin-top: 0px;">
+			<div class="layui-card">
+			
+				<div class="layui-card-body">
+					<form id="XMForm" method="post" class="layui-form">
+					
+			
+						<input type="hidden" name="XDLMID" id="XDLMid" value="" />
+						<input class="layui-input" type="hidden" name="XDLM库房名" id="XDLM库房名" value="">
+						<div class="layui-row">
+							<div class="layui-form-item">
+								<label class="layui-form-label">三维名称：</label>
+								<div class="layui-input-block">
+									<input class="layui-input" name="XDLM三维名称" id="XDLM三维名称">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">现登记号：</label>
+								<div class="layui-input-block">
+									<input class="layui-input" name="XDLM文物库内编号" id="XDLM文物库内编号">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">登记名称：</label>
+								<div class="layui-input-block">
+									<input class="layui-input" name="XDLM登记名称" id="XDLM登记名称">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">文件地址</label>
+								<div class="layui-input-block">
+									<input class="layui-input" name="XDLM文件地址" id="XDLM文件地址">
+								</div>
+							</div>
+							<div class="layui-form-item" style="text-align: center;">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="XMForm" id="submitBtn">保存</button>
+									
+									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

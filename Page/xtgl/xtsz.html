@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+ 
+	<script src="/SXSY/layuiadmin/layui/layui.js"></script>
+	<script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+	 
+	<script src="/SXSY/js/SysCongfig.js"></script>
+
+	<script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+	<script type="text/javascript" src="./js/xtsz.js"></script>
+</head>
+	<style>
+		.warning {
+			background: url(../../images/warning.png) no-repeat;
+			background-size: 30px 30px;
+			padding: 3px;
+			box-sizing: border-box;
+			float: left;
+			margin-top: 3px;
+		}
+		
+		.layui-form-label {
+			width: 185px;
+		}
+		
+		.layui-form-item .layui-input-inline {
+			width: 300px;
+		}
+		
+		.layui-btn-container {
+			margin-bottom: 15px;
+		}
+	</style>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-header" style="color:red;"><i class="me-icon warning"></i>本栏目内任何操作都会对系统造成无可挽回的影响，请谨慎操作！（先清除后重置）</div>
+				<div class="layui-card-body">
+					<div class="layui-btn-container">
+						<button class="layui-btn layui-btn-danger scbutton" id="clearXTRZ">【清空所有系统日志记录】</button>
+						<button class="layui-btn layui-btn-normal scbutton" id="clearWWBGJL">【清空文物变更记录】</button>
+						<button class="layui-btn layui-btn-warm scbutton" id="clearTTLB">【清空所有图筒列表】</button>
+						<button class="layui-btn scbutton" id="clearXZQMBH ">【清空行政区码编号】</button>
+						<button class="layui-btn layui-btn-danger scbutton" id="clearWWSQSXBG">【清空申请属性变更】</button>
+						<button class="layui-btn layui-btn-normal scbutton " id="clearWWLB">【清空数据库文物列表】</button>
+
+						<button class="layui-btn layui-btn-danger scbutton" id="clearSysAllData">【一键清除所有数据】</button>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">库内文物列表编号：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="knbh">
+						</div>
+						<div class="layui-input-inline">
+							<button class="layui-btn bjbutton" id="reinstallLBBH">【重新设置库内文物列表编号】</button>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">文物出库流水号：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="cklsh">
+						</div>
+						<div class="layui-input-inline">
+							<button class="layui-btn layui-btn-warm bjbutton"  id="reinstallCKLSH">【重新设置文物出库流水号】</button>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">文物入库流水号：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="rklsh">
+						</div>
+						<div class="layui-input-inline">
+							<button class="layui-btn layui-btn-normal bjbutton" id="reinstallRKLSH">【重新设置文物入库流水号】</button>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">图筒流水号：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="ttlsh">
+						</div>
+						<div class="layui-input-inline">
+							<button class="layui-btn layui-btn-danger bjbutton" id="reinstallTTLSH">【重新设置图筒流水号】</button>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">批次流水号：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="pclsh">
+						</div>
+						<div class="layui-input-inline">
+							<button class="layui-btn layui-btn-normal bjbutton" id="reinstallPCLSH">【重新设置批次流水号】</button>
+						</div>
+					</div>
+ 
+					<div class="layui-btn-container">
+						<button class="layui-btn bjbutton" id="initXZQMBH ">【初始化行政区码编号】</button>
+						<button class="layui-btn bjbutton" id="initTubesCode ">【初始化图筒编号】</button>
+						<button class="layui-btn layui-btn-warm bjbutton" id="reinstallStatusZK">【所有文物设置为在库状态】</button>
+						<button class="layui-btn layui-btn-normal bjbutton" id="reinstallKNBH">【重设所有库内编号】</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+ 

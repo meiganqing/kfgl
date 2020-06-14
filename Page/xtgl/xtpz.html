@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/SXSY/widget/yanzheng/css/verify.css" media="all">
+    <link rel="stylesheet" href="../../lib/css/font-awesome/css/font-awesome.css" />
+</head>
+<style>
+    /*#addLayerHtml .layui-form-label {
+			width: 160px;
+		}
+		
+		#addLayerHtml .layui-input-block {
+			margin-left: 190px;
+		}*/
+</style>
+
+<body>
+
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header" style="margin-top: 5px;">配置项列表</div>
+            <div class="layui-form layui-card-body layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">查询类别：</label>
+                        <div class="layui-inline">
+                            <select id="queryT" lay-search lay-filter="queryT"></select>
+                        </div>
+                    </div>
+                   
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关键字：</label>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="queryK" id="queryK" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="layui-inline" id="serchdiv">
+                        <button class="layui-btn" type="button" name="searchData" id="searchData">查询</button>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn" type="button" id="add_Teamwork">新增配置项</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table lay-filter="grid_table" id="grid_table"></table>
+            </div>
+        </div>
+    </div>
+    <!--添加弹框-->
+    <style>
+        .spark{
+            color: red;
+        }
+    </style>
+    <form class="layui-form  site-text" id="addLayerHtml" style="display: none;width: 100%;">
+        <div class="layui-card-body layui-row layui-form-item">
+            <div class="layui-col-md12 layui-inline" id="">
+                <label class="layui-form-label"><span class="spark">*</span>名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLMsysname" id="sysname" placeholder="请输入名称" class="layui-input input_empty" style="width: 90%;">
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-inline" id="">
+                <label class="layui-form-label"><span class="spark">*</span>内容</label>
+                <div class="layui-input-block">
+                    <input type="text" name="XDLMsysvalue" id="sysvalue" placeholder="请输入内容" class="layui-input input_empty" style="width: 90%;">
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item site-text" style="text-align: center;">
+            <div class="">
+                <button type="button" class="layui-btn" id="saveHZ">添加</button>
+                <button type="button" class="layui-btn layui-btn-warm" id="qxHZ">取消</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+<script type="text/javascript" src="/SXSY/layuiadmin/layui/layui.js" ></script>
+<script type="text/javascript" src="/SXSY/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/SXSY/widget/yanzheng/js/verify.js"></script>
+<script type="text/javascript" src="/SXSY/js/SysCongfig.js"></script>
+<!-- <script type="text/javascript" src="../../lib/js/store.min.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJs/tableSetting.js"></script> -->
+<!-- <script type="text/javascript" src="../../SysJS/xdDataMange.js"></script> -->
+<script type="text/javascript" src="./js/xtpz.js"></script>
+<!-- <script type="text/html" id="opeTpl">
+    {{# if(limitConfig("applyLimt", 2)){ }}
+    <a class="layui-btn layui-btn-xs own-btn-blue" lay-event="edit">修改</a>{{# } }} {{# if(limitConfig("applyLimt", 3)){ }}
+    <a class="layui-btn layui-btn-xs own-btn-red" lay-event="del">删除</a>{{# } }}
+</script>
+<script type="text/html" id="colorYHM">
+    {{ QueryKeyColor(d['mUserName']) }}
+</script>
+<script type="text/html" id="colorSJ">
+    {{ QueryKeyColor(d['mDataTime']) }}
+</script>
+<script type="text/html" id="colorIP">
+    {{ QueryKeyColor(d['mUserIP']) }}
+</script>
+<script type="text/html" id="colorJLLX">
+    {{ QueryKeyColor(d['mUserBehavior']) }}
+</script> -->

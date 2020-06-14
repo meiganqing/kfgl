@@ -1,0 +1,273 @@
+		.layui-card-header .choose-color .layui-icon {
+			right: 14px;
+			top: 37%;
+		}
+		
+		.choose-color .layui-form-label {
+			font-weight: 600;
+			float: right;
+			text-align: left;
+		}
+		
+		.table-module {
+			float: left;
+			padding: 25px;
+			box-sizing: border-box;
+		}
+		
+		.table-content {
+			box-shadow: 10px 10px 5px #888888;
+		}
+		
+		.table-module table {
+			border-radius: 7px;
+		}
+		
+		.relic-position {
+			position: absolute;
+		}
+		
+		.tip-box {
+			border: 1px solid #E0E0E0;
+			position: relative;
+			width: 300px;
+			padding: 10px 10px;
+			z-index: 1000;
+			color: white;
+			border-radius: 7px;
+			background: rgba(39, 40, 34, 0.8);
+			max-height: 300px;
+			/*overflow: auto;*/
+		}
+		
+		.icon-tip {
+			margin-right: 5px;
+		}
+		
+		#goodsDeatil tbody tr:hover {
+			background: rgba(39, 40, 34, 1);
+		}
+		
+		.store-list {
+			position: relative;
+		}
+		
+		.area-module {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
+		
+		body .layui-table td,
+		.layui-table th {
+			padding: 20px 15px;
+		}
+		/*新的*/
+		
+		.module-store {
+			float: left;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+		
+		.store-border-top {
+			padding: 3px 10px;
+			box-sizing: border-box;
+			border: 3px solid #000000;
+			background-color: #FFFFFF;
+		}
+		
+		.content-bottom {
+			height: 25px;
+			box-sizing: border-box;
+			border: 3px solid #000000;
+			background-color: #EB9595;
+			text-align: center;
+			color: #FFFFFF;
+		}
+		
+		.content-md {
+			padding: 0px 40px;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-border-left,
+		.store-border-right {
+			padding: 0px 3px;
+			border-left: 3px solid #000000;
+			border-right: 3px solid #000000;
+			display: inline-block;
+			height: 100%;
+			box-sizing: border-box;
+			background-color: #FFFFFF;
+		}
+		
+		.store-border-left {
+			position: absolute;
+			top: 0px;
+			left: 28px;
+		}
+		
+		.store-border-right {
+			position: absolute;
+			top: 0px;
+			right: 28px;
+		}
+		
+		.store-content-mid {
+			display: inline-block;
+			width: 100%;
+			/*height: 60px;*/
+			background-color: #6A6C5F;
+			box-sizing: border-box;
+		}
+		
+		.store-level {
+			height: 120px;
+			width: 100%;
+			background: #E5D6E3;
+			box-sizing: border-box;
+		}
+		
+		.store-level-botborder {
+			/*border-bottom: 3px solid #000000;*/
+			position: relative;
+			padding-bottom: 10px;
+		}
+		
+		.store-level-botborder::after {
+			width: 100%;
+			height: 3px;
+			content: "";
+			border-top: 3px solid #000000;
+			border-bottom: 3px solid #000000;
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+			z-index: 100;
+			background-color: #FFFFFF;
+		}
+		
+		.store-grid {
+			float: left;
+			width: 33.33%;
+			height: 100%;
+			box-sizing: border-box;
+			position: relative;
+		}
+		
+		.store-grid-border {
+			padding-right: 12px;
+		}
+		
+		.store-grid-border::after {
+			width: 3px;
+			height: 100%;
+			content: "";
+			border-left: 2px solid #000000;
+			border-right: 2px solid #000000;
+			display: inline-block;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 100;
+			background-color: #FFFFFF;
+		}
+		
+		.store-grid ul {
+			list-style: none;
+			width: 100%;
+		}
+		
+		.store-grid ul li {
+			width: 20px;
+			height: 20px;
+			border-radius: 10px;
+			background-color: pink;
+			float: left;
+			margin: 3px;
+		}
+		
+		.store-fix-div {
+			width: 100%;
+			min-width: 80px;
+			height: 100%;
+			transform: rotate(180deg);
+			overflow: hidden;
+		}
+		
+		.store-mark {
+			width: 0px;
+			height: 30px;
+			padding-right: 40px;
+			background-color: rgba(32, 34, 42, 0.6);
+			display: inline-block;
+			content: "";
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			top: 3px;
+			z-index: 100;
+			transition: all 2s;
+			vertical-align: middle;
+			overflow: hidden;
+			/*background-color: #FFFFFF;*/
+		}
+		
+		.store-mark:hover {
+			width: 60%;
+			cursor: pointer;
+			background-color: rgba(32, 34, 42, 0.6);
+		}
+		
+		.store-mark .detail-tip {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			/*line-height: 30px;*/
+			box-sizing: border-box;
+			cursor: pointer;
+			background-color: #EB9595;
+			/*background: linear-gradient();*/
+			background: -moz-linear-gradient(top, #ace, #f96 80%, #f96);
+			background: -webkit-linear-gradient(top, #ace, #f96 80%, #f96);
+			background: -o-linear-gradient(top, #ace, #f96 80%, #f96);
+			color: yellow;
+		}
+		
+		.store-mark span {
+			display: inline-block;
+			height: 30px;
+			padding: 4px;
+			color: #FFFFFF;
+		}
+		
+		.close-btn {
+			width: 24px;
+			height: 24px;
+			background-image: url(../../../images/tip-close.png);
+			background-size: cover;
+			position: absolute;
+			top: 7px;
+			right: 9px;
+			z-index: 1100;
+			cursor: pointer;
+		}
+		
+		.goods-deatil {
+			color: #FFFFFF;
+			background: rgba(39, 40, 34, 0.8);
+		}
+		
+		.div-goods-deatil {
+			overflow: auto;
+			height: 100%;
+			max-height: 245px;
+			margin-top: 8px;
+		}
+		
+		.div-goods-deatil .layui-table {
+			margin-top: 0px;
+		}

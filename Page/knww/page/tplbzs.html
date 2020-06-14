@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>流加载</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="/SXSY/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/SXSY/layuiadmin/style/admin.css" media="all">
+
+    <script src="/SXSY/layuiadmin/layui/layui.js"></script>
+    <script src="/SXSY/js/jquery-1.11.3.min.js"></script>
+    <script src="/SXSY/js/SysCongfig.js"></script>
+    <script src="/SYKFGL/SysJs/kfDataManage.js"></script>
+
+
+    <script type="text/javascript" src="../../../Widget/jQuery-pbl/js/jQueryColor.js"></script>
+    <script type="text/javascript" src="../../../Widget/jQuery-pbl/js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="../../../Widget/jQuery-pbl/js/jQeasing.js"></script>
+    
+    <script type="text/javascript" src="../js/tplbzs.js"></script>
+    
+    <style>
+        body,
+        html {
+            background: #FFFFFF;
+        }
+
+        .content {
+            /*margin: 15px;*/
+            padding: 10px 20px;
+            /*border: 2px solid green;*/
+            /*background: url(../img/bg_02.png) repeat-x;*/
+            /*height: 800px;*/
+            overflow: auto;
+            box-sizing: border-box;
+        }
+        /*.waterfull {
+            margin: auto;
+        }*/
+
+        .item img {
+            max-width: 280px;
+        }
+
+        .item {
+            padding: 10px !important;
+            box-shadow: 5px 5px 5px #888888;
+            background: #FFFFFF;
+            margin-bottom: 15px;
+            opacity: 1;
+            top: 112px;
+            position: absolute;
+            left: 400px;
+            border-left: 1px solid #C8C8C8;
+            border-top: 1px solid #C8C8C8;
+            box-sizing: border-box;
+            border-radius: 7px;
+            width: 300px;
+        }
+
+        .li-title {
+            font-size: 14px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            text-align: left;
+            float: left;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .description {
+            line-height: 30px;
+        }
+
+        .insideBtn {
+            display: inline-block;
+            text-align: right;
+            border-radius: 4px;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px;
+            float: right;
+        }
+
+        .formation {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 60px 0px 0px;
+            box-sizing: border-box;
+            min-height: 50px;
+        }
+
+        .detail-btn {
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+            right: 0px;
+        }
+
+        .operate-div .layui-form-select {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=" layui-form">
+        <div class=" layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item operate-div" id="">
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">查询类别：</label>
+                    <div class="layui-inline">
+                        <select id="cxlb" lay-search lay-filter="cxlb">
+                            <option value="模糊查询">模糊查询</option>
+                            <option value="XDLMC">名称</option>
+                            <option value="XDLME">原登记号</option>
+                            <option value="XDLMD">项目名称</option>
+                            <option value="XDLMU">现登记号</option>
+                            <option value="XDLMF">文物类别</option>
+                            <option value="XDLMG">文物年代</option>
+                            <option value="XDLMH">纪年B</option>
+                            <option value="XDLMI">文物级别</option>
+                            <option value="XDLMJ">有机质</option>
+                            <option value="XDLMK">无机质</option>
+                            <option value="XDLML">库存状态</option>
+                            <option value="XDLMM">文物描述</option>
+                            <option value="XDLMN">保管信息_库房名称及编号</option>
+                            <option value="XDLMO">出土地点</option>  
+                            <option value="XDLMQ">领队</option>
+                           
+                        </select>
+                    </div> 
+                </div>
+                
+                <div class="layui-inline search-type check-type" data-value="qvalue" id="keyworDiv">
+                    <label class="layui-form-label">关键字：</label>
+                    <div class="layui-inline">
+                        <input class="layui-input key-words" name="keyWords" id="queryK"  autocomplete="off">
+                    </div>
+                </div>
+              
+                <div class="layui-inline">
+                    <button class="layui-btn " id="searchData">查询</button>
+                     
+                </div>
+                <div class="layui-inline">
+                    <div id="demo0"></div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="layui-card-body ">-->
+
+        <div class="content">
+            <!-- 瀑布流样式开始 -->
+            <div class="waterfull clearfloat" id="waterfull">
+                <ul class="masonry"></ul>
+            </div>
+
+            <!-- loading按钮自己通过样式调整 -->
+            <!--<div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;bac；kground:#000;margin:10px auto 30px;color:#fff;display:none">
+				素材加载中.....
+			</div>-->
+
+            <!--</div>-->
+        </div>
+    </div>
+
+</body>
+
+</html>
